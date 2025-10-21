@@ -1,0 +1,294 @@
+\chapter{Nodos LoRa}
+
+En términos de redes de telecomunicaciones móviles, a los dispositivos que consumen la red inalámbrica se les denomina comúnmente como \emph{nodos}, y es así que en \gls{lwan} se hablará del \emph{dispositivo \gls{lora}}, también conocido como \emph{mote}. De igual manera que en el modelo cliente/servidor, el nodo se comunicará con el servidor \gls{lwan}, evitando la comunicación directa con otros dispositivos de la red. El servidor \gls{lwan} podrá enviarle de vuelta al nodo mensajes almacenados en el servidor \gls{lora}, siempre dependiendo de la clase de trabajo en que se encuentre el nodo (sección \ref{secc:clases}). Para efectos prácticos, se hablará del nodo funcionando en Clase A, en que el nodo siempre inicia la comunicación, aunque en las otras clases persiste el modelo cliente/servidor, lo que permite obviarlas.
+
+La composición del nodo se basa típicamente en una arquitectura hardware de referencia, figura \ref{fig:arqgenhw}, la cual se puede abordar según la funcionalidad de cada uno de los bloques o según la implementación disponible de la arquitectura base mencionada.
+
+\begin{figure}%[h]
+    \caption{Arquitectura de hardware de un dispositivo \gls{lora} genérico.}
+    \centering
+    \includegraphics[width=0.8\textwidth]{arq-gen-hard}
+    \label{fig:arqgenhw}
+\end{figure}
+
+\section{Bloques de la Arquitectura Genérica}
+
+En la arquitectura genérica de la figura \ref{fig:arqgenhw}, cada bloque tiene una labor dentro del nodo:
+\begin{itemize}
+    \item La fuente de energía puede ser suministrada mediante un conector o una batería.
+    \item La \gls{mcu}, o simplemente el \gls{uc}, maneja todas las funciones del dispositivo e implementa la pila LoRaWAN.
+    \item El radio LoRa est[a compuesto por el transceptor \gls{lora}, el circuito de acople de la antena y la antena en sí misma.
+    \item Los periféricos pueden ser sensores como acelerómetros o sensores de temperatura, o entradas y salidas tales como relés o pantallas.
+\end{itemize}
+
+\subsection{Fuente de Poder}
+
+En un \gls{uc} generalmente se observa que el consumo de energía es directamente proporcional a la velocidad de procesamiento y a la cantidad de periféricos activos, entre otros factores. %hallan dos situaciones antagónicas relativas al consumo de energía: alta velocidad con alto consumo de energía y baja velocidad con bajo consumo de energía.
+
+Esto es crítico en aplicaciones que funcionan la mayor cantidad de tiempo, como una \gls{wsn} (capítulo \ref{cap:aplicacion}), por lo cual se hace conveniente disminuir el consumo. Una forma de lograrlo es haciendo que el nodo pase la mayor parte de tiempo en un estado ``adormecido'', esto es, un estado en que su actividad de procesamiento es mínima. Dependiendo del tipo de \gls{uc}, de la arquitectura y de los diversos estados de adormecimiento, la corriente requerida suele oscilar entre algunos microamperios y cientos de microamperios. El consumo de energía en trabajo normal, es una medida útil y se hace más importante cuanto más tiempo pasa un nodo en períodos de trabajo normal, donde los consumos exigen corrientes que oscilan entre \SI{1}{mA} y \SI{10}{mA} para \gls{uc}s pequeños y de bajo consumo, pero pueden variar dependiendo de los tipos de periféricos incorporados, la velocidad del reloj, el tamaño de la memoria y la localización del programa de ejecución.
+
+La tarea primordial del nodo sensor es la detección de eventos, realizar el procesamiento básico de los datos y transmitir la información. Lo anterior implica que en el consumo de energía se destacan tres aspectos: sensado, procesamiento y comunicación. La comunicación incluye trasmisión y recepción, aspectos que demandan mayor consumo. \cite{Akyildiz-2002}.
+
+La energía será usualmente un recurso limitado en el nodo sensor, implicando el uso de fuentes de energía alternativas tales como celdas solares o generadores eólicos, dependiendo del tipo de ambiente en el cual se halla el módulo sensor.
+
+Otros aspectos relativos al suministro de energía están ligados al tiempo de vida de las fuentes y el acceso al nodo sensor. %¿como asi "acceso al nodo sensor"? Att: Alex.
+
+\subsection{Microcontrolador}
+
+El \gls{uc} se puede considerar como el centro de mando del nodo sensor. Casi todas las familias de \gls{uc}s disponibles son diferentes: algunos pueden ser diseñados para la velocidad, otros para eficiencia energética. En la cuestión de elegir el \gls{uc} correcto para la aplicación particular del nodo hay varios aspectos a considerar, que deben tenerse en cuenta al momento de diseñarlo.
+
+De los componentes relevantes del \gls{uc} se presentan a continuación:
+\begin{itemize}
+	\item Memoria.
+    
+    La cantidad y el tipo de memoria utilizadas son dos variables que están ligadas al consumo de energía y que deben ser cuidadosamente elegidas, dado que ambos parámetros implican costos a controlar. En general, a más cantidad de RAM, más potencia requerida para su sostenimiento; no obstante, los \gls{uc}s modernos pueden incorporar varios cientos de kilobytes de memoria flash y decenas de kilobytes de RAM
+y continuan utilizando paquetes estandarizados de manejo con costos bajos. % ?? - Att. Alex
+Una tecnología nueva y de alternativa, en este aspecto es el uso de FRAM, una alternativa de memoria que combina la velocidad de la memoria RAM convencional con la no volatilidad del almacenamiento de la memoria flash y elimina la segregación entre las dos. Este tipo de flash tiene menor consumo, cuando funciona, en comparación con la memoria flash estándar y elimina la necesidad de refrescamiento de la RAM para preservar su contenido.
+
+    \item Soporte entrada-salida
+
+    El \gls{uc} está en capacidad de llevar a cabo funciones de comunicación tipo serial o paralela, temporizaciones, comparaciones, transmisión y recepción digital y analógica en diversos protocolos y velocidades, además del procesamiento de datos. Una de las limitaciones a estas funciones está en el número de pines de acceso físico a su estructura. Para dar solución a esta situación, se trata de mantener al máximo el número de funciones y se multiplexa la comunicación entrada salida en los pines disponibles seleccionando a través de software la gran variedad de operaciones que permita el dispositivo.
+
+    Para el diseño de un nodo sensor se requieren muchas de las funciones presentes en el \gls{uc} y una cierta cantidad de pines de comunicación con funciones particulares cada uno de ellos. Como ejemplos de funciones y pines requeridos se tienen las interfaces $I^2C$, $I^2S$, canales $SPI$, conversores ADC y DAC, pines de interrupciones E/S, señales de tiempo y de reloj, bits-banderas, entre otros.
+
+    \item Soporte de comunicación
+
+    Los nodos sensores están normalmente dispersos en áreas específicas de medición. Cada uno de estos nodos tiene la capacidad de recopilar datos y enviarlos a la pasarela y/o a los usuarios finales.
+
+    Los protocolos utilizados por el receptor y por los nodos de sensores permiten el encaminamiento e integración de los datos con los protocolos de red de manera eficiente a través del medio inalámbrico, socializando el trabajo de los nodos sensores.
+
+	Los nodos sensores están debidamente coordinados y administrados para que realicen tareas que disminuyan el consumo total de energía; por ejemplo informar a sus vecinos cuando su nivel de energía es bajo y por tanto no puede participar en intercambio de mensajes.
+
+    \item Adquisición de datos
+
+    El modelo que se siga para la toma de datos caracteriza y describe la interacción entre los sensores y la aplicación.
+
+    El modelo de adquisición de datos más apropiado para una aplicación se determina según las características que se desee dar a la aplicación; en las diferentes situaciones los datos fluyen, principalmente, desde el nodo del sensor a la puerta de enlace; en las aplicaciones de control, los datos, adicionalmente, fluyen desde la puerta de enlace hacia los nodos sensores.
+
+	Las técnicas de monitoreo más usuales \cite{Cecilio-2014} son :
+	\begin{itemize}
+ 		\item Muestreo periódico: para aplicaciones donde las condiciones o los procesos requieren ser monitoreados constantemente, como es el caso de la temperatura en un ambiente acondicionado o la presión en una tubería de proceso. Para este caso, los datos se adquieren en el nodo sensor y son reenviados a la puerta de enlace de forma periódica. El período de muestreo depende de qué tan rápido varía la magnitud monitoreada y/o qué características de control se requieren en el proceso. Si la dinámica del proceso controlado varía, los nodos sensores deben ser capaces de adaptar sus tasas de muestreo a la dinámica del proceso. Esta adaptación debe hacerse automáticamente o a través de comandos emitidos por la aplicación.
+		\item Muestreo impuesto por el evento: hay muchos casos que requieren el monitoreo de variables críticas como por ejemplo alarmas de fuego, alarmas de presión o sensores de puertas o ventanas, etc. La admisión de dichos eventos exige que el nodo sensor actúe con eficiencia en el consumo de energía y con la adecuada velocidad de respuesta.
+		\item Captura-proceso-almacenamiento: en algunos caso, los datos pueden ser capturados y almacenados o incluso procesados por el nodo sensor antes de que se transmita a la puerta de enlace, en lugar de Transmitir inmediatamente cada muestra a medida que se adquiere, esto mejora el rendimiento de la red en cuanto a eficiencia de consumo y ancho de banda.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Radio LoRa}
+
+La comunicación de radio puede ser bidireccional, tanto entre los nodos como hacia las estaciones base. Adicionalmente, se debe buscar un balance entre el consumo de energía del módem \gls{lora} y la \gls{snr}. De este balance habrá un impacto consecuente en el consumo de energía de este elemento del sistema, comparado con los otros, sobretodo al momento en que el nodo requiera transmitir información.
+
+\subsection{Periféricos}
+
+Los sensores y actuadores son la razón de ser del nodo. Estos se distribuyen dentro del área de cobertura del nodo para supervisar y recopilar datos con el objetivo de trasmitirlos a otros nodos y/o a un servidor.
+
+\section{Topologías}
+
+Dependiendo de los requisitos de diseño y producción, se tienen varias opciones para construir un dispositivo \gls{lora}. La elección de la arquitectura objetivo, necesita tener como base criterios tales como las cantidades de producción esperadas, las habilidades disponibles en ingeniería de RF y la línea de tiempo de desarrollo disponible para completar el proyecto.
+
+Con el fin de seleccionar la arquitectura óptima, es preferible partir de un kit de desarrollo \gls{lora} y crear un bosquejo.
+
+Por otro lado, en la figura \ref{fig:arqgensw} se muestra una arquitectura genérica del software en el dispositivo.
+
+\begin{figure}
+    \caption{Arquitectura Genérica del software del Nodo}
+    \centering
+    \includegraphics[width=0.8\textwidth]{arq-gen-soft}
+    \label{fig:arqgensw}
+\end{figure}
+
+La capa de Drivers provee la adaptación de hardware e implementa todos los drivers, buffers, para controlar los dispositivos periféricos. Esta permite abstraer el hardware como funciones simples expuestas al \emph{middleware}.
+
+El \emph{middleware} implementa las librerías de protocolos de comunicación (\gls{lwan}, 6LowPAN, ...) e implementa también controladores complejos como el control de pantallas y de GPS.
+
+La capa de aplicación contiene todas las aplicaciones funcionales en las que se implementa el comportamiento del dispositivo y sus funcionalidades.
+
+\subsection{Diseño basado en un Chipset LoRa}
+
+Este diseño sigue la arquitectura genérica de la figura \ref{fig:arqgenhw}, con el radio \gls{lora} basado en un transceptor \gls{lora} de Semtech y la antena, más su circuitería asociada.
+
+\begin{figure}%[h]
+    \caption{Arquitectura de Dispositivo LoRa basado en Chipset}
+    \centering
+    \includegraphics[width=0.8\textwidth]{design-chipset}
+    \label{fig:loraWchipset}
+\end{figure}
+
+%
+
+En esta arquitectura, ilustrada en la figura \ref{fig:loraWchipset}, el desarrollador del dispositivo deberá tener cuidado de todo el diseño RF, incluyendo las restricciones de enrutamiento en la PCB, el acople y sintonización de la antena y los problemas de emisión e inmunidad.
+
+La totalidad de la pila \gls{lwan} será llevada por el MCU principal  e implementada por el desarrollador o fabricante del dispositivo.
+
+\subsection{Diseño basado en un módulo LoRa}
+
+El módulo \gls{lora} es un componente que contiene el \gls{mcu} y el radio \gls{lora}. Se tiene disponibilidad de programar el software de su \gls{mcu} para ejecutar la aplicación y la pila \gls{lwan}.
+
+El principal beneficio de este enfoque de diseño es que todo el desarrollo del hardware de RF es implementado por el fabricante del módulo.
+
+La mayor parte de la sintonización y acople de la antena es realizada adentro del módulo. El fabricante del módulo brinda un diseño de referencia para conectar o rediseñar la antena.
+
+\begin{figure}%[h]
+    \caption{LoRa module device architecture}
+    \centering
+    \includegraphics[width=0.5\textwidth]{design-module}
+    \label{fig:loraWmodule}
+\end{figure}
+
+Comparado con la arquitectura anterior, dado que se dispone del MCU, para esta arquitectura mostrada en la figura \ref{fig:loraWmodule}, el fabricante del dispositivo se encarga solamente de la implementación de la pila \gls{lwan}. Dependiendo del proveedor del módulo, la pila \gls{lwan} se puede entregar como una librería.
+
+\subsection{Diseño basado en un RF-MCU}
+
+Un RF-MCU es un \gls{soc} que incluye un \gls{mcu} y un transceptor LoRa en el mismo circuito integrado. Los requerimientos RF son los mismos del diseño RF anterior pero esta arquitectura  mayor ganancia en el tamaño total del dispositivo. Desde el punto de desarrollo, este diseño es similar al del módulo.
+
+\subsection{Diseño basado en un módem LoRa}
+
+Un módem LoRa es un componente que contiene todos los componentes de radio: pila y circuitería RF, como en la figura \ref{fig:loraModemArch}. Algunos módem pueden también incluir una antena integrada, o el fabricante da una referencia de diseño para diseñar o conectar una antena externa.
+
+\begin{figure}%[h]
+    \caption{Arquitectura usando un dispositivo módem}
+    \centering
+    \includegraphics[width=0.8\textwidth]{design-modem}
+    \label{fig:loraModemArch}
+\end{figure}
+
+El módem integra la pila \gls{lwan} entera y actúa como esclavo de tal manera que requiere de un ``host'' para manejarlo. La comunicación usualmente se realiza mediante comandos AT para configurar o enviar mensajes.
+
+La interfaz de hardware puede ser usualmente un UART, USB o SPI.
+
+\subsection{Dispositivos con un módem LoRa externo}
+
+Un módem Lora también puede ser un dispositivo independiente externo, conectado a un dispositivo a un dispositivo existente mediante una conexión USB, por ejemplo.
+
+En ese caso, el dispositivo existente debe tener una conexión externa disponible y también debe ser capaz de energizar el módem LoRa externo.
+
+\begin{figure}%[h]
+    \caption{Arquitectura usando un módem LoRa externo}
+    \centering
+    \includegraphics[width=0.8\textwidth]{design-external}
+    \label{fig:loraExternal}
+\end{figure}
+
+El módem integra la pila \gls{lwan} entera y actúa como un esclavo de tal modo que requiere de un controlador externo para manejarlo. La comunicación usualmente se realiza mediante comandos AT para configurarlo o enviar mensajes.
+
+\section{Interfaces Digitales}
+
+Los sensores disponibles en el mercado pueden requerir polarización y acondicionamiento, como pueden ya tener integrados estos circuitos en el mismo encapsulado e inclusive presentar una salida con alguna interfaz digital comercial.
+
+Debido tanto a la variedad de interfaces digitales comerciales, como de distintas configuraciones de polarización para los sensores que requieren circuitos de polarización y/o acondicionamiento, se plantea una interfaz que permita conectar la mayor cantidad posible de componentes necesaria entre el \gls{uc} conectado al nodo LoRaWAN y el sensor que se vaya a conectar al nodo.
+
+Los protocolos de comunicación electrónica más comunes entre componentes de sistemas embebidos, suelen ser mediante buses serie de varios tipos. Se hablará solamente de las lineas dedicadas exclusivamente al protocolo en mención, excluyendo así las de polarización y energización de los dispositivos:
+
+\subsection{$I^2C$}
+
+El bus \gls{i2c} se desarrolló en 1982 por Phillips (actualmente, 2017, NXP). Se utiliza principalmente en la comunicación de dispositivos distribuidos en un mismo sistema embebido, por ejemplo entre un \gls{uc} y circuitos periféricos integrados. Es un bus maestro-esclavo, en que la transferencia de datos es siempre inicializada por un maestro; y el esclavo reacciona ante esta. 
+\begin{quotation}
+    Es posible tener varios maestros mediante un modo multimaestro, en el que se pueden comunicar dos maestros entre si, de modo que uno de ellos trabaja como esclavo. El arbitraje (control de acceso al bus) se rige por las especificaciones, de este modo los maestros pueden ir turnándose.
+    
+    \fuente{\url{https://www.coursehero.com/file/45456571/Practica1-InterfacesI2Cdocx/}}
+\end{quotation}
+    
+Requiere solamente dos líneas, para reloj y datos. Ambas se encuentran en un estado lógico alto débil (debido a resistencias \emph{pull up} en cada línea), y por lo mismo quienes usen el bus han de tener salidas tipo colector/drenador abierto. Quien inicia una transmisión (tomando el control de las dos líneas) es siempre un dispositivo maestro, y puede iniciarla con uno de los demás dispositivos en el bus, que se comportaran como esclavos dependiendo del direccionamiento.
+
+\begin{figure}
+    \caption[Esquema $I^2C$]{Esquema $I^2C$. Realmente la polarización (líneas VCC y GND) puede ser distinta para cada dispositivo, pero las líneas del bus, SDA y SCL, son comunes a todos eléctricamente.}
+    \centering
+    \includegraphics[width=\textwidth]{I2C}
+    \fuente{\url{http://www.prometec.net/bus-i2c/}}
+    \label{fig:i2c}
+\end{figure}
+
+\subsection{SPI}
+
+También en modelo maestro-esclavo, con comunicación iniciada por el dispositivo maestro, este bus permite comunicación Full Duplex mediante las líneas MOSI (\emph{Master Out, Slave In}) y MISO (\emph{Master In, Slave Out}), con reloj y habilitación del esclavo establecidos por el maestro, mediante las líneas CLK y SS (\emph{Slave Select}).
+Este bus permite velocidades de transmisión más rápidas, tanto porque las líneas son activas (Requieren salidas tipo \emph{push-pull}), como porque el maestro puede enviar y recibir al tiempo, a costa de requerir mas pines que I2C o UART.
+
+\begin{figure}
+    \caption[Esquema SPI.]{Esquema SPI. Todos los esclavos comparten y se conectan a las mismas líneas del bus: SCLK, MOSI y MISO; pero solo son activos bajo su señal SS.}
+    \centering
+    \includegraphics{SPI}
+    \fuente{\url{https://commons.wikimedia.org/wiki/File:SPI_three_slaves.svg}}
+    \label{fig:spi}
+\end{figure}
+
+\subsection{UART}
+
+El Transmisor-Receptor Asíncrono Universal (\emph{Universal Asynchronous Receiver-Transmitter}) es similar a SPI dado que permite comunicación full duplex, mas no utiliza ni las líneas de reloj (dado que cada bit tiene un tiempo determinado y en mutuo acuerdo) ni de habilitación (cualquiera de los dos puede iniciar una transmisión). Como mínimo, cada dispositivo que soporte UART presenta las líneas Rx y Tx, para comunicar dos dispositivos UART basta con intercambiar las líneas.
+
+\begin{figure}
+    \caption[Esquema UART.]{Esquema UART. Las líneas de los dispositivos se conectan intercambiadas, emparejando siempre un receptor con un transmisor.}
+    \centering
+    \includegraphics[width=0.75\textwidth]{uart}
+    \fuente{\url{https://www.mikroe.com/blog/uart-serial-communication}}
+    \label{fig:my_label}
+\end{figure}
+
+\section{Interfaz Planteada}
+
+La interfaz abarca dos entornos: uno de ``hardware'' relacionado con la conexión física, y otro de ``software'' relacionado con una capa de abstracción entre los distintos métodos de obtención de las variables de los sensores, sean mediante protocolos digitales o mediante una cadena de medida, con el fin de permitir su transmisión sobre una aplicación en la red \gls{lwan}.
+
+Con ayuda de una aplicación \gls{lwan}, esta interfaz permitirá la interconexión de dos circuitos: Uno de estos será el Núcleo Pylates, conformado por un \gls{mcu} y un modem \gls{lwan}. El otro será la placa de aplicación con todos los circuitos adicionales requeridos en el nodo.
+
+\subsection{Interfaz de Hardware: Conector y Funcionalidades de Pines}
+
+Ha de ser posible que el \gls{mcu} acceda a las variables de medida de cada sensor, bien mediante interfaces digitales (SPI, I2C, UART), como con la implementación de una cadena de medida (OPAMPS+REF+ADC+DAC) para aquellos en que sea necesario. Se estima el peor de los escenarios, en que se requiere una mayor cantidad de pines, en que se conectarán al \gls{mcu} cuatro sensores, tres mediante las tres distintas interfaces digitales mencionadas; y uno con una cadena de medida, asistida con los periféricos análogos del \gls{mcu}. Otra alternativa consiste en considerar solo un tipo de sensor, siendo en este caso conveniente el permitir a los sensores que requieren cadena de medida, acceder a la mayor cantidad de periféricos analógicos disponibles del \gls{mcu}.
+
+\begin{figure}
+    \caption{Conector base propuesto para el nodo.}
+    {\small Los seis pines inferiores son la versión reducida, los demás hacen parte de la versión extendida.}
+    \centering
+    \includegraphics[width=0.5\textwidth]{conector_principal}
+    \label{fig:con_main}
+\end{figure}
+
+Dado que ambos conectores presentan pines en común, se puede escoger cualquiera de los dos según la complejidad del circuito esclavo a controlar.
+
+\begin{table}[t]
+\centering
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+Pin & Tipo & \begin{tabular}[c]{@{}l@{}}Función por\\   defecto\end{tabular} & Pin & Tipo & \begin{tabular}[c]{@{}l@{}}Función por\\   defecto\end{tabular}          \\ \hline
+1   & PWR  & \begin{tabular}[c]{@{}l@{}}VCC, 2.8 V\\   - 3.6 V\end{tabular}  & 2   & PWR  & GND                                                                      \\ \hline
+3   & I/O  & VREFH                                                           & 4   & I/O  & VREFL                                                                    \\ \hline
+5   & I/O  & --Bloqueado--                                                   & 6   & I/O  & \begin{tabular}[c]{@{}l@{}}(CLK*/SCK)Op2,\\   Salida\end{tabular}        \\ \hline
+7   & I/O  & Op1, Salida                                                     & 8   & I/O  & \begin{tabular}[c]{@{}l@{}}(MOSI*/Tx*)Op2,\\   Inversora\end{tabular}    \\ \hline
+9   & I/O  & \begin{tabular}[c]{@{}l@{}}Op1,\\   Inversora\end{tabular}      & 10  & I/O  & \begin{tabular}[c]{@{}l@{}}(MISO*/Rx*)Op2,\\   No Inversora\end{tabular} \\ \hline
+11  & I/O  & \begin{tabular}[c]{@{}l@{}}Op1, No\\   Inversora\end{tabular}   & 12  & I/O  & SS*(SDT)                                                                 \\ \hline
+13  & I/O  & Tx*                                                             & 14  & I/O  & MOSI*                                                                    \\ \hline
+15  & I/O  & Rx*                                                             & 16  & I/O  & MISO*                                                                    \\ \hline
+17  & I/O  & SDT*                                                            & 18  & I/O  & SCK/CLK*                                                                 \\ \hline
+\end{tabular}
+\caption{Disposición sugerida de funcionalidades de pines. Con * de periféricos digitales, que pueden ser asignadas a otros pines, y entre paréntesis para el conector base.}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Interfaz de Software: Configuración mediante IDs de Núcleo y Placa}
+
+En aras de que el usuario final realice la mayor cantidad de configuración desde una interfaz gráfica y con un minimo esfuerzo, se plantea una aplicación en que se ingresan dos identificadores: Uno del núcleo, y otro del circuito de aplicación.
+
+\subsubsection{Núcleo}
+
+Cada núcleo conformado por un microcontrolador y un modem LoRaWAN, estará asociado a un identificador universal del nucleo (CoreID). Este identificador permite su indexación en una base de datos, en que se almacenen, entre otros, los siguientes elementos particulares:
+\begin{itemize}
+    \item Microcontrolador Principal
+    \item Marca y Modelo del Modem LoRaWAN
+    \item Tipo de Antena
+\end{itemize}
+
+\subsubsection{Circuito de Aplicación}
+
+Cada posible configuración eléctrica tendrá asignado un identificador de catálogo (CatID), repetible solamente entre el mismo tipo de circuito. De tal manera que cada cambio que altere la funcionalidad del hardware, modificando el circuito, requerirá obligatoriamente un nuevo CatID. Entre los cambios notables se presentan los siguientes:
+\begin{itemize}
+    \item Agregar/Retirar componentes.
+    \item Cambiar valores de componentes alterando las impedancias.
+    \item Cambio de posiciones relativas de conectores.
+\end{itemize}
+
+Cambios en el encaminamiento de pistas, orientación de componentes discretos que no afecten el funcionamiento de los dispositivos, generalmente no implicarán la creación de un nuevo CatID.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Abstracción de Interfaces Eléctricas}
+
+En el mercado existe gran variedad de sensores, cuyas variables de medida pueden reflejarse análogamente en propiedades eléctricas como algún voltaje, corriente, impedancia, o alguna combinación en particular. Del mismo modo, cada fabricante de sensores que incluyen gran parte de la cadena de medida y que presentan la variable mediante una interfaz digital, tienen su propio orden para la carga útil de cada una de estas interfaces.
+
+Se pretende que el procesamiento de la información en el nodo sea mínima, con el fin de aprovechar al máximo la energía disponible, sobretodo al venir de baterías o fuentes no disponibles la mayor parte del tiempo, relevando el procesamiento intensivo a quienes hagan uso de la aplicación a la cual se enviaran los datos de los sensores, casi que enviando los datos en crudo.

@@ -1,0 +1,198 @@
+\chapter[Medición de la Calidad del Aire]{Aplicación Propuesta: Medición de la Calidad del Aire} \label{cap:aplicacion}
+
+La calidad del aire afecta la salud de los seres vivos y el medio ambiente. Entre los efectos asociados con la polución del aire se halla la disminución de la función pulmonar, enfermedades cardiovasculares, incremento de incidentes asmáticos, entre otras. Adicionalmente al impacto nocivo en el ser humano, se afecta la vegetación, decrece la visibilidad, y hay una alta influencia en el clima global.
+
+\section{Contaminación del aire}
+La contaminación del aire es la presencia de una mezcla compleja de diferentes compuestos químicos en forma de partículas sólidas, gotas líquidas o gases. Algunos de estos contaminantes son de corta duración en la atmósfera, mientras que otros son de larga vida. La cantidad de tiempo que un contaminante particular permanece en la atmósfera depende de su afinidad reactiva con otras sustancias y/o su tendencia a depositarse en una superficie y de las condiciones climáticas, incluida la temperatura, la luz solar, la precipitación y la velocidad del viento.
+
+Los contaminantes son emitidos por una amplia variedad de fuentes naturales y/o fuentes producidas por el hombre o artificiales. Los ejemplos de fuentes artificiales incluyen plantas generadoras de electricidad, automóviles y plantas de producción de petróleo y gas. Las fuentes de contaminantes naturales incluyen incendios forestales, tormentas de polvo y erupciones volcánicas, entre otros. Los denominados contaminantes primarios son emitidos directamente de la fuente y están representados por material particulado (PM2,5; PM10), el monóxido de carbono (CO), el dióxido de nitrógeno (NO2), el dióxido de azufre (SO2) y el plomo (Pb)).Los conocidos como contaminantes secundarios se obtienen de reacciones químicas; este grupo incluye ozono (O3) y algunos tipos de material particulado. Las concentraciones de contaminantes en el aire varían en el espacio y en el tiempo debido a otros parámetros, a la proximidad con las fuentes y a las condiciones climáticas.
+
+\subsection{Efectos en la salud}
+
+La \gls{epa} ha establecido el \gls{aqi} para trasladar las medidas de polución en potenciales efectos en los individuos. El \gls{aqi} es un indicador que reporta la calidad diaria del aire y nos indica que tan limpio o contaminado está y que efectos implica para la salud.
+
+La \gls{epa} calcula el \gls{aqi} basada en los cinco mayores contaminantes del aire: nivel de ozono, polución de partículas, monóxido de carbono,  dióxido de azufre y dióxido de nitrógeno.
+
+La tabla 2.1 describe los efectos en la salud de acuerdo al \gls{aqi}.
+
+\section{Monitoreo de contaminantes del aire.}
+La \gls{epa} ha identificado seis "contaminantes estándar" de alto nivel de importancia para la salud y el medio ambiente: ozono-3 ($\textrm{O}_3$), material particulado (PM), monóxido de carbono (CO), dióxido de nitrógeno6 (NO$_2$), dióxido de azufre ($\textrm{SO}_2$) y plomo (Pb). La \gls{epa} ha establecido los
+ \gls{naaqs}, los cuales clasifican en primarios y secundarios; los primarios están destinados a proteger la salud pública y los secundarios a proteger el bienestar público. Los límites de concentración establecidos por \gls{naaqs} se muestran en ((la Tabla 2-2.GUIDEBOOK)).
+
+Con la nueva generación de sensores de calidad del aire, de bajo costo y portátiles, se tienen muchas facilidades para su uso en aplicaciones de esta área.Aunque los sensores de contaminación del aire aún se encuentran en su etapa inicial de desarrollo, la \gls{epa} tiene pautas específicas que se deben aplicar para establecer monitoreo de aire de grado reglamentario. La Tabla 1-1 (guidebook)resume algunas áreas potenciales de aplicación no regulatoria para sensores de aire y proporciona descripciones breves y ejemplos.
+
+\section{Modelo de Red para la Aplicación}
+
+El modelo de red implementado obedece a la topología estrella. El funcionamiento de esta red está soportada y compuesta por nodos, pasarelas y un servidor de aplicaciones, figura \ref{f:modelo}.
+
+\begin{figure}
+  \centering
+  \caption{Modelo de la red LoRaWAN}
+  \includegraphics[width=\textwidth]{M_lora}
+  \label{f:modelo}
+\end{figure}
+
+Cada nodo enviará a la red un conjunto de datos geo-posicionados, compuesto por la medición de algunos parámetros del aire a través de sensores de temperatura, humedad, dióxido de carbono, presión atmosférica y material particulado.
+
+La red esta compuesta por tres host-pasarelas ubicados en las siguientes sedes de la universidad Distrital: Ingeniería,Aduanilla de Paiba y la sede de postgrados. La red cuenta inicialmente con cinco nodos de prueba.
+
+Las pasarelas de la red, cada una de ellas tiene ocho puertos de atención a los nodos y otros ocho puertos tipo \gls{rfu}. En el caso de configuración en clase A, una pasarela esta en la capacidad de atender a mas de 5000 nodos en su huella de acción.
+
+\section{Cobertura}
+Inicialmente, las pasarelas de la red \gls{lwan}, implementada, se colocaron en la sede de la facultad de ingeniería y en la sede de la facultad tecnológica, siendo, dichas pasarelas, uno de los mas importantes objetos del proyecto. Un indicador fundamental del proyecto fue la cobertura, la cual  se evalúo colocando en cada nodo un elemento de geo-posicionamiento global, donde la red \gls{lwan} toma los datos de cada nodo y los lleva a la nube. En el proyecto se modelaron tanto pasarelas como nodos con núcleos del fabricante ISMT, tanto para las pasarelas como para los nodos. También se dispuso de algunos elementos de red comerciales (MULTITECH e ISMT) para comprobar la inter-operabililidad.
+
+Los datos fueron procesados utilizando herramientas de analítica para luego ser mostrados en la aplicación gráfica grafana. Las figuras de esta sección muestran los resultados de las coberturas evaluadas en la red propuesta.
+
+\subsection{Cobertura Tecnológica}
+\subsubsection{Prueba de inter-operabilidad}
+Una de las pasarelas del fabricante MULTITECH, denominada MoteII, se evaluó con el nodo del fabricante ISMT .  Lo primero que se quería comprobar era la interoperabilidad, para lo cual  se instaló en la sede tecnológica, y se se modelaron  los pluging que reconocen el lenguaje de los logs entre la pasarela y el nodo.
+
+\begin{figure}[H]
+\centering
+\caption{Cobertura e interoperabilidad  Multitech - ISMT en inmediaciones del campus}
+\includegraphics[width=.7\textwidth]{cobertura/fig1.png}
+\label{f:mapa1}
+\end{figure}
+
+En la figura \ref{f:mapa1}, se observa la cobertura en el inter de la sede Tecnológica, con el Gateway Multitech y el nodo MoteII teniendo como resultado la cobertura completa en la sede tecnológica, esto significa que se podría hacer un campus inteligente dada la cobertura completa.
+ 
+De la misma forma, en la figura \ref{f:mapa2}, se muestra la interoperabilidad de la pasarela modelada en este proyecto con una nodo del fabricante ISMT, denominado Mote II, Lo cual muestra que tiene unas prestaciones similares a la de los fabricantes certificados. 
+
+\begin{figure}[H]
+\centering
+\caption{Cobertura e interoperabilidad  Multitech - ISMT en inmediaciones del campus}
+\includegraphics[width=.8\textwidth]{cobertura/fig2.png}
+\label{f:mapa2}
+\end{figure}
+
+Para la figura \ref{f:mapa2}, se muestra la cobertura exterior, con la pasarela Multitech y el nodo del proyecto, teniendo como resultado un alcance aproximadamente  de 200 m de cobertura de la red instalada en esta sede. El corto alcance se de debe a que no se tiene una torre lo suficientemente alta para evitar  obstáculos entre la pasarela y el nodo, Todas las diferentes configuraciones mostraron las mismas características en cobertura. Estos valores de cobertura están alejados de las normas de la alianza \gls{lwan}, las cuales dan, para zonas urbanas, algunos kilómetros de cobertura. También hay que tener en cuenta que la tecnología está aún en un periodo de evolución (2017, año de adquisición de los elementos tecnológicos), y se debe tener en cuenta que las certificaciones para fabricantes se iniciaron en el año 2016. 
+\subsubsection{Cobertura de la red modelada por el proyecto}
+Una de las satisfacciones más importantes que deja el proyecto, es su realización, dadas dadas las limitaciones tecnológicas y la mesura en su presupuesto. La red \gls{lwan} del proyecto, como se mostró en la sección de modelamiento del nodo,  muestra una cobertura quizás con alcances levemente mayores que los de los fabricantes, esto se debe a que la antena del nodo fue realizada dentro del proyecto, lográndose una ganancia óptima. 
+\begin{figure}[H]
+\centering
+\caption{Cobertura red modelada en el proyecto }
+\includegraphics[width=.9\textwidth]{cobertura/fig3.png}
+\label{f:mapa3}
+\end{figure}
+En la figura \ref{f:mapa3} se muestra la cobertura exterior de la sede en mención,  teniendo como resultado un alcance aproximado de 350 metros entre la pasarela y el nodo. La adquisición de datos fue hecha por estudiantes que hicieron recorridos por las sectores aledaños donde se instaló la pasarela. 
+
+\subsection{Cobertura sede de Ingenieria}
+En la sede de ingeniería de la Universidad Distrital Francisco José de Caldas se colocó una pasarela, modelada en el proyecto con chipset de radio LoRa del fabricante ISMT para el nodo y la plaqueta de radio para la pasarela. También se hicieron pruebas de interoperabilidad  y los resultados fueron muy satisfactorios dado los alcances obtenidos para el lugar en mención. En comparación a la red colocada en la sede Tecnológica. La mejora en el alcance, se logra con la altura  de la pasarela, dado que se coloco en la azotea del edificio administrativo, sede de Ingeniería, la cual está aproximadamente a 50 metros del suelo. Esto permite que haya menos obstáculos y se cubra una mayor distancia.
+
+\subsubsection{Red \gls{lwan} tipo malla}
+Para la sede de Ingeniería se implemento  un modelo de red de malla. Para tal propósito se utilizaron las pasarelas del proyecto y la del fabricante  Multitech, los nodos del proyecto y de los fabricantes Multitech e ISMT. 
+\begin{figure}[ht]
+\centering
+\caption{Cobertura gateway ismt moteII }
+\includegraphics[width=.8\textwidth]{cobertura/fig4.png}
+\label{f:mapa4}
+\end{figure}
+
+En la figura \ref{f:mapa4}  se muestra la cobertura exterior en la sede de ingeniería, allí se aprecia la gran cantidad de datos sobre la posición de los nodos. En los datos se observó que efectivamente todas las pasarelas obtuvieron resultados, lo que significa que la red obedece a los protocolos de la alianza \gls{lwan}, es decir que si dos pasarelas reciben el mismo dato, se discrimina por el que haya llegado con mayor potencia. Las pasarelas fueron colocadas una en la azotea y las otras dos en interiores (Sala del grupo de investigación en telecomunicaciones GITUD). 
+
+\subsubsection{Red \gls{lwan} en interiores}
+Utilizando el modelo de red de malla, se hizo una discriminación para interiores y los resultados que se obtuvieron, para la sede de Ingeniería, muestran que las pasarelas de interiores fueron las que obtuvieron datos, dado que la pasarela de exteriores estaba a un distancia considerable y con gran cantidad de obstáculos. 
+\begin{figure}
+\centering
+\caption{Cobertura en interiores}
+\includegraphics[width=.8\textwidth]{cobertura/fig5.png}
+\label{f:mapa5}
+\end{figure}
+
+Para la lectura de datos en interiores, al realizar las mediciones, se observo que puede penetrar obstáculos de hasta 3 pisos, tal como se determinó en el edificio de Ingeniería. De acuerdo a los datos mostrados en la figura \ref{f:mapa5}, se podría mejorar la cobertura en interiores, aumentando la potencia o mejorando la ganancia de las antenas. Igualmente se pueden adquirir elementos nuevos de radio LoRa que tengan mayor eficiencia y se acerquen a las condiciones dadas en los estándares de la alianza. 
+
+\section{Interpretación de datos}
+A continuación se presentan algunas figuras de las variables medidas, con las aclaraciones más relevantes y referentes a los objetivos del proyecto.\\
+ \subsection{Ciclos de enlace de los nodos}
+Con los siete nodos disponibles se efectuaron pruebas de comunicación continua para cada nodo, las cuales duraron, aproximadamente, entre cinco y quince días por nodo. 
+\begin{figure}[tb]
+  \caption{Ciclos de trabajo por nodo}
+  \begin{center}
+  	\includegraphics[width=\textwidth]{Resultados/gl1.png}
+  \end{center}
+  \label{gl1}
+\end{figure}
+La figura \ref{gl1} muestra dichos ciclos de enlace durante un mes.\\ Los nodos expuestos allí: IM880b-2,  IM880b-l- 01, IM880bl-03 y pylates-5983, son productos de diseño y fabricación dentro del proyecto; los demás: Motell-0406, Motell-0405 y mDot-Box-01, son comerciales y adquiridos para el proyecto. 
+
+\subsection{Dióxido de carbono (CO2)}
+Del nodo IM880-01, se presenta el comportamiento del medidor de CO2 dentro del laboratorio GITUD del $6^o$ piso del edificio Sabio Caldas.
+\begin{figure}[H]
+  \caption{Medición de CO2 dentro de un recinto}
+  \begin{center}
+  	\includegraphics[width =\textwidth]{Resultados/gl2.png}
+  \end{center}
+  \label{gl2}
+\end{figure}
+Los picos y las elevaciones de nivel, que se suceden durante el día entre las 6 de la mañana y las 6 de la tarde, corresponden a aquellos momentos en que el número de personas aumenta, con lo cual, el nivel de CO2 dentro de la sala, se eleva por encima del nivel normal de referencia cuando la sala está totalmente vacía (500 ppm). Las variaciones de la medida se presentan en la figura \ref{gl2}, para un periodo de cuatro días continuos. 
+\subsection{Iluminancia}
+El nivel de iluminancia del laboratorio GITUD se aprecia en la figura \ref{gl3}. Allí se puede diferenciar el encendido y apagado de las luminarias durante el día, y las condiciones de 0 lux, durante la noche. La ubicación del sensor, en el nodo mDot-Box-01,  con respecto a la luminaria hacía que este saturara en aproximadamente 4000 lx.
+\begin{figure}[H]
+  \caption{Medición saturada de iluminancia}
+  \begin{center}
+  	\includegraphics[width =\textwidth]{Resultados/gl3.png}
+  \end{center}
+  \label{gl3}
+\end{figure}
+Para el sensor de iluminancia del nodo 82.ligth, la iluminación se atenúo y se gradúo entre 50 lx y 70 lx, lo cual permite apreciar la precisión y resolución con que se realiza la medida. En la figura \ref{gl4} se muestran los resultados.
+\begin{figure}[H]
+  \caption{Medición de iluminancia dentro de un recinto}
+  \begin{center}
+  	\includegraphics[width=.6\textwidth]{Resultados/gl4.png}
+  \end{center}
+  \label{gl4}
+\end{figure}
+La figura \ref{gl6} muestra los cambios de iluminación en un recorrido a pie recogiendo datos en exteriores. Los picos entre 10 000 lux y 20 000 lux corresponden a exposiciones del medidor directamente enfrentando el sensor a la luz solar; los valles bajos son mediciones a la sombra de objetos o edificaciones. La medición se realizó con el im880b-l.01, fabricado dentro del proyecto.
+\begin{figure}[H]
+  \caption{Medición de iluminancia en exteriores}
+  \begin{center}
+  	\includegraphics[width =\textwidth]{Resultados/gl6.png}
+  \end{center}
+  \label{gl6}
+\end{figure}
+\subsubsection{Latitud}
+La figura \ref{gl5} corresponde a lecturas de confirmación de precisión de los datos, de la variable latitud dentro de las instalaciones del GITUD, realizada con el Motell/0405. Como se puede apreciar, las valoraciones mínimas (min), máxima (max) y promedio (avg), son iguales.
+\begin{figure}[H]
+  \caption{Medición latitud}
+  \begin{center}
+  	\includegraphics[width =\textwidth]{Resultados/gl5.png}
+  \end{center}
+  \label{gl5}
+\end{figure}
+\subsubsection{Presión atmosférica}
+La presión atmosférica de varios sitios y medida con varios nodos, dentro de Bogotá, se aprecia en la figura \ref{gl7}. La medición más acertada se logra con los nodos Motell-0405 y Motell-0406.  El nodo im880b-i-01 presenta un desajuste, pero su medida mantiene la precisión esperada. El nodo mDot-Box-01 presenta varios errores de calibración.
+\begin{figure}[H]
+  \caption{Medidas múltiples de presión en sitios diversos}
+  \begin{center}
+  	\includegraphics[width =\textwidth]{Resultados/gl7.png}
+  \end{center}
+  \label{gl7}
+\end{figure}
+El nodo im880, tomó las variaciones cíclicas diarias de la presión atmosférica, en el décimo piso del edificio administrativo durante tres días completos. La figura \ref{gl8} presenta dicho ciclo, el cual se repite cada 24 horas y consiste en  el paso por dos mínimos: uno hacia las cuatro de la madrugada y otro  hacia las cuatro de la tarde, y el paso por dos máximos: uno hacia las diez de la mañana y el otro hacia las diez de la noche. 
+\begin{figure}[H]
+  \caption{Medición local de presión en ciclos de 24 horas}
+  \begin{center}
+  	\includegraphics[width =\textwidth]{Resultados/gl8.png}
+  \end{center}
+  \label{gl8}
+\end{figure}
+La diferencia entre los valores pico y los valles, de dicha magnitud, está alrededor de 400 Pa, valor que se encuentra dentro de lo esperado en este tipo de fenómenos para la ciudad de Bogotá. (Estudio de la caracterización climática de Bogotá y cuenca alta del rio Tunjuelo. Ideam, Alcaldía Mayor de Bogotá)
+\subsubsection{Temperatura}
+En un periodo de 15 días, no continuos,  se tomó la temperatura ambiente, dentro de un espacio cerrado, con 4 nodos. 
+Los nodos im880b-01 y mDot-Box-01, presentaron fallas de ajuste en la medida, tal como lo muestra la figura \ref{gl9}. 
+\begin{figure}[H]
+  \caption{Mediciones de temperatura}
+  \begin{center}
+  	\includegraphics[width =\textwidth]{Resultados/gl9.png}
+  \end{center}
+  \label{gl9}
+\end{figure}
+Los nodos Motell-0405 y Motell-0406 presentaron el mejor comportamiento, con algunas pérdidas aleatorias de información.
+\begin{figure}[H]
+  \caption{Medición de temperatura dentro del laboratorio en ciclos de 24 horas}
+  \begin{center}
+  	\includegraphics[width =\textwidth]{Resultados/gl10.png}
+  \end{center}
+  \label{gl10}
+\end{figure}
+
+La figura \ref{gl10} corresponde a la medición de temperatura realizada con el im880b-01, una vez corrigido el error de calibración que presentó. El ambiente supervisado corresponde al mismo de la figura \ref{gl9}.

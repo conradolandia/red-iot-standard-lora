@@ -1,0 +1,307 @@
+%% Plantilla LaTeX Espacios Editorial UD
+%% Autores: Editores UDFJC
+%% Versión:  v1.0 06MAY2025
+%% Notas y corrección (IMPERATIVO LEER la plantilla antes de utilizarla): 
+%%
+%%    -El libro tiene dos portadillas y se diseñaron dos comandos para realizarlas
+%%             \portadillauno{Titulo}{Subtitulo}, \portadillados{Titulo}{Subtitulo}
+%%    -Para libros que contengan Partes, se debe actualizar el nombre de los autores en
+%%            las cornisas con \def\loauthors asi:
+%%                     \def\loauthors{Nombre o nombres de la enecima-parte, separados por coma}
+%%    -Si el libro posee anexos, estos deben ir despues de imprimir la bibliografía y deben
+%%            ser secciones de un capitulo llamdo "Anexos" como se ejemplifica al final de esta
+%%            pauta.
+
+%%    -La referencia a un anexo se genera con \reftoanex{Letra del anexo}\label{app:ej}
+%%            y \nameref{app:ej}
+%%    -Para el orcid de los autores se utiliza \usepackage{academicons}
+%%    -Se incluye el capitulo de Referencias y Sobre los autores en el TOC
+%%    -Se incluye como citar en ambos resúmenes
+%%    -Para partir titulos largos de capitulos tanto en el texto como en el TOC, utilizar \brake o \\[?pt]
+%%
+%%              capitulos numerados:
+%%              \chapter[titulo en el TOC]{titulo en el texto}
+%%
+%%             Ejemplo: \chapter[Simulación por medio del KMC del comportamiento colectivo{\\[4pt]} de la reacción
+%%             $\mathsf{CO+H_2O \rightarrow CO_2+H_2}$ catalizada por $\mathsf{Pt/MoO_3}$]{Simulación por
+%%             medio del KMC del\\[4pt]
+%%             comportamiento colectivo de la reacción $\mathsf{CO+H_2O \rightarrow CO_2+H_2}$ catalizada
+%%             por $\mathsf{Pt/MoO_3}$}
+%%
+%%             capitulos NO numerados:
+%%             \chapter*{titulo en el texto}
+%%
+%%             Ejemplo:\chapter*{\lhseries Sobre los autores}
+%%             \addcontentsline{toc}{chapter}{Sobre los autores}
+%%    -Se corrige el signo de interrogación inicial en how to cite, porque en inglés es solo un signo.
+%%    -Se retira el colofón de la ultima página del libro. Para retirarlo solo hay que comentar la línea.
+%%    -El colofon se genera con el comando \esColofon{mes}{año}. Para que no aparezca simplemente comentar la línea
+%%
+%%    -Para corregir solo palabras cortadas en la ultima oración de la página o nombres propios cortados,
+%%            se utiliza \text{}
+%%            i.e: ma-nipulación --> \text{manipulación}
+%%    -El TOC ahora solo tien 1 nivel de profundidad: \setcounter{tocdepth}{1}
+%%    -Se corrigio el conteo de las notas de pie de página: \counterwithout{footnote}{chapter}
+%%    -Se modifican los resumenes para que solo queden en una hoja.
+%%
+%% Compilar el archivo principal con LuaLaTeX, i.e: lualatex main.tex
+%% Compilar la bibliografía con el backend "Biber", i.e: biber main
+%% Nota: Se recomienda compilar dos veces cada comando
+%%       Si usted esta utilizando eps, o ticks para gráficas u otros comandos externos, aveces no funciona con lualatex main.tex;
+%%       intente lualatex --shell-escape main.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,twoside,spanish]{book}
+
+\usepackage{verbatim}
+\usepackage{listings} % Para codigo fuente y trozos de codigo
+\lstloadlanguages{C,bash}
+\lstset{language=C, 
+        basicstyle=\scriptsize\ttfamily,
+        breaklines=true,
+        keywordstyle=\color{blue}\ttfamily,
+        stringstyle=\color{red}\ttfamily,
+        commentstyle=\color{gray}\ttfamily,
+        morecomment=[l][\color{magenta}]{\#},
+        numbers=left, numberstyle=\tiny
+}
+
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{siunitx}
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{{capitulos/figuras/}}
+\usepackage[]{caption} %labelsep=period
+\usepackage{float}
+
+\usepackage{csquotes}
+\usepackage[
+backend=biber,
+style=apa,
+]{biblatex}
+%%% Editar %%%
+\addbibresource{references.bib}
+\let\cite\parencite
+%%%%%%%%%%%%%%
+
+\usepackage{fontspec}
+\input{esConfigDir/esConfigFonts}
+\usepackage{authblk}
+\DefineBibliographyStrings{spanish}{andothers={\itshape{et~al}\adddot}}
+
+%In a current version of biblatex-apa, the comma before the "and" is either by the Oxford comma (\finalnamdelim)
+%or produced by the internal macro \apablx@ifrevnameappcomma.
+%If you want to get rid of the comma, you need to disable both of these features.
+%https://tex.stackexchange.com/questions/630515/biblatex-remove-commas-after-author-first-names-in-references#:~:text=1%20Answer&text=In%20a%20current%20version%20of,disable%20both%20of%20these%20features.
+
+\makeatletter
+\renewcommand*{\apablx@ifrevnameappcomma}[2]{#2}
+\makeatother
+\DefineBibliographyExtras{spanish}{%
+  \let\finalandcomma=\empty
+}
+%Para cambiar el & por "y" en el capitulo de Referencias
+\DeclareDelimFormat[bib,textcite]{finalnamedelim}{%
+  \ifnumgreater{\value{liststop}}{2}{}{}%
+  \addspace\bibstring{and}\space}
+
+%para cambiar & en las citaciones dentro del texto
+\DeclareDelimFormat[parencite]{finalnamedelim}{\addspace{y}\space}
+\setcounter{biburlbreakpenalty}{20}
+
+\usepackage[letterspace=5]{microtype}
+\usepackage{graphicx}
+
+%%% Editar %%%
+\def\texttitulocorto{Evaluación de una red IoT bajo el estándar LoRa}
+%Lista de autores
+\def\loauthors{José Noé~Poveda, Luis~Martín~Santamaría, Elvis~Eduardo Gaona García, Sebastian~Tabares, Alex Francisco~Bustos}
+%%%%%%%%%%%%%%
+\input{esConfigDir/esEstilo}
+
+\usepackage[
+  paperheight=24.0cm,
+  paperwidth=17.0cm,
+  textwidth=12.5cm,
+  tmargin=2.5cm,
+  bmargin=2.5cm,
+  left=2.5cm,
+  right=2.0cm
+%  bindingoffset=1.1cm
+]{geometry}
+
+
+%%% Editar %%%
+%Algunos paquetes para el usuario
+\decimalpoint
+\usepackage{lipsum}  
+\usepackage[pangram]{blindtext}
+%%%%%%%%%%%%%%
+
+
+%%% Editar %%%
+%% Comentar esta línea para la presentación si hipertexto
+%%\usepackage{hyperref}%Para hipervinulos de figuras, tablas, ecuaciones y citas
+%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{subcaption}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\usepackage{shapepar}
+\usepackage{tikz}
+%\usepackage{arydshln}
+%\usepackage{colortbl}
+
+\usepackage{xcolor}
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+
+\usepackage{tabularray}
+%\usepackage{orcidlink}
+%\usepackage[toc,page]{appendix}
+\usepackage{nameref}
+\usepackage{fontawesome}
+\usepackage{academicons}
+
+%% Para editar: comentar esta línea.
+%% Para produccion del libro: activar esta linea.
+%% Nota: Esta instrucción es para colocar lineas guia de corte (crop marks)
+\usepackage[cam,width=190truemm,height=260truemm,lualatex,center]{crop}
+%%%%%%%%%%
+
+%%% Editar %%%
+%% ponga aquí los paquetes que requiera
+%%
+%%
+%%%%%%%%%%%%%%
+
+\usepackage[acronym]{glossaries}%\usepackage{glossaries}
+\usepackage{amsmath,amssymb,amsfonts,latexsym,cancel}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{csquotes}
+\usepackage{tikz} % hacer gráficos 
+\usepackage[all]{nowidow}
+
+\usepackage{setspace}
+
+\def\fuente#1{\small\textbf{Fuente:}~#1}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Begin document
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Sin sangria al inicio de párrafos
+\setlength\parindent{0pt}
+\raggedbottom
+%%%
+
+\pagestyle{empty}
+\counterwithout{footnote}{chapter}
+
+\makeglossaries
+
+\begin{document}
+
+\include{glosario}
+ 
+\newpage
+\
+\newpage
+
+\newpage
+\
+\newpage
+
+%%%%%%%% EDITAR INICIO PORTADILLA 1 %%%%%%%%%%%%%%%
+\portadillauno{Evaluación de una red IoT bajo el estándar LoRa}{Consed ut escimos num sequid ut aut mos}
+%%%%%%%% FIN PORTADILLA 1 %%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\
+\newpage
+%%%%%%%% EDITAR INICIO PORTADILLA 2 %%%%%%%%%%%%%%%
+\portadillados{Evaluación de una red IoT bajo el estándar LoRa}{Consed ut escimos num sequid ut aut mos}
+\vspace*{5.5mm}
+\begin{flushleft}
+  \leftskip=2mm
+      {\color{MSBlack}\lsstyle \fontsize{12pt}{6.0mm} \exlseries José Noé~Poveda, Luis~Martín~Santamaría, Elvis~Eduardo Gaona García, Sebastian~Tabares, Alex Francisco~Bustos}
+\end{flushleft}
+
+\begin{center}
+  \vspace{3.5cm}
+  \includegraphics[scale=0.06]{esIcons/logoES.png}
+\end{center}
+%%%%%%%% FIN PORTADILLA 2 %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\renewcommand*\contentsname{\lhseries Contenido}
+\renewcommand{\cfttoctitlefont}{\hfill\Huge}
+\renewcommand{\cftdot}{}
+\renewcommand*{\tablename}{\bf Tabla} %"Cuadro" por "Tabla"
+\renewcommand*{\figurename}{\bf Figura} %"Cuadro" por "Tabla"
+\renewcommand*{\bibname}{\fontschap Referencias}
+
+%% Editar re-definiciones de comandos para el usuario%%
+%% panga aquí sus definiciones
+%%
+%%
+%%%%%%%%%%%%%%
+\setcounter{tocdepth}{1}
+\tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\newpage
+
+\pagestyle{esstyle}
+
+\newpage
+
+\include{capitulos/proyecto}
+\include{Medologia}
+\include{capitulos/lorawan} 
+\include{capitulos/nodo}
+\include{capitulos/sensores1}
+\include{capitulos/concentrador}
+\include{capitulos/aplicacion}
+
+\appendix
+
+\include{capitulos/epilogo}
+
+\nocite{*}
+\printbibliography
+\printacronyms
+
+%% Editar Bio de autores %%
+%\pagestyle{plain}
+
+\chapter*{\lhseries Sobre los autores}
+\addcontentsline{toc}{chapter}{Sobre los autores}
+
+{\large\medseries\noindent Pedro Pérez}
+
+\noindent\lipsum[1]
+
+\faEnvelope~\url{user@udistrital.edu.co}\\
+\textcolor{orcidlogocol}{\aiOrcid}~\url{https://orcid.org/0000-0001-8378-4215}
+\\
+
+{\large\medseries\noindent Pedro Pérez}
+\noindent\lipsum[1]
+
+\faEnvelope~\url{user@udistrital.edu.co}\\
+\textcolor{orcidlogocol}{\aiOrcid}~\url{https://orcid.org/0000-0001-8378-4215}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+%\escolofon{el mes}{año}
+%\escolofon{septiembre}{2024}
+
+\end{document}
