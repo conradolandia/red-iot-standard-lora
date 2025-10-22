@@ -1,5 +1,3 @@
-%\begin{refsection}
-
 \chapter{Concentrador}
 
 \section{Hardware}
@@ -49,7 +47,7 @@ Alpine Linux es un sistema operativo muy liviano, para equipos computacionales m
 \begin{quotation}
     Un contenedor no requiere más de 8 MB y una instalación mínima en el disco requiere alrededor de 130 MB de almacenamiento. No solo obtiene un entorno Linux completo, sino una gran selección de paquetes del repositorio.
     
-    \fuente{\url{https://www.linuxadictos.com/disponible-la-nueva-version-de-alpine-linux-3-8-1.html#google_vignette}}
+    \fuente{\url{https://www.linuxadictos.com/disponible-la-nueva-version-de-alpine-linux-3-8-1.html\#google\_vignette}}
 \end{quotation}
 
 Los paquetes binarios se reducen y se dividen, lo que le brinda aún más control sobre lo que se instala, lo que a su vez mantiene su entorno lo más pequeño y eficiente posible.
@@ -67,20 +65,20 @@ Una vez instalado el sistema Alpine Linux, se deben hacer los siguientes proceso
     \item Configurar / colocar los archivos auxiliares de configuración externa en la partición FAT32 (/ media / mmcblk0p1).
     \item Crear un archivo .apkovl.tar.gz personalizado basado en la plantilla y los scripts asociados
     \item Subir el archivo .apkovl.tar.gz a la segunda partición (ext4) cuyo nombre sería / media / mmcblk0p2 para Alpine Linux.
-    \item Configurar el proxy (si lo hay) con el comando \$ setup-proxy y luego importarlo en las variables de entorno locales\$ source /etc/profile.d/proxy.sh
-    \item Ejecutar \$ setup-apkcache para crear el cache local de paquetes de Alpine Linux teniendo en cuenta que, en general, el cache quedará en / media / mmcblk0p2 / cache
-    \item Sincronizar el caché local con los repositorios mediante el comando \$ apk cache -v sync.
+    \item Configurar el proxy (si lo hay) con el comando \texttt{\$ setup-proxy} y luego importarlo en las variables de entorno locales \texttt{\$ source /etc/profile.d/proxy.sh}
+    \item Ejecutar \texttt{\$ setup-apkcache} para crear el cache local de paquetes de Alpine Linux teniendo en cuenta que, en general, el cache quedará en \texttt{/media/mmcblk0p2/cache}
+    \item Sincronizar el caché local con los repositorios mediante el comando \texttt{\$ apk cache -v sync}
 \end{itemize}
     
-Los archivos .apkovl.tar.gz son archivos de {backup local de configuración}  que se usan para hacer mas reproducible la configuración de los gateways.
+Los archivos .apkovl.tar.gz son archivos de backup local de configuración que se usan para hacer más reproducible la configuración de los gateways.
 
 \subsection{LoRa packet forwarder}
 
-Es el software que se coloca en {host} el {gateway LoRa}, el cual reenvía los paquetes de RF que recibe del concentrador a un servidor a través de un enlace IP / UDP.
+Es el software que se coloca en el host del gateway LoRa, el cual reenvía los paquetes de RF que recibe del concentrador a un servidor a través de un enlace IP/UDP.
 
-Esta configuración está pensada para ejecutar imágenes de Alpine Linux, para usarlos con {Gateways IC880A} en computadores / servidores como la {Raspberry Pi} (con un puerto USB 2.0, si la versión del IC880A es USB, ó con puertos GPIO para las versiones IC880A SPI).
+Esta configuración está pensada para ejecutar imágenes de Alpine Linux, para usarlos con gateways IC880A en computadores/servidores como la Raspberry Pi (con un puerto USB 2.0, si la versión del IC880A es USB, o con puertos GPIO para las versiones IC880A SPI).
 
-Se configura en el Gateway un software para redireccionamiento de paquetes LoRa llamado {packet forwarder} el cual utiliza un protocolo UDP (no orientado a la conexión y no cifrado) junto con un puente MQTT llamado {LoRa Gateway Bridge} el cual permite usar TCP + SSL para conectarse con la red LoRaWAN en vez de UDP. También puede emitir una señal Beacon sincrónica GPS en toda la red utilizada para coordinar todos los nodos de la red. 
+Se configura en el Gateway un software para redireccionamiento de paquetes LoRa llamado packet forwarder el cual utiliza un protocolo UDP (no orientado a la conexión y no cifrado) junto con un puente MQTT llamado LoRa Gateway Bridge el cual permite usar TCP+SSL para conectarse con la red LoRaWAN en vez de UDP. También puede emitir una señal Beacon sincrónica GPS en toda la red utilizada para coordinar todos los nodos de la red. 
 
 \section{Software de configuración y despliegue}
 

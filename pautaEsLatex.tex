@@ -141,7 +141,14 @@ style=apa,
 
 %%% Editar %%%
 %% Comentar esta línea para la presentación si hipertexto
-%%\usepackage{hyperref}%Para hipervinulos de figuras, tablas, ecuaciones y citas
+\usepackage[unicode,bookmarksopen,bookmarksdepth=2,breaklinks=true]{hyperref}%Para hipervinulos de figuras, tablas, ecuaciones y citas
+\hypersetup{
+        colorlinks=true,
+        linkcolor=black,
+        filecolor=black,
+        urlcolor=black,
+        citecolor=black
+    }
 %%%%%%%%%%%%%%
 
 \usepackage{amsmath}
@@ -168,7 +175,7 @@ style=apa,
 %% Para editar: comentar esta línea.
 %% Para produccion del libro: activar esta linea.
 %% Nota: Esta instrucción es para colocar lineas guia de corte (crop marks)
-\usepackage[cam,width=190truemm,height=260truemm,lualatex,center]{crop}
+%\usepackage[cam,width=190truemm,height=260truemm,lualatex,center]{crop}
 %%%%%%%%%%
 
 %%% Editar %%%
