@@ -201,6 +201,13 @@ style=apa,
 \def\fuente#1{\small\textbf{Fuente:}~#1}
 \date{\today}
 
+\newcommand{\autorinfo}[4]{
+  {\large\medseries\noindent #1}\par
+  \noindent#2\par
+  \faEnvelope~\url{#3}\par
+  \textcolor{orcidlogocol}{\aiOrcid}~\url{#4}\par\vspace{1em}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
 %%% Begin document
@@ -267,6 +274,7 @@ style=apa,
 \setcounter{tocdepth}{1}
 \tableofcontents
 \addtocontents{toc}{\protect\thispagestyle{empty}}
+\addtocontents{toc}{\protect\enlargethispage{\baselineskip}}
 \newpage
 
 \pagestyle{esstyle}
@@ -295,19 +303,13 @@ style=apa,
 \chapter*{\lhseries Sobre los autores}
 \addcontentsline{toc}{chapter}{Sobre los autores}
 
-{\large\medseries\noindent Pedro Pérez}
+\autorinfo{José Noé~Poveda}{\lipsum[1]}{jose.poveda@udistrital.edu.co}{https://orcid.org/0000-0001-8378-4215}
 
-\noindent\lipsum[1]
+\autorinfo{Luis~Martín~Santamaría}{\lipsum[1]}{luis.santamaria@udistrital.edu.co}{https://orcid.org/0000-0001-8378-4215}
 
-\faEnvelope~\url{user@udistrital.edu.co}\\
-\textcolor{orcidlogocol}{\aiOrcid}~\url{https://orcid.org/0000-0001-8378-4215}
-\\
+\autorinfo{Elvis~Eduardo Gaona García}{\lipsum[1]}{elvis.gaona@udistrital.edu.co}{https://orcid.org/0000-0001-8378-4215}
 
-{\large\medseries\noindent Pedro Pérez}
-\noindent\lipsum[1]
-
-\faEnvelope~\url{user@udistrital.edu.co}\\
-\textcolor{orcidlogocol}{\aiOrcid}~\url{https://orcid.org/0000-0001-8378-4215}
+\autorinfo{Alex Francisco~Bustos}{\lipsum[1]}{alex.bustos@udistrital.edu.co}{https://orcid.org/0000-0001-8378-4215}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
