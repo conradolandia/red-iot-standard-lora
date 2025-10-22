@@ -1,35 +1,38 @@
 \chapter{Concentrador}
 
 \section{Hardware}
-El hardware asociado a el concentrador contiene dos elementos: 
+El hardware asociado al concentrador contiene dos elementos: 
 
 \begin{itemize}
-    \item Dispositivo anfitrión (Host)
+    \item Dispositivo anfitrión (\emph{host})
     \item Núcleo del concentrador
 \end{itemize}
 
 \subsection{Host}
-El host contiene el dispositivo computacional, que le permite al concentrador LoRaWAN controlar el dispositivo físico de comunicaciones. Es un computador embebido normalmente con sistema operativo, también embebido, tipo Linux, aunque podrán existir host más livianos, o básicos, que tengan un \gls{rtos} sobre un microprocesador ARM. Este dispositivo contiene software con un nivel de abstracción medio y alto donde enriquece las características de toda la red.
-Las funcionalidades básicas del host son:
+El \emph{host} contiene el dispositivo computacional que permite al concentrador LoRaWAN controlar el dispositivo físico de comunicaciones. Generalmente, es un computador embebido con sistema operativo Linux, también embebido, pero pueden existir \emph{host} más livianos o básicos que implementen un \gls{rtos}, sobre un microprocesador ARM. Este dispositivo contiene software con un nivel de abstracción medio y alto que enriquece las características de toda la red. Las funcionalidades básicas del \emph{host} son:
 
 \begin{itemize}
-    \item Redirección de paquetes LoRaWan una vez recibidos por el Núcleo del concentrador.
-    \item Envío y recepción de información hacia y desde Internet a través de comunicaciones como Ethernet, Wi-Fi, telefonía móvil (2G/3G/4G/5G), enlace microondas o satelital, etc.
+    \item Redirección de paquetes LoRaWAN una vez recibidos por el núcleo del concentrador.
+    \item Envío y recepción de información hacia y desde Internet a través de comunicaciones como Ethernet, Wi-Fi, telefonía móvil (2G/3G/4G/5G), enlace microondas o satelital, etcétera.
     \item Cifrado de la información para enviarla en redes no seguras como Internet.
     \item Comunicación orientada o no orientada a la conexión hacia el servidor LoRaWAN.
-    \item Caché o estrategias de represamiento temporal de información, dadas las condiciones de red.
-    \item Conexión reciliente frente a desconexiones del concentrador.
-    \item cambio de parámetros de la red hacia el núcleo del concentrador, según los comandos enviados por el servidor LoRaWAN.
+    \item Caché o estrategias de almacenamiento temporal de información, dadas las condiciones de red.
+    \item Conexión resiliente frente a desconexiones del concentrador.
+    \item Cambio de parámetros de la red hacia el núcleo del concentrador, según los comandos enviados por el servidor LoRaWAN.
 \end{itemize}
 
-Cabe resaltar que los paquetes LoRaWAN ya tienen un cifrado punto a punto entre el dispositivo y el servidor LoRaWAN, el cifrado adicional que impone el host es entre este aparato y la red y/o servidor LoRaWAN, debido a que aparte de los paquetes LoRaWAN, también se transmite información propia del concentrador y no directamente relacionada con la comunicación escencial de la red de sensores o dispositivos clientes LoRaWAN.
+Cabe resaltar que los paquetes LoRaWAN ya tienen un cifrado punto a punto entre el dispositivo y el servidor LoRaWAN. El cifrado adicional que impone el \emph{host} se establece entre este aparato y la red y/o servidor LoRaWAN. Esto se debe a que, además de los paquetes LoRaWAN, también se transmite información propia del concentrador que no está directamente relacionada con la comunicación esencial de la red de sensores o dispositivos clientes LoRaWAN.
 
-Se entiende, entonces, que el host controla como un maestro al núcleo del concentrador y sirve como puente entre la modulación LoRa y la comunicación tradicional, conectando este concentrador a la red de redes (Internet) y junto con el papel del servidor LoRaWAN, generan una red orientada a INTERNET de las Cosas.
+Se entiende, entonces, que el \emph{host} controla como un maestro al núcleo del concentrador y sirve como puente entre la modulación LoRa y la comunicación tradicional, conectando este concentrador a la red de redes (Internet). Junto con el papel del servidor LoRaWAN, generan una red orientada a Internet de las Cosas. 
 
-El host es una Raspberry Pi configurada de tal manera que su interfaz de pines \gls{gpio} se pueda conectar a el núcleo del concentrador.
+El \emph{host} es una Raspberry Pi configurada de tal manera que su interfaz de pines \gls{gpio} se pueda conectar al núcleo del concentrador.
 
 \subsection{Núcleo del concentrador}
-Es una tarjeta integrada, con referencia iC880A, como un transceiver diseñado para recibir simultáneamente paquetes LoRa a través de múltiples canales con diferentes \gls{sf}. Esta pasarela esta en la capacidad de comunicarse con miles de nodos a distancias lejanas, y al ser adaptado a un host, puede comunicarse con un servidor LoRaWAN para la acumulación y tratamiento de los datos. Esta pasarela esta en la banda de frecuencias de 868~MHz, con una sensibilidad de -138~dBm. Utiliza un modulo de radio del fabricante Semtech, el cual soporta varios anchos de banda y un rango de \gls{sf} de 7 a 12. La modulación LoRa de espectro ensanchado se realiza representado cada de información por múltiples chips de información. La velocidad con la que es enviada la información es referida a la \gls{rs} nominal. La relación entre la \gls{rs} y la rata de chip, representa el número de símbolos de modulación enviados por bit de información. El \gls{sf} se debe conocer de antemano por el nodo y la pasarela, ya que los diferentes \gls{sf} son ortogonales entre sí. 
+Es un transceptor (\emph{transceiver}) en una tarjeta integrada con referencia iC880A, diseñado para recibir simultáneamente paquetes LoRa a través de múltiples canales con diferentes \gls{sf}. Esta pasarela puede comunicarse con miles de nodos a distancias lejanas. Al ser adaptada a un \emph{host}, puede comunicarse con un servidor LoRaWAN para la acumulación y tratamiento de los datos.
+
+Esta pasarela opera en la banda de frecuencias de 868~MHz, con una sensibilidad de -138~dBm. Utiliza un módulo de radio producido por Semtech, el cual soporta varios anchos de banda y un rango de \gls{sf} de 7 a 12. 
+
+La modulación LoRa de espectro ensanchado se realiza representando cada bit de información con múltiples chips. La velocidad de envío de la información se refiere a la \gls{rs} nominal. La relación entre la \gls{rs} y la tasa de chip representa el número de símbolos de modulación enviados por bit de información. El \gls{sf} se debe conocer de antemano por el nodo y la pasarela, ya que los diferentes \gls{sf} son ortogonales entre sí.
 
 \begin{figure}
 \centering
@@ -41,8 +44,10 @@ Es una tarjeta integrada, con referencia iC880A, como un transceiver diseñado p
 
 \section{Software}
 
-\subsection{Alpine Línux}
-Alpine Linux es un sistema operativo muy liviano, para equipos computacionales muy sencillos y de uso general, está diseñada para usuarios avanzados que aprecian la seguridad, la simplicidad y la eficiencia de los recursos. Alpine línux se basa en uClibc y BusyBox. uClibc es una biblioteca en C diseñada para un sistema Linux embebido, con requerimientos de recursos de computo mínimos para arquitecturas x86, AMD64, ARM, Blackfin, H8300, m68k, MIPS, PowerPC, SuperH, SPARC y V850. BusyBox es un software que utiliza las ventajas de estándares de Unix en una sola consola.
+\subsection{Alpine Linux}
+Alpine Linux es un sistema operativo muy liviano, para equipos computacionales muy sencillos y de uso general, diseñado para usuarios avanzados que aprecian la seguridad, la simplicidad y la eficiencia de los recursos. Alpine Linux se basa en uClibc y BusyBox. uClibc es una biblioteca en C diseñada para un sistema Linux embebido, con requerimientos de recursos de cómputo mínimos para arquitecturas x86, AMD64, ARM, Blackfin, H8300, m68k, MIPS, PowerPC, SuperH, SPARC y V850. BusyBox es un software que utiliza las ventajas de estándares de Unix en una sola consola.
+
+\clearpage
 
 \begin{quotation}
     Un contenedor no requiere más de 8 MB y una instalación mínima en el disco requiere alrededor de 130 MB de almacenamiento. No solo obtiene un entorno Linux completo, sino una gran selección de paquetes del repositorio.
@@ -50,52 +55,54 @@ Alpine Linux es un sistema operativo muy liviano, para equipos computacionales m
     \fuente{\url{https://www.linuxadictos.com/disponible-la-nueva-version-de-alpine-linux-3-8-1.html\#google\_vignette}}
 \end{quotation}
 
-Los paquetes binarios se reducen y se dividen, lo que le brinda aún más control sobre lo que se instala, lo que a su vez mantiene su entorno lo más pequeño y eficiente posible.
+Los paquetes binarios se reducen y se dividen, lo que le brinda aún más control sobre lo que se instala. Esto, a su vez, mantiene su entorno lo más pequeño y eficiente posible.
 
-El administrador de paquetes llamado apk, propio de Alpine línux, y el sistema de inicialización OpenRC, son configuraciones controladas por scripts. Esto le proporciona un entorno Linux simple y nítido sin todo el ruido, lo cual permite agregar solo los paquetes que se necesitan para el proyecto, ya sea que se esté construyendo un PVR doméstico o un controlador de almacenamiento iSCSI.
+Alpine Linux utiliza el administrador de paquetes apk y el sistema de inicialización OpenRC, ambos controlados por scripts. Esta configuración proporciona un entorno Linux simple y nítido que permite agregar únicamente los paquetes necesarios para cada proyecto específico, ya sea para un PVR doméstico o un controlador de almacenamiento iSCSI.
 
 Alpine Linux fue diseñado pensando en la seguridad. Todos los binarios del área de usuario se compilan como ejecutables independientes de la posición (PIE) con protección contra la rotura de pilas. Estas funciones de seguridad proactiva evitan la explotación de clases enteras de vulnerabilidades de día cero y otras.
 
 \subsubsection{Configuración de Alpine Linux}
 
-Luego de seguir las indicaciones de la instalación en Raspberry PI , teniendo en cuenta que se debe dejar la partición FAT32 de al menos 500MB, también es recomendable usar el resto de espacio en la tarjeta SD como una partición ext4 para el espacio de cache, repos, etc.
-Una vez instalado el sistema Alpine Linux, se deben hacer los siguientes procesos:
+Luego de seguir las indicaciones de la instalación en Raspberry Pi, teniendo en cuenta que se debe dejar una partición FAT32 de al menos 500MB, recomendamos usar el resto de espacio en la tarjeta SD como una partición ext4 para el espacio de caché, repositorios, etc.
+Una vez instalado el sistema Alpine Linux, realizamos los siguientes pasos:
 
 \begin{itemize}
-    \item Configurar / colocar los archivos auxiliares de configuración externa en la partición FAT32 (/ media / mmcblk0p1).
-    \item Crear un archivo .apkovl.tar.gz personalizado basado en la plantilla y los scripts asociados
-    \item Subir el archivo .apkovl.tar.gz a la segunda partición (ext4) cuyo nombre sería / media / mmcblk0p2 para Alpine Linux.
-    \item Configurar el proxy (si lo hay) con el comando \texttt{\$ setup-proxy} y luego importarlo en las variables de entorno locales \texttt{\$ source /etc/profile.d/proxy.sh}
-    \item Ejecutar \texttt{\$ setup-apkcache} para crear el cache local de paquetes de Alpine Linux teniendo en cuenta que, en general, el cache quedará en \texttt{/media/mmcblk0p2/cache}
-    \item Sincronizar el caché local con los repositorios mediante el comando \texttt{\$ apk cache -v sync}
+    \item \textbf{Configurar archivos auxiliares}: Colocar los archivos de configuración externa en la partición FAT32 (\texttt{/media/mmcblk0p1}).
+    \item \textbf{Crear archivo personalizado}: Crear un archivo \texttt{.apkovl.tar.gz} personalizado basado en la plantilla y los scripts asociados.
+    \item \textbf{Transferir archivo}: Subir el archivo \texttt{.apkovl.tar.gz} a la segunda partición (ext4) cuyo nombre sería \texttt{/media/mmcblk0p2} para Alpine Linux.
+    \item \textbf{Configurar proxy (si lo hay)}: Configurar el proxy con el comando \texttt{\$ setup-proxy} y luego importarlo en las variables de entorno locales \texttt{\$ source /etc/profile.d/proxy.sh}.
+    \item \textbf{Configurar caché local}: Ejecutar \texttt{\$ setup-apkcache} para crear el caché local de paquetes de Alpine Linux teniendo en cuenta que, en general, el caché quedará en \texttt{/media/mmcblk0p2/cache}.
+    \item \textbf{Sincronizar caché}: Sincronizar el caché local con los repositorios mediante el comando \texttt{\$ apk cache -v sync}.
 \end{itemize}
     
-Los archivos .apkovl.tar.gz son archivos de backup local de configuración que se usan para hacer más reproducible la configuración de los gateways.
+Los archivos \texttt{.apkovl.tar.gz} son archivos de backup local de configuración que se usan para hacer más reproducible la configuración de los \emph{gateways}.
 
 \subsection{LoRa packet forwarder}
 
-Es el software que se coloca en el host del gateway LoRa, el cual reenvía los paquetes de RF que recibe del concentrador a un servidor a través de un enlace IP/UDP.
+Es el software que se coloca en el \emph{host} del gateway LoRa, el cual reenvía los paquetes de RF que recibe del concentrador a un servidor a través de un enlace IP/UDP.
 
-Esta configuración está pensada para ejecutar imágenes de Alpine Linux, para usarlos con gateways IC880A en computadores/servidores como la Raspberry Pi (con un puerto USB 2.0, si la versión del IC880A es USB, o con puertos GPIO para las versiones IC880A SPI).
+Esta configuración está diseñada para ejecutar imágenes de Alpine Linux con \emph{gateways} IC880A en computadores/servidores como la Raspberry Pi (con un puerto USB 2.0, si la versión del IC880A es USB, o con puertos GPIO para las versiones IC880A SPI).
 
-Se configura en el Gateway un software para redireccionamiento de paquetes LoRa llamado packet forwarder el cual utiliza un protocolo UDP (no orientado a la conexión y no cifrado) junto con un puente MQTT llamado LoRa Gateway Bridge el cual permite usar TCP+SSL para conectarse con la red LoRaWAN en vez de UDP. También puede emitir una señal Beacon sincrónica GPS en toda la red utilizada para coordinar todos los nodos de la red. 
+Se configura en el gateway un software para redireccionamiento de paquetes LoRa llamado packet forwarder, el cual utiliza un protocolo UDP (no orientado a la conexión y no cifrado) junto con un puente MQTT llamado LoRa Gateway Bridge, el cual permite usar TCP+SSL para conectarse con la red LoRaWAN en vez de UDP. También puede emitir una señal Beacon sincrónica GPS en toda la red, utilizada para coordinar todos los nodos de la red. 
 
 \section{Software de configuración y despliegue}
 
-EL modelo de red del proyecto, utiliza software libre para la conversión de protocolos (backhoul), almacenamiento de la información (Bases de datos) y de aplicación (información de usuario). Para estos procesos el servidor utiliza varias herramientas de software. Para la configuración de la aplicación se requiere de Lora Server, Influx DB y de grafana, las cuales se explicarán a continuación.  
+El modelo de red del proyecto utiliza software libre para la conversión de protocolos (backhaul), almacenamiento de la información (bases de datos) y de aplicación (información de usuario). Para estos procesos el servidor utiliza varias herramientas de software. Para la configuración de la aplicación se requiere de LoRa Server, InfluxDB y Grafana, las cuales se explicarán a continuación.  
 
-\subsection{Lora server}
+\subsection{LoRa Server}
 
-El servidor de red LoRaWAN es el núcleo del sistema de gestión de redes LoRa y constituye el componente central del proyecto LoRa Server. Su papel es fundamental para garantizar la operatividad y eficiencia de la red. Una de sus principales responsabilidades es la desduplicación de tramas de enlace ascendente, lo que significa que el servidor se encarga de procesar y filtrar las tramas de datos que llegan desde las puertas de enlace o gateways, evitando que se dupliquen y asegurando que solo se procese una versión de la información recibida.
+El servidor de red LoRaWAN es el núcleo del sistema de gestión de redes LoRa y constituye el componente central del proyecto LoRa Server. Su papel es fundamental para garantizar la operatividad y eficiencia de la red. Una de sus principales responsabilidades es la desduplicación de tramas de enlace ascendente, lo que significa que el servidor se encarga de procesar y filtrar las tramas de datos que llegan desde las puertas de enlace o \emph{gateways}, evitando que se dupliquen y asegurando que solo se procese una versión de la información recibida.
 
-\subsection{Influx DB}
+\subsection{InfluxDB}
 
 InfluxDB es una base de datos especializada en series temporales, diseñada para gestionar grandes volúmenes de escritura y consultas de manera eficiente. Forma parte esencial de la pila TICK, que es un conjunto de herramientas para la recopilación, almacenamiento, visualización y alerta de datos en tiempo real. InfluxDB es ideal como repositorio para casos de uso que requieran almacenar y procesar grandes cantidades de datos con marcas de tiempo, como la monitorización en entornos DevOps, métricas de rendimiento de aplicaciones, datos provenientes de sensores de IoT y análisis en tiempo real.
 
-Para integrar InfluxDB con LoRa Server, la conexión se realiza a través de LoRa App Server, donde se especifica la dirección del servidor donde está alojada la base de datos, junto con las credenciales de acceso (usuario y contraseña). Mediante scripts de JavaScript, el servidor es capaz de crear automáticamente las tablas y series temporales necesarias para almacenar los datos que se ingresen en la base de datos. Esta capacidad automatizada facilita la gestión de grandes volúmenes de datos y permite una interacción fluida entre los dispositivos IoT y la base de datos para una supervisión y análisis en tiempo real.
+Para integrar InfluxDB con LoRa Server, la conexión se realiza a través de LoRa App Server, donde se especifica la dirección del servidor donde está alojada la base de datos, junto con las credenciales de acceso (usuario y contraseña). Mediante scripts de JavaScript, el servidor es capaz de crear automáticamente las tablas y series temporales necesarias para almacenar los datos que se ingresen en la base de datos. Esta capacidad automatizada facilita la gestión de grandes volúmenes de datos y permite una interacción fluida entre los dispositivos IoT y la base de datos para supervisión y análisis en tiempo real.
 
 \subsection{Grafana}
 
 Grafana es una herramienta de código abierto, licenciada bajo Apache 2.0, diseñada para la visualización y el formateo de datos métricos. Ofrece la capacidad de crear paneles interactivos y gráficos informativos a partir de diversas fuentes de datos, incluyendo bases de datos de series temporales como Graphite, InfluxDB y OpenTSDB.
 
-En primera instancia se instala el software en el servidor, para luego configurarlo con la base de datos utilizada. Para la visualización de los datos se configuran las consultas a la base de datos en cada uno de los Dashboards disponibles con la forma de visualización deseada.
+En primera instancia se instala el software en el servidor, para luego configurarlo con la base de datos utilizada. Para la visualización de los datos se configuran las consultas a la base de datos en cada uno de los dashboards disponibles con la forma de visualización deseada.
+
+\newpage\thispagestyle{empty}
