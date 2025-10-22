@@ -9,7 +9,7 @@ Entre las principales variables que se evalúan dentro de lo que se considera ca
  \begin{figure}[ht]
     \caption{Esquema básico de un sensor para contaminantes gaseosos \cite{sengascon}}
     \begin{center}
-        \includegraphics[width=1.0\textwidth]{Fig1A}
+        \includegraphics[width=.8\textwidth]{Fig1A}
     \end{center}
     \label{fig:fig1A}
 \end{figure}
@@ -155,12 +155,6 @@ El sensor de dispersión láser para material particulado mantiene la técnica d
 \item Conversor de partículas a señal eléctrica: El sensor convierte la información de las partículas detectadas en una señal eléctrica, generalmente corriente.
 \end{itemize}
 Un sensor típico de esta tecnología es el producido por Honeywell, y cuyo esquema simplificado se presenta en la figura \ref{fig:fig3A}.
-\begin{figure}
-    \caption{Sensor de dispersión para particulado. \cite{senpart1}}
-    \centering
-    \includegraphics[width=0.8\textwidth]{Fig3A}
-    \label{fig:fig3A}
-\end{figure}
 Es importante tener en cuenta que los sensores de material particulado pueden utilizar diferentes tecnologías y principios de funcionamiento, como la dispersión láser, la captación en filtros o la medición de la conductividad. 
 
 Un posible modelo matemático para un sensor de partículas de dispersión de luz es el siguiente:
@@ -178,17 +172,24 @@ $\left \{
 \end{tabular}
 \right.$
 
-\vspace*{\baselineskip}
+\vspace{\baselineskip}
 
 Este modelo asume una relación lineal entre la intensidad de la luz dispersada y la concentración de partículas. La sensibilidad de la cámara se determina experimentalmente y puede variar dependiendo de las características específicas del sensor y del tipo de partículas que se estén midiendo.
 
-\subsection{Sensor de dispersión láser para material particulado, multi-ángulo}
+\begin{figure}[ht]
+    \caption{Sensor de dispersión para particulado.\\ \cite{senpart1}}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Fig3A}
+    \label{fig:fig3A}
+\end{figure}
+
+\subsection[Sensor de dispersión láser para material particulado, multi-ángulo]{Sensor de dispersión láser para material particulado,\\ multi-ángulo}
 
 Un novedoso sensor de dispersión para partículas PM2.5 es el desarrollado en State Key Laboratory of Industrial Control Technology, College of Control Science and Engineering, el cual permite eliminar los efectos de factores meteorológicos como la humedad en las partículas. Se concentra en detectar la dispersión en tres ángulos diferentes: \SI{40}{\degree}, \SI{55}{\degree} y \SI{140}{\degree}. Un esquema con la arquitectura similar a la disposición real del sensor se presenta en la figura \ref{fig:fig4A}.
 \begin{figure}[h]
     \centering
     \caption{Sensor de dispersión multi-ángulo, para particulado. \cite{senpart2}}
-    \includegraphics[width=0.9\textwidth]{Fig4A}
+    \includegraphics[width=\textwidth]{Fig4A}
     \label{fig:fig4A}
 \end{figure}
 

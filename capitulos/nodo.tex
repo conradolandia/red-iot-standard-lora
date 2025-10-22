@@ -251,10 +251,10 @@ Dado que ambos conectores presentan pines en común, se puede escoger cualquiera
 \textbf{Pin} & \textbf{Tipo} & \textbf{Función por defecto} & \textbf{Pin} & \textbf{Tipo} & \textbf{Función por defecto}          \\ \midrule
 1   & PWR  & VCC, 2.8 V - 3.6 V  & 2   & PWR  & GND                                                                      \\ \midrule
 3   & I/O  & VREFH                                                           & 4   & I/O  & VREFL                                                                    \\ \midrule
-5   & I/O  & --Bloqueado--                                                   & 6   & I/O  & \begin{tabular}[c]{@{}l@{}}(CLK*/SCK)Op2,\\   Salida\end{tabular}        \\ \midrule
-7   & I/O  & Op1, Salida                                                     & 8   & I/O  & \begin{tabular}[c]{@{}l@{}}(MOSI*/Tx*)Op2,\\   Inversora\end{tabular}    \\ \midrule
-9   & I/O  & \begin{tabular}[c]{@{}l@{}}Op1,\\   Inversora\end{tabular}      & 10  & I/O  & \begin{tabular}[c]{@{}l@{}}(MISO*/Rx*)Op2,\\   No Inversora\end{tabular} \\ \midrule
-11  & I/O  & \begin{tabular}[c]{@{}l@{}}Op1, No\\   Inversora\end{tabular}   & 12  & I/O  & SS*(SDT)                                                                 \\ \midrule
+5   & I/O  & --Bloqueado--                                                   & 6   & I/O  & \parbox{3cm}{(CLK*/SCK)Op2,\\Salida}        \\ \midrule
+7   & I/O  & Op1, Salida                                                     & 8   & I/O  & \parbox{3cm}{(MOSI*/Tx*)Op2,\\Inversora}    \\ \midrule
+9   & I/O  & \parbox{2cm}{Op1,\\Inversora}      & 10  & I/O  & \parbox{3cm}{(MISO*/Rx*)Op2,\\No Inversora} \\ \midrule
+11  & I/O  & \parbox{2cm}{Op1, No\\Inversora}   & 12  & I/O  & SS*(SDT)                                                                 \\ \midrule
 13  & I/O  & Tx*                                                             & 14  & I/O  & MOSI*                                                                    \\ \midrule
 15  & I/O  & Rx*                                                             & 16  & I/O  & MISO*                                                                    \\ \midrule
 17  & I/O  & SDT*                                                            & 18  & I/O  & SCK/CLK*                                                                 \\ \bottomrule
@@ -268,6 +268,8 @@ Dado que ambos conectores presentan pines en común, se puede escoger cualquiera
 En aras de que el usuario final realice la mayor cantidad de configuración desde una interfaz gráfica y con un mínimo esfuerzo, se plantea una aplicación en que se ingresan dos identificadores: uno del núcleo y otro del circuito de aplicación.
 
 \subsubsection{Núcleo}
+
+\enlargethispage{\baselineskip}
 
 Cada núcleo conformado por un microcontrolador y un módem LoRaWAN, estará asociado a un identificador universal del núcleo (CoreID). Este identificador permite su indexación en una base de datos, en que se almacenen, entre otros, los siguientes elementos particulares:
 \begin{itemize}
