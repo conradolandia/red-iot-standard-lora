@@ -31,3 +31,10 @@
 ### Repetición de información (líneas 80-81)
 - Se repite información sobre la ubicación de la pasarela en la sede de ingeniería
 - Problema: Redundancia que afecta la fluidez del texto
+
+## Referencias faltantes identificadas en el log de compilación
+
+### Citas bibliográficas faltantes
+- **Evans2011TheEverything**: Referenciada en página 13, línea 31
+- **Alcaraz2014InternetCosas**: Referenciada en página 13, línea 31 y página 14, línea 41  
+- **Valle2014**: Referenciada en página 13, línea 35 y página 14, línea 39
