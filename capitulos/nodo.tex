@@ -23,7 +23,7 @@ En la arquitectura genérica de la figura \ref{fig:arqgenhw}, cada bloque tiene 
 
 \subsection{Fuente de Poder}
 
-En un \gls{uc} generalmente se observa que el consumo de energía es directamente proporcional a la velocidad de procesamiento y a la cantidad de periféricos activos, entre otros factores. %hallan dos situaciones antagónicas relativas al consumo de energía: alta velocidad con alto consumo de energía y baja velocidad con bajo consumo de energía.
+En un \gls{uc} generalmente se observa que el consumo de energía es directamente proporcional a la velocidad de procesamiento y a la cantidad de periféricos activos, entre otros factores. 
 
 Esto es crítico en aplicaciones que funcionan la mayor cantidad de tiempo, como una \gls{wsn} (capítulo \ref{cap:aplicacion}), por lo cual se hace conveniente disminuir el consumo. Una forma de lograrlo es haciendo que el nodo pase la mayor parte de tiempo en un estado ``adormecido'', esto es, un estado en que su actividad de procesamiento es mínima. Dependiendo del tipo de \gls{uc}, de la arquitectura y de los diversos estados de adormecimiento, la corriente requerida suele oscilar entre algunos microamperios y cientos de microamperios. El consumo de energía en trabajo normal, es una medida útil y se hace más importante cuanto más tiempo pasa un nodo en períodos de trabajo normal, donde los consumos exigen corrientes que oscilan entre \SI{1}{mA} y \SI{10}{mA} para \gls{uc}s pequeños y de bajo consumo, pero pueden variar dependiendo de los tipos de periféricos incorporados, la velocidad del reloj, el tamaño de la memoria y la localización del programa de ejecución.
 
@@ -65,7 +65,7 @@ Una tecnología nueva y de alternativa, en este aspecto es el uso de FRAM, una a
 
     El modelo de adquisición de datos más apropiado para una aplicación se determina según las características que se desee dar a la aplicación; en las diferentes situaciones los datos fluyen, principalmente, desde el nodo del sensor a la puerta de enlace; en las aplicaciones de control, los datos, adicionalmente, fluyen desde la puerta de enlace hacia los nodos sensores.
 
-	Las técnicas de monitoreo más usuales \cite{Cecilio-2014} son :
+	Las técnicas de monitoreo más usuales \cite{Cecilio-2014} son:
 	\begin{itemize}
  		\item Muestreo periódico: para aplicaciones donde las condiciones o los procesos requieren ser monitoreados constantemente, como es el caso de la temperatura en un ambiente acondicionado o la presión en una tubería de proceso. Para este caso, los datos se adquieren en el nodo sensor y son reenviados a la puerta de enlace de forma periódica. El período de muestreo depende de qué tan rápido varía la magnitud monitoreada y/o qué características de control se requieren en el proceso. Si la dinámica del proceso controlado varía, los nodos sensores deben ser capaces de adaptar sus tasas de muestreo a la dinámica del proceso. Esta adaptación debe hacerse automáticamente o a través de comandos emitidos por la aplicación.
 		\item Muestreo impuesto por el evento: hay muchos casos que requieren el monitoreo de variables críticas como por ejemplo alarmas de fuego, alarmas de presión o sensores de puertas o ventanas, etc. La admisión de dichos eventos exige que el nodo sensor actúe con eficiencia en el consumo de energía y con la adecuada velocidad de respuesta.
@@ -112,8 +112,6 @@ Este diseño sigue la arquitectura genérica de la figura \ref{fig:arqgenhw}, co
     \includegraphics[width=0.8\textwidth]{design-chipset}
     \label{fig:loraWchipset}
 \end{figure}
-
-%
 
 En esta arquitectura, ilustrada en la figura \ref{fig:loraWchipset}, el desarrollador del dispositivo deberá tener cuidado de todo el diseño RF, incluyendo las restricciones de enrutamiento en la PCB, el acople y sintonización de la antena y los problemas de emisión e inmunidad.
 
@@ -178,9 +176,10 @@ Debido tanto a la variedad de interfaces digitales comerciales, como de distinta
 
 Los protocolos de comunicación electrónica más comunes entre componentes de sistemas embebidos, suelen ser mediante buses serie de varios tipos. Se hablará solamente de las lineas dedicadas exclusivamente al protocolo en mención, excluyendo así las de polarización y energización de los dispositivos:
 
-\subsection{$I^2C$}
+\subsection{Inter-Integrated Circuits (I\textsuperscript{2}C)}
 
-El bus \gls{i2c} se desarrolló en 1982 por Phillips (actualmente, 2017, NXP). Se utiliza principalmente en la comunicación de dispositivos distribuidos en un mismo sistema embebido, por ejemplo entre un \gls{uc} y circuitos periféricos integrados. Es un bus maestro-esclavo, en que la transferencia de datos es siempre inicializada por un maestro; y el esclavo reacciona ante esta. 
+El bus \gls{i2c} se desarrolló en 1982 por Phillips (actualmente, 2017, NXP). Se utiliza principalmente en la comunicación de dispositivos distribuidos en un mismo sistema embebido, por ejemplo entre un \gls{uc} y circuitos periféricos integrados. Es un bus maestro-esclavo, en que la transferencia de datos es siempre inicializada por un maestro; y el esclavo reacciona ante esta.
+
 \begin{quotation}
     Es posible tener varios maestros mediante un modo multimaestro, en el que se pueden comunicar dos maestros entre si, de modo que uno de ellos trabaja como esclavo. El arbitraje (control de acceso al bus) se rige por las especificaciones, de este modo los maestros pueden ir turnándose.
     

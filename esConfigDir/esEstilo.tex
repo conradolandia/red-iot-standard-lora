@@ -136,8 +136,8 @@
 }
 \makeatother
 
-\newcommand{\nota}[1]{\parbox{10cm}{\centering\scriptsize\color{MSBlack} {\bf Nota: }{#1}}}
-\newcommand{\fuente}[1]{\parbox{10cm}{\centering\scriptsize\color{MSBlack} {\bf Fuente: }{#1}}}
+\newcommand{\nota}[1]{\par\vspace{0.5em}\begin{minipage}{\textwidth}\centering\scriptsize\color{MSBlack}\strong{Nota:}~#1\end{minipage}\par}
+\newcommand{\fuente}[1]{\par\vspace{0.5em}\begin{minipage}{\textwidth}\centering\scriptsize\color{MSBlack}\strong{Fuente:}~#1\end{minipage}\par}
 
 \usepackage{wrapfig}
 
