@@ -31,7 +31,7 @@ La tarea primordial del nodo sensor es la detección de eventos, realizar el pro
 
 La energía será usualmente un recurso limitado en el nodo sensor, lo que implica el uso de fuentes de energía alternativas tales como celdas solares o generadores eólicos, dependiendo del tipo de ambiente en el cual se halla el módulo sensor.
 
-Otros aspectos relativos al suministro de energía están ligados al tiempo de vida de las fuentes y el acceso al nodo sensor. %¿como asi "acceso al nodo sensor"? Att: Alex.
+Otros aspectos relativos al suministro de energía están ligados al tiempo de vida de las fuentes y el acceso al nodo sensor. 
 
 \subsection{Microcontrolador}
 
@@ -234,31 +234,32 @@ Ha de ser posible que el \gls{mcu} acceda a las variables de medida de cada sens
 
 \begin{figure}
     \caption{Conector base propuesto para el nodo.}
-    {\small Los seis pines inferiores son la versión reducida, los demás hacen parte de la versión extendida.}
     \centering
-    \includegraphics[width=0.5\textwidth]{conector_principal}
+    \includegraphics[width=0.3\textwidth]{conector_principal}
+
+    {\small Los seis pines inferiores son la versión reducida, los demás hacen parte de la versión extendida.}
     \label{fig:con_main}
 \end{figure}
 
 Dado que ambos conectores presentan pines en común, se puede escoger cualquiera de los dos según la complejidad del circuito esclavo a controlar.
 
 \begin{table}[t]
-\centering
+\centering\footnotesize
 \label{tab:conector_pines}
-\begin{tabular}{|l|l|l|l|l|l|}
-\hline
-Pin & Tipo & \begin{tabular}[c]{@{}l@{}}Función por\\   defecto\end{tabular} & Pin & Tipo & \begin{tabular}[c]{@{}l@{}}Función por\\   defecto\end{tabular}          \\ \hline
-1   & PWR  & \begin{tabular}[c]{@{}l@{}}VCC, 2.8 V\\   - 3.6 V\end{tabular}  & 2   & PWR  & GND                                                                      \\ \hline
-3   & I/O  & VREFH                                                           & 4   & I/O  & VREFL                                                                    \\ \hline
-5   & I/O  & --Bloqueado--                                                   & 6   & I/O  & \begin{tabular}[c]{@{}l@{}}(CLK*/SCK)Op2,\\   Salida\end{tabular}        \\ \hline
-7   & I/O  & Op1, Salida                                                     & 8   & I/O  & \begin{tabular}[c]{@{}l@{}}(MOSI*/Tx*)Op2,\\   Inversora\end{tabular}    \\ \hline
-9   & I/O  & \begin{tabular}[c]{@{}l@{}}Op1,\\   Inversora\end{tabular}      & 10  & I/O  & \begin{tabular}[c]{@{}l@{}}(MISO*/Rx*)Op2,\\   No Inversora\end{tabular} \\ \hline
-11  & I/O  & \begin{tabular}[c]{@{}l@{}}Op1, No\\   Inversora\end{tabular}   & 12  & I/O  & SS*(SDT)                                                                 \\ \hline
-13  & I/O  & Tx*                                                             & 14  & I/O  & MOSI*                                                                    \\ \hline
-15  & I/O  & Rx*                                                             & 16  & I/O  & MISO*                                                                    \\ \hline
-17  & I/O  & SDT*                                                            & 18  & I/O  & SCK/CLK*                                                                 \\ \hline
+\begin{tabular}{llllll}
+\toprule
+\textbf{Pin} & \textbf{Tipo} & \textbf{Función por defecto} & \textbf{Pin} & \textbf{Tipo} & \textbf{Función por defecto}          \\ \midrule
+1   & PWR  & VCC, 2.8 V - 3.6 V  & 2   & PWR  & GND                                                                      \\ \midrule
+3   & I/O  & VREFH                                                           & 4   & I/O  & VREFL                                                                    \\ \midrule
+5   & I/O  & --Bloqueado--                                                   & 6   & I/O  & \begin{tabular}[c]{@{}l@{}}(CLK*/SCK)Op2,\\   Salida\end{tabular}        \\ \midrule
+7   & I/O  & Op1, Salida                                                     & 8   & I/O  & \begin{tabular}[c]{@{}l@{}}(MOSI*/Tx*)Op2,\\   Inversora\end{tabular}    \\ \midrule
+9   & I/O  & \begin{tabular}[c]{@{}l@{}}Op1,\\   Inversora\end{tabular}      & 10  & I/O  & \begin{tabular}[c]{@{}l@{}}(MISO*/Rx*)Op2,\\   No Inversora\end{tabular} \\ \midrule
+11  & I/O  & \begin{tabular}[c]{@{}l@{}}Op1, No\\   Inversora\end{tabular}   & 12  & I/O  & SS*(SDT)                                                                 \\ \midrule
+13  & I/O  & Tx*                                                             & 14  & I/O  & MOSI*                                                                    \\ \midrule
+15  & I/O  & Rx*                                                             & 16  & I/O  & MISO*                                                                    \\ \midrule
+17  & I/O  & SDT*                                                            & 18  & I/O  & SCK/CLK*                                                                 \\ \bottomrule
 \end{tabular}
-\caption{Disposición sugerida de funcionalidades de pines. Con * de periféricos digitales, que pueden ser asignadas a otros pines, y entre paréntesis para el conector base.}
+\caption{Disposición sugerida de funcionalidades de pines. Con * se seǹalan pines para periféricos digitales, que pueden ser asignadas a otros pines, y entre paréntesis para el conector base.}
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
