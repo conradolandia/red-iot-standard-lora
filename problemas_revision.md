@@ -40,7 +40,8 @@
 
 ## Archivo `capitulos/sensores1.tex`
 
-### Problemas de jerarquía
+### Problemas de jerarquía y orden
+
 - Se agregó titulo de sección aparentemente faltante "Clasificación de sensores para calidad del aire" con subsecciones por tipo de contaminante
 - Sensores específicos agrupados por categoría (gaseosos, particulados)
 - Se agregó titulo de sección aparentemente faltante "Interfaces de sensores" con subsecciones para analógica y digital

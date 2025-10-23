@@ -14,12 +14,26 @@
         ],
         "env": {}
       },
+      {
+        "name": "makeglossaries",
+        "command": "makeglossaries",
+        "args": [
+          "-d",
+          "%OUTDIR%",
+          "%DOCFILE%"
+        ],
+        "env": {}
+      }
     ],
     "latex-workshop.latex.recipes": [
       {
+        "name": "latexmk + makeglossaries",
+        "tools": ["latexmk", "makeglossaries", "latexmk"]
+      },
+      {
         "name": "latexmk",
         "tools": ["latexmk"]
-      },
+      }
     ]
   }
   
