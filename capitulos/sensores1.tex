@@ -3,59 +3,75 @@ La medición de la calidad del aire se apoya en la evaluación y cuantificación
 
 El análisis de los datos recolectados permite evaluar la calidad del aire, identificar fuentes de contaminación, evaluar la eficacia de las medidas de control y tomar decisiones informadas para proteger la salud y el medio ambiente. Además, estos datos son fundamentales para establecer políticas y regulaciones ambientales que promuevan una mejor calidad del aire y un entorno más saludable.
 
+\section{Clasificación de sensores para calidad del aire}
+
 Entre las principales variables que se evalúan dentro de lo que se considera calidad del aire, se hallan:
-\begin{itemize}
-	\item Contaminantes gaseosos. Dentro de esta denominación se incluyen gases como el dióxido de carbono ($\textrm{CO}_2$), óxidos de nitrógeno ($\textrm{NO}_2$), ozono ($\textrm{O}_3$), dióxido de azufre ($\textrm{SO}_2$) y algunos compuestos orgánicos volátiles (COV), entre otros. Estos contaminantes se miden para determinar su concentración y evaluar si están dentro de los límites aceptables establecidos por las normativas ambientales. Un esquema con los elementos y principios básicos de su medición se muestra en la figura \ref{fig:fig1A}.
- \begin{figure}[ht]
+
+\subsection{Contaminantes gaseosos}
+
+Dentro de esta denominación se incluyen gases como el dióxido de carbono ($\textrm{CO}_2$), óxidos de nitrógeno ($\textrm{NO}_2$), ozono ($\textrm{O}_3$), dióxido de azufre ($\textrm{SO}_2$) y algunos compuestos orgánicos volátiles (COV), entre otros. Estos contaminantes se miden para determinar su concentración y evaluar si están dentro de los límites aceptables establecidos por las normativas ambientales. Un esquema con los elementos y principios básicos de su medición se muestra en la figura \ref{fig:fig1A}.
+
+\begin{figure}[ht]
     \caption{Esquema básico de un sensor para contaminantes gaseosos \cite{sengascon}}
     \begin{center}
         \includegraphics[width=.8\textwidth]{Fig1A}
     \end{center}
     \label{fig:fig1A}
 \end{figure}
- \begin{itemize}
+
+Los principales sensores para contaminantes gaseosos incluyen:
+
+\begin{itemize}
  \item Sensor de dióxido de carbono ($\textrm{CO}_2$): Mide la concentración de dióxido de carbono en el aire. Es utilizado para controlar la ventilación en edificios, monitorear la calidad del aire en interiores y detectar posibles fuentes de contaminación.
  \item Sensor de compuestos orgánicos volátiles (COV): Mide la presencia de compuestos químicos volátiles en el aire, como los emitidos por productos químicos, solventes, productos de limpieza y materiales de construcción. Los COV pueden contribuir a la mala calidad del aire y afectar la salud humana.
- \item Sensor de óxidos de nitrógeno ($\textrm{NO}_x$): Mide la concentración de óxidos de nitrógeno en el aire, incluyendo el dióxido de nitrógeno ($\textrm{NO}_2$) y el monóxido de nitrógeno ($\textrm{NO}$). Estos gases son emitidos principalmente por la combustión de combustibles fósiles y pueden tener efectos negativos en la calidad del aire y la salud.
-
-\item Sensor de ozono ($\textrm{O}_3$): Mide la concentración de ozono en el aire. El ozono puede ser perjudicial para la salud humana en altas concentraciones y es un contaminante común en áreas urbanas y cerca de fuentes de emisión.
+ \item Sensor de óxidos de nitrógeno (NO\textsubscript{x}): Mide la concentración de óxidos de nitrógeno en el aire, incluyendo el dióxido de nitrógeno ($\textrm{NO}_2$) y el monóxido de nitrógeno ($\textrm{NO}$). Estos gases son emitidos principalmente por la combustión de combustibles fósiles y pueden tener efectos negativos en la calidad del aire y la salud.
+ \item Sensor de ozono ($\textrm{O}_3$): Mide la concentración de ozono en el aire. El ozono puede ser perjudicial para la salud humana en altas concentraciones y es un contaminante común en áreas urbanas y cerca de fuentes de emisión.
 \end{itemize}
-\item Partículas suspendidas: Corresponde a la concentración de partículas en el aire, tanto partículas finas ($\textrm{PM2.5}$) como partículas más grandes ($\textrm{PM10}$). Estas partículas pueden provenir de fuentes naturales o antropogénicas, como la quema de combustibles fósiles, incendios forestales, polvo de construcción, entre otros. Dentro de la familia de sensores actuales para la medición de este tipo de afectación del aire se tienen:
+
+\subsection{Partículas suspendidas}
+
+Corresponde a la concentración de partículas en el aire, tanto partículas finas ($\textrm{PM2.5}$) como partículas más grandes ($\textrm{PM10}$). Estas partículas pueden provenir de fuentes naturales o antropogénicas, como la quema de combustibles fósiles, incendios forestales, polvo de construcción, entre otros. Dentro de la familia de sensores actuales para la medición de este tipo de afectación del aire se tienen:
+
 \begin{itemize}
  \item Sensor de dispersión láser: Utiliza un haz de luz láser para medir el tamaño y la concentración de partículas suspendidas. Mide la dispersión de la luz causada por las partículas en el aire y proporciona información sobre el tamaño de las partículas y su distribución.
  \item Sensor de impacto: Este tipo de sensor utiliza una placa o un substrato sensible al impacto de las partículas. Cuando las partículas chocan contra la superficie del sensor, se genera una señal eléctrica proporcional a la concentración de partículas.
  \item Sensor de efecto túnel: Este tipo de sensor se basa en el principio del efecto túnel cuántico, donde las partículas suspendidas en el aire pueden alterar la corriente que fluye a través de una barrera de túnel. La alteración de la corriente se detecta y se utiliza para medir la concentración de partículas.
  \item Sensor de masa: Estos sensores utilizan un filtro o un medio poroso para atrapar las partículas suspendidas en el aire. Luego, la masa de las partículas capturadas se pesa y se determina la concentración de partículas en función de la masa medida.
- \item Sensor de condensación de vapor: Estos sensores utilizan la técnica de condensación de vapor para aumentar el tamaño de las partículas y hacerlas detectables. El vapor se condensa sobre las partículas, haciéndolas crecer en tamaño, y luego se mide el tamaño de las partículas condensadas
- 
+ \item Sensor de condensación de vapor: Estos sensores utilizan la técnica de condensación de vapor para aumentar el tamaño de las partículas y hacerlas detectables. El vapor se condensa sobre las partículas, haciéndolas crecer en tamaño, y luego se mide el tamaño de las partículas condensadas.
 \end{itemize}
-\item Contaminantes biológicos: Se pueden medir microorganismos como bacterias, hongos, polen y esporas u otros microorganismos, que pueden representar riesgos para la salud humana. Algunos de los tipos de sensores utilizados para la detección de contaminantes biológicos son:
+
+\subsection{Contaminantes biológicos}
+
+Se pueden medir microorganismos como bacterias, hongos, polen y esporas u otros microorganismos, que pueden representar riesgos para la salud humana. Algunos de los tipos de sensores utilizados para la detección de contaminantes biológicos son:
+
 \begin{itemize}
  \item Sensores de $\textrm{PCR}$ (Reacción en Cadena de la Polimerasa): Utilizan la técnica de PCR para amplificar y detectar material genético específico de los organismos objetivo. Estos sensores son altamente sensibles y se utilizan comúnmente para la detección de virus, bacterias y otros patógenos.
  \item Sensores de inmunodetección: Utilizan anticuerpos u otras moléculas de reconocimiento específicas para detectar la presencia de agentes biológicos. Estos sensores pueden detectar proteínas o componentes celulares específicos y se utilizan en aplicaciones como la detección de toxinas bacterianas o virus.
  \item Sensores de microarrays de ADN: Utilizan una matriz de sondas de ADN específicas para detectar y distinguir diferentes secuencias de ADN. Estos sensores son útiles para la identificación de microorganismos y pueden detectar múltiples especies o cepas en una sola prueba.
  \item Sensores de espectroscopia: Utilizan técnicas de espectroscopia para detectar y analizar la firma espectral de los contaminantes biológicos. Estos sensores pueden utilizar diferentes rangos del espectro electromagnético, como la luz visible, infrarroja o ultravioleta, para identificar características específicas de los organismos o sus productos de desecho.
  \item Sensores basados en biosensores: Utilizan sistemas biológicos, como enzimas o células vivas, para detectar la presencia de contaminantes biológicos. Estos sensores pueden detectar cambios en la actividad enzimática o respuestas biológicas específicas para identificar la presencia de microorganismos o sustancias biológicas.
-
 \end{itemize}
 
-\item Medición de parámetros meteorológicos: Además de los contaminantes específicos, también se miden variables meteorológicas como la temperatura, la humedad relativa, la velocidad y dirección del viento. Estos datos son importantes para comprender los patrones de dispersión de los contaminantes y su impacto en diferentes áreas. Algunos sensores destacados para estas magnitudes son:
+\subsection{Parámetros meteorológicos}
+
+Además de los contaminantes específicos, también se miden variables meteorológicas como la temperatura, la humedad relativa, la velocidad y dirección del viento. Estos datos son importantes para comprender los patrones de dispersión de los contaminantes y su impacto en diferentes áreas. Algunos sensores destacados para estas magnitudes son:
+
 \begin{itemize}
  \item Sensor de temperatura: Mide la temperatura ambiente y puede utilizar termistores, termopares, sensores de resistencia (RTD), sensores a semiconductores y sensores metálicos.
  \item Sensor de humedad relativa: Mide la cantidad de humedad en el aire, de forma indirecta, por medición directa de la capacitancia, la resistencia o la conductancia eléctrica del medio húmedo.
  \item Sensor de presión atmosférica: Mide la presión atmosférica, indirectamente, utilizando medios actinométricos sobre cuerpos de prueba como membranas, fuelles, tubos u otros medios.
  \item Sensores de lluvia o pluviómetro: Miden la cantidad de precipitación que cae en un determinado período de tiempo. Los pluviómetros generalmente consisten en un recipiente graduado que recogen y miden el agua de lluvia, en un área y un tiempo determinados, para dar base a proyección de cálculos asociados al volumen y caudal totales obtenibles de dichos parámetros.
 \end{itemize}
-\end{itemize}
 
-%%%(finPrimer agragado)
-\subsection{Sensores para $\textrm{CO}_2$}
+\section{Sensores específicos para contaminantes gaseosos}
+
+\subsection{Sensores para CO\textsubscript{2}}
 
 Las técnicas de detección de $\textrm{CO}_2$ han recorrido un largo camino en el desarrollo de sensores para el análisis de gases, pasando por métodos químicos y físicos como la cromatografía, el análisis infrarrojo, la espectrometría, la conductimetría, entre otras \cite{Kumar-2007}.
 
 Actualmente se manejan, fundamentalmente, dos tipos de técnicas para la detección de $\textrm{CO}_2$: 
 \begin{itemize}
-	\item Determinación de la concentración de $\textrm{CO}_2$ en el aire por el método \gls{ndir}, el cual es el más empleado para la detección en tiempo real.
+	\item Determinación de la concentración de CO\textsubscript{2} en el aire por el método \gls{ndir}, el cual es el más empleado para la detección en tiempo real.
 	\item Detección por medio de sensores electrolíticos de estado sólido.
 \end{itemize}
 
@@ -80,7 +96,7 @@ El gas se difunde en la cámara y la concentración de $\textrm{CO}_2$ se mide �
 
 El término no dispersivo se refiere a que toda la luz (todas las longitudes de onda) atraviesan la muestra de gas y el filtrado se aplica solamente a la luz que logra llegar al final de la cámara, que es cuando ésta ingresa al detector.
 
-\textsc{Función característica}
+\subsubsection{Función característica}
 
 La absorción de la radiación IR por parte de las moléculas de $\textrm{CO}_2$ sigue la ley de Lambert and Beer, que se expresa como:
 \begin{align}
@@ -105,7 +121,7 @@ I=I_0\times 10^{CLA}
 \end{equation}
 Donde $I_0$ es la luz a la salida de la fuente.
 
-\subsection{Sensores para $\textrm{COV}$}
+\subsection{Sensores para COV}
 Un sensor de compuestos orgánicos volátiles (COV) es ampliamente utilizado en aplicaciones de monitoreo ambiental, control de calidad del aire y detección de gases en cualquier entorno.
 El funcionamiento de un sensor de COV se basa en la interacción de los compuestos orgánicos volátiles con una capa sensible en el sensor. Cuando los COV están presentes en el aire, interactúan con la capa sensible, lo que produce cambios en sus propiedades eléctricas, ópticas o químicas. Estos cambios son medidos por el sensor y se convierten en una señal eléctrica que puede ser interpretada como la concentración de COV presente en el ambiente.
 
@@ -121,10 +137,10 @@ El sensor de compuestos orgánicos volátiles (COV) consta de varios componentes
 \end{itemize}
 Es importante destacar que los componentes específicos y la configuración del sensor pueden variar según el diseño y la tecnología utilizada. Cada fabricante puede tener su propia implementación y selección de componentes para lograr el mejor rendimiento y precisión en la medición de COV.
 
-\subsection{Sensores electroquímicos para $\textrm{NO}_x$}
-Los sensores electroquímicos para óxido de nitrógeno ($\textrm{NO}_x$) se basan en reacciones electroquímicas que ocurren en una celda sensora. Estos sensores constan de tres componentes principales: un electrodo de trabajo, un electrodo de referencia y un contra-electrodo. A continuación se presenta un modelo matemático híbrido (racional-empírico) utilizado en este tipo de sensores.
+\subsection{Sensores electroquímicos para NO\textsubscript{x}}
+Los sensores electroquímicos para óxido de nitrógeno (NO\textsubscript{x}) se basan en reacciones electroquímicas que ocurren en una celda sensora. Estos sensores constan de tres componentes principales: un electrodo de trabajo, un electrodo de referencia y un contra-electrodo. A continuación se presenta un modelo matemático híbrido (racional-empírico) utilizado en este tipo de sensores.
 
-La Ley de Nernst establece la relación entre el potencial eléctrico y la concentración de especies químicas en una celda electroquímica. El modelo matemático para un sensor de $\textrm{NO}_x$ puede ser expresado como:
+La Ley de Nernst establece la relación entre el potencial eléctrico y la concentración de especies químicas en una celda electroquímica. El modelo matemático para un sensor de NO\textsubscript{x} puede ser expresado como:
 %%%%inicioecuacion
 \begin{gather}
 \label{nox}
@@ -138,14 +154,18 @@ Donde:
     \item[$R$] $\rightleftharpoons$  Constante universal de los gases ideales.
     \item[$T$] $\rightleftharpoons$  Temperatura termodinámica.
     \item[$F$] $\rightleftharpoons$  Constante de Faraday.
-    \item[$C$] $\rightleftharpoons$  Concentración del $\textrm{NO}_x$.
+    \item[$C$] $\rightleftharpoons$  Concentración del NO\textsubscript{x}.
 \end{itemize}
 
-Este modelo establece una relación logarítmica entre el potencial eléctrico medido y la concentración de $\textrm{NO}_x$.
-Existe, también, un modelo denominado de difusión y reacción; en dicho modelo se considera la difusión de los gases de $\textrm{NO}_x$ desde el entorno hacia la superficie del electrodo, donde ocurren las reacciones electroquímicas. El modelo matemático puede incluir las ecuaciones de difusión de Fick y reacciones de oxidación y reducción en el electrodo para describir el comportamiento del sensor.
-Otros modelos más complejos pueden considerar parámetros adicionales como el coeficiente de difusión, la velocidad de transferencia de electrones y la resistencia interna del sensor para obtener una descripción más precisa del comportamiento del sensor electroquímico para $\textrm{NO}_x$.
+Este modelo establece una relación logarítmica entre el potencial eléctrico medido y la concentración de NO\textsubscript{x}.
+Existe, también, un modelo denominado de difusión y reacción; en dicho modelo se considera la difusión de los gases de NO\textsubscript{x} desde el entorno hacia la superficie del electrodo, donde ocurren las reacciones electroquímicas. El modelo matemático puede incluir las ecuaciones de difusión de Fick y reacciones de oxidación y reducción en el electrodo para describir el comportamiento del sensor.
+Otros modelos más complejos pueden considerar parámetros adicionales como el coeficiente de difusión, la velocidad de transferencia de electrones y la resistencia interna del sensor para obtener una descripción más precisa del comportamiento del sensor electroquímico para NO\textsubscript{x}.
 Los modelos matemáticos específicos pueden variar según el diseño y la tecnología del sensor electroquímico utilizado. Los fabricantes de sensores electroquímicos suelen proporcionar documentación técnica que incluye información sobre el modelo matemático y las ecuaciones asociadas utilizadas en sus sensores específicos.
+
+\section{Sensores específicos para material particulado}
+
 \subsection{Sensor de dispersión láser para material particulado}
+
 El sensor de dispersión láser para material particulado mantiene la técnica de dispersión de un haz de luz que atraviesa el material a analizar, sufriendo diferentes niveles de atenuación en sus componentes de frecuencia, debido a las diferentes partículas encontradas en su camino. Los elementos que lo componen y sus funciones individuales se pueden resumir en:
 \begin{itemize}
 \item Fuente láser: Puede ser un láser, generalmente de infrarrojo, con un espectro amplio.
@@ -183,7 +203,7 @@ Este modelo asume una relación lineal entre la intensidad de la luz dispersada 
     \label{fig:fig3A}
 \end{figure}
 
-\subsection[Sensor de dispersión láser para material particulado, multi-ángulo]{Sensor de dispersión láser para material particulado,\\ multi-ángulo}
+\subsubsection[Sensor de dispersión láser para material particulado, multi-ángulo]{Sensor de dispersión láser para material particulado,\\ multi-ángulo}
 
 Un novedoso sensor de dispersión para partículas PM2.5 es el desarrollado en State Key Laboratory of Industrial Control Technology, College of Control Science and Engineering, el cual permite eliminar los efectos de factores meteorológicos como la humedad en las partículas. Se concentra en detectar la dispersión en tres ángulos diferentes: \SI{40}{\degree}, \SI{55}{\degree} y \SI{140}{\degree}. Un esquema con la arquitectura similar a la disposición real del sensor se presenta en la figura \ref{fig:fig4A}.
 \begin{figure}[h]
@@ -193,8 +213,12 @@ Un novedoso sensor de dispersión para partículas PM2.5 es el desarrollado en S
     \label{fig:fig4A}
 \end{figure}
 
+\section{Interfaces de sensores}
+
 \subsection{Sensores con Interfaz Análogica}
+
 Cuando un sensor presenta un cambio en sus propiedades eléctricas, proporcional a los cambios en su variable de medida, es recomendable implementar una cadena de medida que permita su correcto funcionamiento y a su vez un aprovechamiento máximo del rango completo de detección del \gls{adc} del microcontrolador. También deberá considerarse si es necesario hacer algún tipo de tratamiento básico a los datos (promedio, filtrado, entre otros) antes de concluir un valor que se pueda enviar por la red LoRaWAN.
 
 \subsection{Sensores con Interfaz Digital}
+
 Se observa que la estructura general consiste en el envío de uno o más comandos, con el fin de obtener una respuesta a estos. El formato de cada comando y su respuesta asociada depende fuertemente del fabricante de cada sensor en particular.

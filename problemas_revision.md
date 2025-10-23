@@ -1,4 +1,10 @@
+## Archivo `capitulos/proyecto.tex`
 
+### Citas bibliográficas faltantes
+- **Evans2011TheEverything**: Línea 31
+- **Alcaraz2014InternetCosas**: Líneas 31 y 41  
+- **Valle2014**: Líneas 35 y 39
+- Problema: Estas citas están referenciadas en el texto pero no existen en el archivo de bibliografía
 
 ## Archivo `capitulos/aplicacion.tex`
 
@@ -32,9 +38,9 @@
 - Se repite información sobre la ubicación de la pasarela en la sede de ingeniería
 - Problema: Redundancia que afecta la fluidez del texto
 
-## Referencias faltantes identificadas en el log de compilación
+## Archivo `capitulos/sensores1.tex`
 
-### Citas bibliográficas faltantes
-- **Evans2011TheEverything**: Referenciada en página 13, línea 31
-- **Alcaraz2014InternetCosas**: Referenciada en página 13, línea 31 y página 14, línea 41  
-- **Valle2014**: Referenciada en página 13, línea 35 y página 14, línea 39
+### Problemas de jerarquía
+- Se agregó titulo de sección aparentemente faltante "Clasificación de sensores para calidad del aire" con subsecciones por tipo de contaminante
+- Sensores específicos agrupados por categoría (gaseosos, particulados)
+- Se agregó titulo de sección aparentemente faltante "Interfaces de sensores" con subsecciones para analógica y digital
