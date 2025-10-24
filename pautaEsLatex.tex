@@ -187,7 +187,7 @@ style=apa,
 %%
 %%%%%%%%%%%%%%
 
-\usepackage[acronym]{glossaries}%\usepackage{glossaries}
+\usepackage[acronym,toc]{glossaries}
 \usepackage{amsmath,amssymb,amsfonts,latexsym,cancel}
 \usepackage{multirow}
 \usepackage{booktabs}
@@ -207,6 +207,28 @@ style=apa,
   \faEnvelope~\url{#3}\par
   \textcolor{orcidlogocol}{\aiOrcid}~\url{#4}\par\vspace{1em}
 }
+
+\newglossarystyle{long-tabla}{%
+  \setglossarystyle{long}
+
+  \renewcommand{\glossentry}[2]{%
+    \small
+    \glsentryitem{##1}\glstarget{##1}{\textmed{\glossentryname{##1}}} &
+    \textls[-10]{\Glossentrydesc{##1}}\glspostdescription\space ##2\tabularnewline
+  }%
+}
+
+\newglossarystyle{long-lista}{%
+  \setglossarystyle{list}
+  \renewcommand*{\glsgroupskip}{}%
+  \renewcommand*{\glossentry}[2]{%
+    \small
+    \item[\glstarget{##1}{\textmed{\glossentryname{##1}}}] 
+    \textls[-10]{\Glossentrydesc{##1}}\glspostdescription\space ##2
+  }%
+}
+
+\setglossarystyle{long-lista}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
@@ -296,7 +318,9 @@ style=apa,
 
 \include{glosario}
 
-\printacronyms
+\printacronyms[title={Siglas},toctitle={Siglas}]
+
+\newpage\thispagestyle{empty}
 
 %% Editar Bio de autores %%
 \pagestyle{plain}
