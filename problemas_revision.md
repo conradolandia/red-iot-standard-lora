@@ -1,4 +1,4 @@
-## Archivo `capitulos/proyecto.tex`
+## Archivo `capitulos/proyecto.tex` (introducción y capítulo 2)
 
 ### Citas bibliográficas faltantes
 
@@ -8,7 +8,15 @@ Las citas están referenciadas en el texto pero no existen en el archivo de bibl
 - **Alcaraz2014InternetCosas**: Líneas 31 y 41  
 - **Valle2014**: Líneas 35 y 39
 
-## Archivo `capitulos/aplicacion.tex`
+## Archivo `capitulos/sensores1.tex` (Capítulo 6)
+
+### Problemas de jerarquía y orden
+
+- Se agregó titulo de sección aparentemente faltante "Clasificación de sensores para calidad del aire" con subsecciones por tipo de contaminante
+- Sensores específicos agrupados por categoría (gaseosos, particulados)
+- Se agregó titulo de sección aparentemente faltante "Interfaces de sensores" con subsecciones para analógica y digital
+
+## Archivo `capitulos/aplicacion.tex` (Capítulo 8)
 
 ### "tabla 2.1" (línea 17)
 - Se refiere a efectos en la salud según AQI. La tabla no existe
@@ -28,19 +36,14 @@ Las citas están referenciadas en el texto pero no existen en el archivo de bibl
 - Deberían tener títulos diferentes ya que muestran resultados distintos
 
 ### Referencia a figura inexistente (línea 144)
-- Se menciona "La figura \ref{gl6} muestra los cambios de iluminación..." pero la figura gl6 no está definida. La figura gl6 no existe en el documento
+- Se menciona "La figura \ref{gl6} muestra los cambios de iluminación..." pero la figura gl6 no existe en el documento
 
 ### Párrafo muy largo y confuso (líneas 68-69)
 - El párrafo que habla sobre cobertura exterior es muy denso y mezcla varios conceptos. Dificulta la comprensión del texto
 
 ### Repetición de información (líneas 80-81)
-- Se repite información sobre la ubicación de la pasarela en la sede de ingeniería
-- Redundancia que afecta la fluidez del texto
+- Se repite información sobre la ubicación de la pasarela en la sede de ingeniería, redundancia que afecta la fluidez del texto
 
-## Archivo `capitulos/sensores1.tex`
+## Sobre los autores
 
-### Problemas de jerarquía y orden
-
-- Se agregó titulo de sección aparentemente faltante "Clasificación de sensores para calidad del aire" con subsecciones por tipo de contaminante
-- Sensores específicos agrupados por categoría (gaseosos, particulados)
-- Se agregó titulo de sección aparentemente faltante "Interfaces de sensores" con subsecciones para analógica y digital
+La pauta recibida tiene una sección final para las biografías de los autores. No se han proporcionado estos datos. 
