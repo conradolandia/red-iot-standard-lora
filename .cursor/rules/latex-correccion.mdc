@@ -191,13 +191,6 @@ grep -n "\\ref{" capitulos/*.tex
 git diff | grep -E "^-.*\\(gls|ref|label)"
 ```
 
-### 8.2 Archivos de Revisión Prioritaria
-
-* `capitulos/aplicacion.tex`
-* `capitulos/concentrador.tex`
-* `capitulos/sensores1.tex`
-* `capitulos/nodo.tex`
-
 ---
 
 ## 9. Comunicación y Reporte de Problemas
