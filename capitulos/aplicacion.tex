@@ -16,11 +16,97 @@ La \gls{epa} calcula el \gls{aqi} basado en los cinco mayores contaminantes del 
 
 La tabla 2.1 describe los efectos en la salud de acuerdo al \gls{aqi}.
 
-\section{Monitoreo de contaminantes del aire}
+\section{Monitoreo de contaminantes del aire.} 
 
-La \gls{epa} ha identificado seis "contaminantes estándar" de alto nivel de importancia para la salud y el medio ambiente: ozono-3 ($\textrm{O}_3$), material particulado (PM), monóxido de carbono (CO), dióxido de nitrógeno (NO$_2$), dióxido de azufre ($\textrm{SO}_2$) y plomo (Pb). La \gls{epa} ha establecido los \gls{naaqs}, los cuales clasifican en primarios y secundarios; los primarios están destinados a proteger la salud pública y los secundarios a proteger el bienestar público. Los límites de concentración establecidos por \gls{naaqs} se muestran en la Tabla 2-2 (guidebook).
+La \gls{epa} ha identificado seis "contaminantes estándar" de alto nivel de importancia para la salud y el medio ambiente: ozono-3 ($\textrm{O}_3$), material particulado (PM), monóxido de carbono (CO), dióxido de nitrógeno6 (NO$_2$), dióxido de azufre ($\textrm{SO}_2$) y plomo (Pb). La \gls{epa} ha establecido los 
 
-Con la nueva generación de sensores de calidad del aire, de bajo costo y portátiles, se tienen muchas facilidades para su uso en aplicaciones de esta área. Aunque los sensores de contaminación del aire aún se encuentran en su etapa inicial de desarrollo, la \gls{epa} tiene pautas específicas que se deben aplicar para establecer monitoreo de aire de grado reglamentario. La Tabla 1-1 (guidebook) resume algunas áreas potenciales de aplicación no regulatoria para sensores de aire y proporciona descripciones breves y ejemplos.
+\gls{naaqs}, los cuales clasifican en primarios y secundarios; los primarios están destinados a proteger la salud pública y los secundarios a proteger el bienestar público. Los límites de concentración establecidos por \gls{naaqs} se muestran en la Tabla \ref{tabla:epa} (GUIDEBOOK). 
+
+
+
+\begin{table}[h] 
+	
+	\centering 
+	
+	\caption{Estándares Nacionales de Calidad del Aire Ambiental (NAAQS) - EPA} 
+	
+	\label{tabla:epa} 
+	
+	\begin{tabular}{p{0.25\textwidth} p{0.25\textwidth} p{0.18\textwidth} p{0.18\textwidth}} 
+		
+		\hline 
+		
+		\textbf{Contaminante} & \textbf{Primario/Secundario} & \textbf{Tiempo  Promedio} & \textbf{Nivel (Límite)} \\ \hline 
+		
+		\multirow{2}{2.5cm}{Monóxido de Carbono (CO)} & Primario & 8 horas & 9 ppm \\ \cline{2-4}  
+		
+		& Primario & 1 hora & 35 ppm \\ \hline 
+		
+		Plomo (Pb) & Primario y Secundario & Promedio trimestral móvil & 0.15 µg/m³ \\ \hline 
+		
+		\multirow{2}{2.5cm}{Dióxido de Nitrógeno (NO$_2$)} & Primario & 1 hora & 100 ppb \\ \cline{2-4}  
+		
+		& Primario y Secundario & Anual & 53 ppb \\ \hline 
+		
+		Ozono (O$_3$) & Primario y Secundario & 8 horas & 0.070 ppm \\ \hline 
+		
+		\multirow{2}{2.5cm}{Partículas (PM$_{2.5}$)} & Primario & Anual & 9.0 µg/m³ \\ \cline{2-4}  
+		
+		& Primario y Secundario & 24 horas & 35 µg/m³ \\ \hline 
+		
+		Partículas (PM$_{10}$) & Primario y Secundario & 24 horas & 150 µg/m³ \\ \hline 
+		
+		\multirow{2}{2.5cm}{Dióxido de Azufre (SO$_2$)} & Primario & 1 hora & 75 ppb \\ \cline{2-4}  
+		
+		& Secundario & 3 horas & 0.5 ppm \\ \hline 
+		
+	\end{tabular} 
+	
+\end{table} 
+
+
+
+Con la nueva generación de sensores de calidad del aire, de bajo costo y portátiles, se tienen muchas facilidades para su uso en aplicaciones de esta área.Aunque los sensores de contaminación del aire aún se encuentran en su etapa inicial de desarrollo, la \gls{epa} tiene pautas específicas que se deben aplicar para establecer monitoreo de aire de grado reglamentario. La Tabla \ref{tabla:epa1} (guidebook)resume algunas áreas potenciales de aplicación no regulatoria para sensores de aire y proporciona descripciones breves y ejemplos. 
+
+
+
+
+
+
+
+\begin{table}[h!] 
+	
+	\centering 
+	
+	\caption{Áreas de aplicación no regulatoria para sensores de aire (Fuente: EPA)} 
+	
+	\label{tabla:epa1} 
+	
+	\small 
+	
+	\begin{tabular}{p{3cm}p{4cm}p{4cm}} 
+		
+		\hline 
+		
+		\textbf{Área de Aplicación} & \textbf{Descripción Breve} & \textbf{Ejemplos de Uso} \\ \hline 
+		
+		\textbf{Educación y Ciencia Participativa} & Uso en entornos escolares o proyectos comunitarios para fomentar el aprendizaje sobre la calidad del aire. & Lecciones STEM en escuelas; proyectos de ciencia ciudadana para mapear aire local. \\ \hline 
+		
+		\textbf{Investigación Científica} & Recopilación de datos de alta resolución temporal o espacial para estudios académicos o de salud. & Estudios epidemiológicos; verificación de modelos de dispersión de aire. \\ \hline 
+		
+		\textbf{Información Local y Comunal} & Proporcionar datos específicos de una ubicación que no cuenta con estaciones de monitoreo oficiales. & Identificación de "puntos calientes" (hotspots) de contaminación en barrios específicos. \\ \hline 
+		
+		\textbf{Respuesta a Emergencias} & Monitoreo rápido durante eventos inesperados que afectan la calidad del aire de forma temporal. & Medición de humo durante incendios forestales o accidentes industriales. \\ \hline 
+		
+		\textbf{Monitoreo de Exposición Personal} & Evaluación del aire que una persona respira mientras se desplaza en su vida diaria. & Uso de sensores portátiles mientras se camina, se viaja en coche o se está en el trabajo. \\ \hline 
+		
+		\textbf{Identificación de Fuentes de Emisión} & Ayuda a localizar fugas o emisiones no controladas en instalaciones cercanas. & Detección de fugas en plantas industriales o monitoreo cerca de chimeneas sospechosas. \\ \hline 
+		
+		\textbf{Monitoreo de Aire Interior} & Evaluación de contaminantes dentro de edificios o residencias. & Evaluación de la ventilación en oficinas o detección de PM2.5 por estufas de leña. \\ \hline 
+		
+	\end{tabular} 
+	
+\end{table} 
 
 \section{Modelo de Red para la Aplicación}
 
@@ -53,7 +139,7 @@ Una de las pasarelas del fabricante MULTITECH, denominada MoteII, se evaluó con
 
 \begin{figure}[t]
 \centering
-\caption{Cobertura e interoperabilidad Multitech - ISMT en inmediaciones del campus}
+\caption{Cobertura e interoperabilidad  Multitech en inmediaciones del campus}
 \includegraphics[width=.8\textwidth]{cobertura/fig1.png}
 \label{f:mapa1}
 \end{figure}
@@ -64,7 +150,7 @@ De la misma forma, en la figura \ref{f:mapa2} se presenta la interoperabilidad d
 
 \begin{figure}[t]
 \centering
-\caption{Cobertura e interoperabilidad Multitech - ISMT en inmediaciones del campus}
+\caption{Cobertura e interoperabilidad  Mote II en inmediaciones del campus} 
 \includegraphics[width=.8\textwidth]{cobertura/fig2.png}
 \label{f:mapa2}
 \end{figure}
