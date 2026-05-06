@@ -34,6 +34,11 @@
         "name": "latexmk",
         "tools": ["latexmk"]
       }
-    ]
+    ],
+    "latex-workshop.message.warning.show": false,
+    "latex-workshop.message.badbox.show": "none",
+    "latex-workshop.message.error.show": true,
+    "latex-workshop.linting.chktex.enabled": false,
+    "latex-workshop.linting.lacheck.enabled": false
   }
   

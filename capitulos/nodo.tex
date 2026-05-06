@@ -2,10 +2,10 @@
 
 En términos de redes de telecomunicaciones móviles, a los dispositivos que consumen la red inalámbrica se les denomina comúnmente como \emph{nodos}, y es así que en \gls{lwan} se hablará del \emph{dispositivo \gls{lora}}, también conocido como \emph{mote}. De igual manera que en el modelo cliente/servidor, el nodo se comunicará con el servidor \gls{lwan}, evitando la comunicación directa con otros dispositivos de la red. El servidor \gls{lwan} podrá enviarle de vuelta al nodo mensajes almacenados en el servidor \gls{lora}, siempre dependiendo de la clase de trabajo en que se encuentre el nodo (sección \ref{secc:clases}). Para efectos prácticos, se hablará del nodo funcionando en Clase A, en que el nodo siempre inicia la comunicación, aunque en las otras clases persiste el modelo cliente/servidor, lo que permite obviarlas.
 
-La composición del nodo se basa típicamente en una arquitectura de hardware de referencia, figura \ref{fig:arqgenhw}, la cual se puede abordar según la funcionalidad de cada uno de los bloques o según la implementación disponible de la arquitectura base mencionada.
+La composición del nodo se basa típicamente en una arquitectura de \emph{hardware} de referencia, figura \ref{fig:arqgenhw}, la cual se puede abordar según la funcionalidad de cada uno de los bloques o según la implementación disponible de la arquitectura base mencionada.
 
 \begin{figure}%[h]
-    \caption{Arquitectura de hardware de un dispositivo \gls{lora} genérico.}
+    \caption{Arquitectura de \emph{hardware} de un dispositivo \gls{lora} genérico.}
     \centering
     \includegraphics[width=0.8\textwidth]{arq-gen-hard}
     \label{fig:arqgenhw}
@@ -47,7 +47,7 @@ De los componentes relevantes del \gls{uc} se presentan a continuación:
 
     \item Soporte entrada-salida
 
-    El \gls{uc} está en capacidad de llevar a cabo funciones de comunicación tipo serial o paralela, temporizaciones, comparaciones, transmisión y recepción digital y analógica en diversos protocolos y velocidades, además del procesamiento de datos. Una de las limitaciones a estas funciones está en el número de pines de acceso físico a su estructura. Para dar solución a esta situación, se trata de mantener al máximo el número de funciones y se multiplexa la comunicación entrada-salida en los pines disponibles, seleccionando a través de software la gran variedad de operaciones que permita el dispositivo.
+    El \gls{uc} está en capacidad de llevar a cabo funciones de comunicación tipo serial o paralela, temporizaciones, comparaciones, transmisión y recepción digital y analógica en diversos protocolos y velocidades, además del procesamiento de datos. Una de las limitaciones a estas funciones está en el número de pines de acceso físico a su estructura. Para dar solución a esta situación, se trata de mantener al máximo el número de funciones y se multiplexa la comunicación entrada-salida en los pines disponibles, seleccionando a través de \emph{software} la gran variedad de operaciones que permita el dispositivo.
 
     Para el diseño de un nodo sensor se requieren muchas de las funciones presentes en el \gls{uc} y una cierta cantidad de pines de comunicación con funciones particulares cada uno de ellos. Como ejemplos de funciones y pines requeridos se tienen las interfaces $I^2C$, $I^2S$, canales $SPI$, conversores ADC y DAC, pines de interrupciones E/S, señales de tiempo y de reloj, bits-banderas, entre otros.
 
@@ -87,16 +87,16 @@ Dependiendo de los requisitos de diseño y producción, se tienen varias opcione
 
 Con el fin de seleccionar la arquitectura óptima, es preferible partir de un kit de desarrollo \gls{lora} y crear un bosquejo.
 
-Por otro lado, en la figura \ref{fig:arqgensw} se muestra una arquitectura genérica del software en el dispositivo.
+Por otro lado, en la figura \ref{fig:arqgensw} se muestra una arquitectura genérica del \emph{software} en el dispositivo.
 
 \begin{figure}
-    \caption{Arquitectura Genérica del software del Nodo}
+    \caption{Arquitectura Genérica del \emph{software} del Nodo}
     \centering
     \includegraphics[width=0.8\textwidth]{arq-gen-soft}
     \label{fig:arqgensw}
 \end{figure}
 
-La capa de Drivers provee la adaptación de hardware e implementa todos los drivers y buffers para controlar los dispositivos periféricos. Esta permite abstraer el hardware como funciones simples expuestas al \emph{middleware}.
+La capa de Drivers provee la adaptación de \emph{hardware} e implementa todos los drivers y buffers para controlar los dispositivos periféricos. Esta permite abstraer el \emph{hardware} como funciones simples expuestas al \emph{middleware}.
 
 El \emph{middleware} implementa las librerías de protocolos de comunicación (\gls{lwan}, 6LowPAN, etc.) e implementa también controladores complejos como el control de pantallas y de GPS.
 
@@ -119,9 +119,9 @@ La totalidad de la pila \gls{lwan} será llevada por el MCU principal e implemen
 
 \subsection{Diseño basado en un módulo LoRa}
 
-El módulo \gls{lora} es un componente que contiene el \gls{mcu} y el radio \gls{lora}. Se tiene la disponibilidad de programar el software de su \gls{mcu} para ejecutar la aplicación y la pila \gls{lwan}.
+El módulo \gls{lora} es un componente que contiene el \gls{mcu} y el radio \gls{lora}. Se tiene la disponibilidad de programar el \emph{software} de su \gls{mcu} para ejecutar la aplicación y la pila \gls{lwan}.
 
-El principal beneficio de este enfoque de diseño es que todo el desarrollo del hardware de RF es implementado por el fabricante del módulo.
+El principal beneficio de este enfoque de diseño es que todo el desarrollo del \emph{hardware} de RF es implementado por el fabricante del módulo.
 
 La mayor parte de la sintonización y acoplamiento de la antena es realizada dentro del módulo. El fabricante del módulo brinda un diseño de referencia para conectar o rediseñar la antena.
 
@@ -151,7 +151,7 @@ Un módem LoRa es un componente que contiene todos los componentes de radio: pil
 
 El módem integra la pila \gls{lwan} entera y actúa como esclavo de tal manera que requiere de un ``host'' para manejarlo. La comunicación usualmente se realiza mediante comandos AT para configurar o enviar mensajes.
 
-La interfaz de hardware puede ser usualmente UART, USB o SPI.
+La interfaz de \emph{hardware} puede ser usualmente UART, USB o SPI.
 
 \subsection{Dispositivos con un módem LoRa externo}
 
@@ -224,11 +224,11 @@ El Transmisor-Receptor Asíncrono Universal (\emph{Universal Asynchronous Receiv
 
 \section{Interfaz Planteada}
 
-La interfaz abarca dos entornos: uno de ``hardware'' relacionado con la conexión física, y otro de ``software'' relacionado con una capa de abstracción entre los distintos métodos de obtención de las variables de los sensores, sean mediante protocolos digitales o mediante una cadena de medida, con el fin de permitir su transmisión sobre una aplicación en la red \gls{lwan}.
+La interfaz abarca dos entornos: uno de \emph{hardware} relacionado con la conexión física, y otro de ``software'' relacionado con una capa de abstracción entre los distintos métodos de obtención de las variables de los sensores, sean mediante protocolos digitales o mediante una cadena de medida, con el fin de permitir su transmisión sobre una aplicación en la red \gls{lwan}.
 
 Con ayuda de una aplicación \gls{lwan}, esta interfaz permitirá la interconexión de dos circuitos: Uno de estos será el Núcleo Pylates, conformado por un \gls{mcu} y un módem \gls{lwan}. El otro será la placa de aplicación con todos los circuitos adicionales requeridos en el nodo.
 
-\subsection{Interfaz de Hardware: Conector y Funcionalidades de Pines}
+\subsection{Interfaz de \emph{Hardware}: Conector y Funcionalidades de Pines}
 
 Ha de ser posible que el \gls{mcu} acceda a las variables de medida de cada sensor, bien mediante interfaces digitales (SPI, I2C, UART) como con la implementación de una cadena de medida (OPAMPS+REF+ADC+DAC) para aquellos en que sea necesario. Se estima el peor de los escenarios, en que se requiere una mayor cantidad de pines, en que se conectarán al \gls{mcu} cuatro sensores, tres mediante las tres distintas interfaces digitales mencionadas y uno con una cadena de medida, asistida con los periféricos analógicos del \gls{mcu}. Otra alternativa consiste en considerar solo un tipo de sensor, siendo en este caso conveniente el permitir a los sensores que requieren cadena de medida, acceder a la mayor cantidad de periféricos analógicos disponibles del \gls{mcu}.
 
@@ -263,7 +263,7 @@ Dado que ambos conectores presentan pines en común, se puede escoger cualquiera
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Interfaz de Software: Configuración mediante IDs de Núcleo y Placa}
+\subsection{Interfaz de \emph{software}: Configuración mediante IDs de Núcleo y Placa}
 
 En aras de que el usuario final realice la mayor cantidad de configuración desde una interfaz gráfica y con un mínimo esfuerzo, se plantea una aplicación en que se ingresan dos identificadores: uno del núcleo y otro del circuito de aplicación.
 
@@ -280,7 +280,7 @@ Cada núcleo conformado por un microcontrolador y un módem LoRaWAN, estará aso
 
 \subsubsection{Circuito de Aplicación}
 
-Cada posible configuración eléctrica tendrá asignado un identificador de catálogo (CatID), repetible solamente entre el mismo tipo de circuito. De tal manera que cada cambio que altere la funcionalidad del hardware, modificando el circuito, requerirá obligatoriamente un nuevo CatID. Entre los cambios notables se presentan los siguientes:
+Cada posible configuración eléctrica tendrá asignado un identificador de catálogo (CatID), repetible solamente entre el mismo tipo de circuito. De tal manera que cada cambio que altere la funcionalidad del \emph{hardware}, modificando el circuito, requerirá obligatoriamente un nuevo CatID. Entre los cambios notables se presentan los siguientes:
 \begin{itemize}
     \item Agregar/Retirar componentes.
     \item Cambiar valores de componentes alterando las impedancias.

@@ -1,7 +1,7 @@
 \chapter{Concentrador}
 
 \section{Hardware}
-El hardware asociado al concentrador contiene dos elementos: 
+El \emph{hardware} asociado al concentrador contiene dos elementos: 
 
 \begin{itemize}
     \item Dispositivo anfitrión (\emph{host})
@@ -9,7 +9,7 @@ El hardware asociado al concentrador contiene dos elementos:
 \end{itemize}
 
 \subsection{Host}
-El \emph{host} contiene el dispositivo computacional que permite al concentrador LoRaWAN controlar el dispositivo físico de comunicaciones. Generalmente, es un computador embebido con sistema operativo Linux, también embebido, pero pueden existir \emph{host} más livianos o básicos que implementen un \gls{rtos}, sobre un microprocesador ARM. Este dispositivo contiene software con un nivel de abstracción medio y alto que enriquece las características de toda la red. Las funcionalidades básicas del \emph{host} son:
+El \emph{host} contiene el dispositivo computacional que permite al concentrador LoRaWAN controlar el dispositivo físico de comunicaciones. Generalmente, es un computador embebido con sistema operativo Linux, también embebido, pero pueden existir \emph{host} más livianos o básicos que implementen un \gls{rtos}, sobre un microprocesador ARM. Este dispositivo contiene \emph{software} con un nivel de abstracción medio y alto que enriquece las características de toda la red. Las funcionalidades básicas del \emph{host} son:
 
 \begin{itemize}
     \item Redirección de paquetes LoRaWAN una vez recibidos por el núcleo del concentrador.
@@ -34,7 +34,7 @@ Esta pasarela opera en la banda de frecuencias de 868~MHz, con una sensibilidad 
 
 La modulación LoRa de espectro ensanchado se realiza representando cada bit de información con múltiples chips. La velocidad de envío de la información se refiere a la \gls{rs} nominal. La relación entre la \gls{rs} y la tasa de chip representa el número de símbolos de modulación enviados por bit de información. El \gls{sf} se debe conocer de antemano por el nodo y la pasarela, ya que los diferentes \gls{sf} son ortogonales entre sí.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \caption{Stack de Nodo, concentrador y red}
 \includegraphics[width=\textwidth]{capitulos/figuras/lorawan-gateway-network-detailed.jpg}
@@ -45,7 +45,7 @@ La modulación LoRa de espectro ensanchado se realiza representando cada bit de 
 \section{Software}
 
 \subsection{Alpine Linux}
-Alpine Linux es un sistema operativo muy liviano, para equipos computacionales muy sencillos y de uso general, diseñado para usuarios avanzados que aprecian la seguridad, la simplicidad y la eficiencia de los recursos. Alpine Linux se basa en uClibc y BusyBox. uClibc es una biblioteca en C diseñada para un sistema Linux embebido, con requerimientos de recursos de cómputo mínimos para arquitecturas x86, AMD64, ARM, Blackfin, H8300, m68k, MIPS, PowerPC, SuperH, SPARC y V850. BusyBox es un software que utiliza las ventajas de estándares de Unix en una sola consola.
+Alpine Linux es un sistema operativo muy liviano, para equipos computacionales muy sencillos y de uso general, diseñado para usuarios avanzados que aprecian la seguridad, la simplicidad y la eficiencia de los recursos. Alpine Linux se basa en uClibc y BusyBox. uClibc es una biblioteca en C diseñada para un sistema Linux embebido, con requerimientos de recursos de cómputo mínimos para arquitecturas x86, AMD64, ARM, Blackfin, H8300, m68k, MIPS, PowerPC, SuperH, SPARC y V850. BusyBox es un \emph{software} que utiliza las ventajas de estándares de Unix en una sola consola.
 
 \clearpage
 
@@ -79,15 +79,15 @@ Los archivos \texttt{.apkovl.tar.gz} son archivos de backup local de configuraci
 
 \subsection{LoRa packet forwarder}
 
-Es el software que se coloca en el \emph{host} del gateway LoRa, el cual reenvía los paquetes de RF que recibe del concentrador a un servidor a través de un enlace IP/UDP.
+Es el \emph{software} que se coloca en el \emph{host} del gateway LoRa, el cual reenvía los paquetes de RF que recibe del concentrador a un servidor a través de un enlace IP/UDP.
 
 Esta configuración está diseñada para ejecutar imágenes de Alpine Linux con \emph{gateways} IC880A en computadores/servidores como la Raspberry Pi (con un puerto USB 2.0, si la versión del IC880A es USB, o con puertos GPIO para las versiones IC880A SPI).
 
-Se configura en el gateway un software para redireccionamiento de paquetes LoRa llamado packet forwarder, el cual utiliza un protocolo UDP (no orientado a la conexión y no cifrado) junto con un puente MQTT llamado LoRa Gateway Bridge, el cual permite usar TCP+SSL para conectarse con la red LoRaWAN en vez de UDP. También puede emitir una señal Beacon sincrónica GPS en toda la red, utilizada para coordinar todos los nodos de la red. 
+Se configura en el gateway un \emph{software} para redireccionamiento de paquetes LoRa llamado packet forwarder, el cual utiliza un protocolo UDP (no orientado a la conexión y no cifrado) junto con un puente MQTT llamado LoRa Gateway Bridge, el cual permite usar TCP+SSL para conectarse con la red LoRaWAN en vez de UDP. También puede emitir una señal Beacon sincrónica GPS en toda la red, utilizada para coordinar todos los nodos de la red. 
 
-\section{Software de configuración y despliegue}
+\section{\emph{Software} de configuración y despliegue}
 
-El modelo de red del proyecto utiliza software libre para la conversión de protocolos (backhaul), almacenamiento de la información (bases de datos) y de aplicación (información de usuario). Para estos procesos el servidor utiliza varias herramientas de software. Para la configuración de la aplicación se requiere de LoRa Server, InfluxDB y Grafana, las cuales se explicarán a continuación.  
+El modelo de red del proyecto utiliza \emph{software} libre para la conversión de protocolos (backhaul), almacenamiento de la información (bases de datos) y de aplicación (información de usuario). Para estos procesos el servidor utiliza varias herramientas de \emph{software}. Para la configuración de la aplicación se requiere de LoRa Server, InfluxDB y Grafana, las cuales se explicarán a continuación.  
 
 \subsection{LoRa Server}
 
@@ -103,6 +103,6 @@ Para integrar InfluxDB con LoRa Server, la conexión se realiza a través de LoR
 
 Grafana es una herramienta de código abierto, licenciada bajo Apache 2.0, diseñada para la visualización y el formateo de datos métricos. Ofrece la capacidad de crear paneles interactivos y gráficos informativos a partir de diversas fuentes de datos, incluyendo bases de datos de series temporales como Graphite, InfluxDB y OpenTSDB.
 
-En primera instancia se instala el software en el servidor, para luego configurarlo con la base de datos utilizada. Para la visualización de los datos se configuran las consultas a la base de datos en cada uno de los dashboards disponibles con la forma de visualización deseada.
+En primera instancia se instala el \emph{software} en el servidor, para luego configurarlo con la base de datos utilizada. Para la visualización de los datos se configuran las consultas a la base de datos en cada uno de los dashboards disponibles con la forma de visualización deseada.
 
 \newpage\thispagestyle{empty}

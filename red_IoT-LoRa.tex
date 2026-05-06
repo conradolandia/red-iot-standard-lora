@@ -51,7 +51,7 @@
 %%       intente lualatex --shell-escape main.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[12pt,twoside,spanish]{book}
+\documentclass[draft,12pt,twoside,spanish]{book}
 
 \usepackage{verbatim}
 \usepackage{listings} % Para codigo fuente y trozos de codigo
@@ -74,7 +74,6 @@
 \usepackage[]{caption} %labelsep=period
 \usepackage{float}
 
-\usepackage{csquotes}
 \usepackage[
 backend=biber,
 style=apa,
@@ -191,7 +190,6 @@ style=apa,
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage[table]{xcolor}
-\usepackage{csquotes}
 \usepackage{tikz} % hacer gráficos 
 \usepackage[all]{nowidow}
 
@@ -200,12 +198,6 @@ style=apa,
 \def\fuente#1{\small\textbf{Fuente:}~#1}
 \date{\today}
 
-\newcommand{\autorinfo}[4]{
-  {\large\medseries\noindent #1}\par
-  \noindent#2\par
-  \faEnvelope~\url{#3}\par
-  \textcolor{orcidlogocol}{\aiOrcid}~\url{#4}\par\vspace{1em}
-}
 
 \newglossarystyle{long-tabla}{%
   \setglossarystyle{long}
@@ -246,37 +238,20 @@ style=apa,
 
 \makeglossaries
 
+\def\texttitulo{Evaluación de una red IoT bajo el estándar LoRa}
+\def\textsubtitulo{}
+\def\loauthors{José~Noé~Poveda~Zafra, Luis~Enrique~Martín~Santamaría, Elvis~Eduardo~Gaona~García, Sebastián~Yesid~Tabares~Amaya, Alex~Francisco~Bustos~Pinzón}
+\def\texttitulocorto{\texttitulo}
+
+\usepackage{emptypage}
+
+% Esto asegura que la página izquierda de un capítulo nuevo esté vacía (sin cornisas)
+\renewcommand{\cleardoublepage}{%
+  \clearpage\ifodd\value{page}\else\hbox{}\thispagestyle{empty}\newpage\fi%
+}
+
+
 \begin{document}
-
-\newpage
-\
-\newpage
-
-\newpage
-\
-\newpage
-
-%%%%%%%% EDITAR INICIO PORTADILLA 1 %%%%%%%%%%%%%%%
-\portadillauno{Evaluación de una red IoT bajo el estándar LoRa}{Consed ut escimos num sequid ut aut mos}
-%%%%%%%% FIN PORTADILLA 1 %%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\
-\newpage
-%%%%%%%% EDITAR INICIO PORTADILLA 2 %%%%%%%%%%%%%%%
-\portadillados{Evaluación de una red IoT bajo el estándar LoRa}{Consed ut escimos num sequid ut aut mos}
-\vspace*{5.5mm}
-\begin{flushleft}
-  \leftskip=2mm
-      {\color{MSBlack}\lsstyle \fontsize{12pt}{6.0mm} \exlseries José Noé~Poveda, Luis~Martín~Santamaría, Elvis~Eduardo Gaona García, Sebastian~Tabares, Alex Francisco~Bustos}
-\end{flushleft}
-
-\begin{center}
-  \vspace{3.5cm}
-  \includegraphics[scale=0.06]{esIcons/logoES.png}
-\end{center}
-%%%%%%%% FIN PORTADILLA 2 %%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
 
 \renewcommand*\contentsname{\lhseries Contenido}
 \renewcommand{\cfttoctitlefont}{\hfill\Huge}
@@ -284,6 +259,18 @@ style=apa,
 \renewcommand*{\tablename}{\bf Tabla} %"Cuadro" por "Tabla"
 \renewcommand*{\figurename}{\bf Figura} %"Cuadro" por "Tabla"
 \renewcommand*{\bibname}{\fontschap Referencias}
+
+\cleardoublepage
+\input{portada.tex}
+\cleardoublepage
+\input{portada_dos}
+\cleardoublepage
+
+\input{resumen}
+
+\cleardoublepage
+
+\input{agradecimientos}
 
 %% Editar re-definiciones de comandos para el usuario%%
 %% panga aquí sus definiciones
@@ -293,12 +280,9 @@ style=apa,
 \setcounter{tocdepth}{1}
 \tableofcontents
 \addtocontents{toc}{\protect\thispagestyle{empty}}
-\addtocontents{toc}{\protect\enlargethispage{\baselineskip}}
-\newpage
+\cleardoublepage
 
 \pagestyle{esstyle}
-
-\newpage
 
 \include{capitulos/proyecto}
 \include{capitulos/Medologia}
@@ -307,10 +291,9 @@ style=apa,
 \include{capitulos/sensores1}
 \include{capitulos/concentrador}
 \include{capitulos/aplicacion}
-
-\appendix
-
 \include{capitulos/epilogo}
+
+\cleardoublepage
 
 \nocite{*}
 \printbibliography
