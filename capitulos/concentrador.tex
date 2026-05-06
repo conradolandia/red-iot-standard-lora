@@ -8,7 +8,7 @@ El \emph{hardware} asociado al concentrador contiene dos elementos:
     \item Núcleo del concentrador
 \end{itemize}
 
-\subsection{Host}
+\subsection{\emph{Host}}
 El \emph{host} contiene el dispositivo computacional que permite al concentrador LoRaWAN controlar el dispositivo físico de comunicaciones. Generalmente, es un computador embebido con sistema operativo Linux, también embebido, pero pueden existir \emph{host} más livianos o básicos que implementen un \gls{rtos}, sobre un microprocesador ARM. Este dispositivo contiene \emph{software} con un nivel de abstracción medio y alto que enriquece las características de toda la red. Las funcionalidades básicas del \emph{host} son:
 
 \begin{itemize}
@@ -79,11 +79,11 @@ Los archivos \texttt{.apkovl.tar.gz} son archivos de backup local de configuraci
 
 \subsection{LoRa packet forwarder}
 
-Es el \emph{software} que se coloca en el \emph{host} del gateway LoRa, el cual reenvía los paquetes de RF que recibe del concentrador a un servidor a través de un enlace IP/UDP.
+Es el \emph{software} que se coloca en el \emph{host} del \emph{gateway} LoRa, el cual reenvía los paquetes de RF que recibe del concentrador a un servidor a través de un enlace IP/UDP.
 
 Esta configuración está diseñada para ejecutar imágenes de Alpine Linux con \emph{gateways} IC880A en computadores/servidores como la Raspberry Pi (con un puerto USB 2.0, si la versión del IC880A es USB, o con puertos GPIO para las versiones IC880A SPI).
 
-Se configura en el gateway un \emph{software} para redireccionamiento de paquetes LoRa llamado packet forwarder, el cual utiliza un protocolo UDP (no orientado a la conexión y no cifrado) junto con un puente MQTT llamado LoRa Gateway Bridge, el cual permite usar TCP+SSL para conectarse con la red LoRaWAN en vez de UDP. También puede emitir una señal Beacon sincrónica GPS en toda la red, utilizada para coordinar todos los nodos de la red. 
+Se configura en el \emph{gateway} un \emph{software} para redireccionamiento de paquetes LoRa llamado packet forwarder, el cual utiliza un protocolo UDP (no orientado a la conexión y no cifrado) junto con un puente MQTT llamado LoRa Gateway Bridge, el cual permite usar TCP+SSL para conectarse con la red LoRaWAN en vez de UDP. También puede emitir una señal Beacon sincrónica GPS en toda la red, utilizada para coordinar todos los nodos de la red. 
 
 \section{\emph{Software} de configuración y despliegue}
 

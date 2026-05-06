@@ -1,60 +1,72 @@
 \chapter{Metodología}
 Con el objeto de cumplir con todos los propósitos de este trabajo, se realizó una investigación con un enfoque experimental.
 
-\section{Primera fase: Revisión Documental}
+\section{Primera fase: revisión documental}
 
-En esta fase se recolectó la información sobre el estado del arte y la información técnica referente a los dispositivos a utilizar. La documentación minuciosa permitió la selección de dispositivos sensores adecuados para la medición de la calidad del aire y del sistema completo que permitió la adquisición de las variables, su digitalización y procesamiento, para cumplir los requerimientos de las tramas en la red LoRa. 
+En esta fase se recolectó la información sobre el estado del arte y la información técnica referente a los dispositivos por utilizar. La documentación minuciosa permitió la selección de dispositivos sensores adecuados para la medición de la calidad del aire y del sistema completo que permitió la adquisición de las variables, su digitalización y procesamiento, para cumplir los requerimientos de las tramas en la red LoRa. 
 
-\section{Etapa 2: Arquitectura de la  red LoRa}
+\subsection{Etapa 1: arquitectura de la  red LoRa}
 \subsubsection{Objetos/nodos }
-El objetivo de esta etapa es la recolección de datos y su transmisión. Se requiere una infraestructura para la recolección y manejo de datos. El nodo es un firmware que recolecta los datos de los objetos colocados a la entrada. Por el modelo de red, se transmite la información bajo los protocolos LoRa, con niveles de potencia muy bajos, donde el receptor es una pasarela (\emph{gateway}) que se comunica en doble vía con cada uno de los nodos que lo acceden. Los nodos y las pasarelas tienen comunicación de doble vía, lo cual los hace robustos para cualquier tipo de actuación requerida del objeto.
+El objetivo de esta etapa es la recolección de datos y su transmisión. Se requiere una infraestructura para la recolección y manejo de datos. El nodo es un \emph{firmware} que recolecta los datos de los objetos colocados a la entrada. Por el modelo de red, se transmite la información bajo los protocolos LoRa, con niveles de potencia muy bajos, donde el receptor es una pasarela (\emph{gateway}) que se comunica en doble vía con cada uno de los nodos que lo acceden. Los nodos y las pasarelas tienen comunicación de doble vía, lo cual los hace robustos para cualquier tipo de actuación requerida del objeto.
 
-\subsubsection{Pasarela/Concentrador}
-La información que se genera en los objetos se recibe en la pasarela, la cual a su vez se puede comunicar con una gran cantidad de objetos. Para estos propósitos se requiere la recolección, apropiación y análisis de la arquitectura de la pila de protocolos LoRa, que requiere la pasarela para una comunicación eficiente con los objetos. 
+\subsubsection{Pasarela/concentrador}
+La información que se genera en los objetos se recibe en la pasarela, la cual a su vez se puede comunicar con una gran cantidad de objetos. Para estos propósitos, se requiere la recolección, apropiación y análisis de la arquitectura de la pila de protocolos LoRa, que requiere la pasarela para una comunicación eficiente con los objetos. 
 
-\section{Segunda fase: Diseño y evaluación de los elementos de la red LoRa }
+\section{Segunda fase: diseño y evaluación de los elementos de la red LoRa }
 
-En el siguiente paso se realizaron las pruebas de los objetos para verificar las especificaciones y comportamiento descritos por el fabricante. 
+En el siguiente paso se realizaron las pruebas de los objetos para verificar las especificaciones y el comportamiento descritos por el fabricante. 
 
-\subsection{Etapa 1 Diseño de los nodos}
-A partir de la selección y clasificación de la información, junto con la metodología para la evaluación de una red de IoT de área amplia, se utilizaron las herramientas de simulación acordes para modelar los nodos y el sistema de comunicaciones diseñado para este propósito. Esto permitió analizar el comportamiento de los dispositivos que hacen parte de la red IoT (LoRa) ante las diferentes condiciones previamente establecidas.
+\subsection{Etapa 1: diseño de los nodos}
 
-\subsection{Etapa 2: Diseño del módulo de procesamiento de datos}
-Un nodo adquiere información de varios sensores; en el caso del proyecto, estos son detectores de agentes contaminantes del aire de por lo menos 3 variables por nodo. Cada sensor requirió bloques para efectuar el muestreo en los respectivos puertos analógicos; enseguida se realizó el procesamiento de datos según la cantidad de mediciones requeridas, en los debidos intervalos de tiempo. Adicionalmente se diseñaron las rutinas y sub-rutinas necesarias para las diferentes tareas de muestreo, conversión, almacenamiento y transmisión de los datos procesados a la red LoRa.
+A partir de la selección y clasificación de la información, junto con la metodología para la evaluación de una red IoT de área amplia, se utilizaron las herramientas de simulación acordes para modelar los nodos y el sistema de comunicaciones diseñado para este propósito. Esto permitió analizar el comportamiento de los dispositivos que hacen parte de la red IoT (LoRa) ante las diferentes condiciones previamente establecidas.
 
-\subsection{Etapa 3: Diseño de protocolo de comunicación nodo-pasarela }
-Aunque el nodo y la pasarela tienen implícita la pila de protocolos LoRa, se requirió el diseño de la interfaz de aire, puesto que la distancia marca el tipo de modulación y por ende la capacidad de la tasa de bit. Al ser un prototipo de evaluación, el diseño se basó en los parámetros tanto del nodo como de la pasarela que se eligieron para la red IoT LoRa. También se realizó la programación del Gateway para la comunicación con los distintos nodos.
+\subsection{Etapa 2: diseño del módulo de procesamiento de datos}
 
-\subsection{Etapa 4: Diseño de la  red LoRa}
-Se diseñó la red IoT LoRa [5] para la interoperabilidad de las pasarelas con la nube, con el fin de concentrar los datos en esta y posteriormente realizar la minería de datos (objeto de la segunda parte del proyecto).
-\subsection{Etapa 5: Simulación}
+Un nodo adquiere información de varios sensores; en el caso del proyecto, estos son detectores de agentes contaminantes del aire de por lo menos tres variables por nodo. Cada sensor requirió bloques para efectuar el muestreo en los respectivos puertos analógicos; enseguida, se realizó el procesamiento de datos según la cantidad de mediciones requeridas, en los debidos intervalos de tiempo. Adicionalmente, se diseñaron las rutinas y subrutinas necesarias para las diferentes tareas de muestreo, conversión, almacenamiento y transmisión de los datos procesados a la red LoRa.
+
+\subsection{Etapa 3: diseño de protocolo de comunicación nodo-pasarela }
+
+Aunque el nodo y la pasarela tienen implícita la pila de protocolos LoRa, se requirió el diseño de la interfaz de aire, puesto que la distancia marca el tipo de modulación y por ende la capacidad de la tasa de bit. Al ser un prototipo de evaluación, el diseño se basó en los parámetros tanto del nodo como de la pasarela que se eligieron para la red IoT LoRa. También se realizó la programación del gateway para la comunicación con los distintos nodos.
+
+\subsection{Etapa 4: diseño de la  red LoRa}
+
+Se diseñó la red IoT LoRa para la interoperabilidad de las pasarelas con la nube, con el fin de concentrar los datos en esta y posteriormente realizar la minería de datos (objeto de la segunda parte del proyecto).
+
+\subsection{Etapa 5: simulación}
+
 Se realizaron varias simulaciones del módulo de procesamiento de datos, dado que no se tenía conocimiento de herramientas de simulación para las redes LoRa. Los resultados de la simulación se contrastaron con el diseño y la implementación. 
 
-\section{Tercera fase: Implementación y Pruebas}
-Para la implementación de la red IoT LoRa, se partió de los nodos. Esto requirió tres módulos así: 
+\section{Tercera fase: implementación y pruebas}
+Para la implementación de la red IoT LoRa, se partió de los nodos. Esto requirió tres módulos: 
 
-La implementación del módulo de lectura de datos de los sensores, que se realizó con microcontroladores de bajo costo con capacidad de manejo de 4 o más variables.
+\begin{itemize}
+\item La implementación del módulo de lectura de datos de los sensores, que se realizó con microcontroladores de bajo costo con capacidad de manejo de cuatro o más variables.
 
-La implementación del módulo de procesamiento de datos tipo estándar LoRa, el cual se evaluó de acuerdo a parámetros tales como: que sea un sistema abierto, que sea económico y que sea escalable para darle procesamiento en paralelo para futuros proyectos donde se requiera una variedad más amplia de variables y de objetos.
+\item La implementación del módulo de procesamiento de datos tipo estándar LoRa, el cual se evaluó de acuerdo a los siguientes parámetros: que sea un sistema abierto, que sea económico y que sea escalable para darle procesamiento en paralelo para futuros proyectos donde se requiera una variedad más amplia de variables y objetos.
 
-El tercer módulo que se empleó fue el de transmisión, el cual ya tenía inmersa la pila de protocolos LoRa. Finalmente, y de acuerdo con el diseño, se puso a prueba la antena para la radiación de la señal hacia la pasarela.
+\item El tercer módulo que se empleó fue el de transmisión, el cual ya tenía inmersa la pila de protocolos LoRa. 
+\end{itemize}
 
-\subsection{Etapa 1: Implementación PCB}
-Se diseñaron e implementaron los circuitos impresos (PCB) necesarios para los módulos del nodo, en concreto, los módulos de datos de los sensores, los cuales proveen los datos, y el módulo de procesamiento de datos con la interfaz para el nodo LoRa. También se implementó el modelo de \emph{software} que se requirió para acondicionar los datos al nodo LoRa.
+Finalmente, y de acuerdo con el diseño, se puso a prueba la antena para la radiación de la señal hacia la pasarela.
 
-\subsection{Etapa 2: Pruebas del Nodo.}
-Se conectaron los nodos a los módulos de lectura y procesamiento de datos, previa calibración de los sensores empleados. Enseguida se hizo la transmisión de los mismos a través del módulo de transmisión inalámbrica.
+\subsection{Etapa 1: implementación PCB}
+Se diseñaron e implementaron los circuitos impresos (PCB) necesarios para los módulos del nodo; en concreto, los módulos de datos de los sensores, los cuales proveen los datos, y el módulo de procesamiento de datos con la interfaz para el nodo LoRa. También se implementó el modelo de \emph{software} que se requirió para acondicionar los datos al nodo LoRa.
 
-\subsection{Etapa 3: Pruebas de interoperabilidad entre pasarelas de la red IOT LoRa.}
+\subsection{Etapa 2: pruebas del nodo}
+Se conectaron los nodos a los módulos de lectura y procesamiento de datos, previa calibración de los sensores empleados. Enseguida, se hizo la transmisión de estos a través del módulo de transmisión inalámbrica.
+
+\subsection[Etapa 3: pruebas de interoperabilidad entre pasarelas de la red IOT LoRa]{Etapa 3: pruebas de interoperabilidad\\ entre pasarelas de la red IOT LoRa}
+
 Las pruebas se realizaron para que las pasarelas tengan comunicación en doble vía. Esto solo se hizo como parte de la evaluación y previendo próximos proyectos. 
 
-\subsection{Etapa 4: Pruebas de Campo y Análisis de datos}
-Como objetivo fue implementar la red IoT propuesta, se realizaron pruebas que permitieron la recolección de datos de los nodos, los cuales fueron recibidos en las respectivas pasarelas y luego concentrados en la nube para su posterior tratamiento y muestra de dicha información. Se midieron las distancias máximas que permitió la comunicación entre nodo y pasarela, en línea de vista, y para diferentes tipos de obstáculos, e inclusive para comunicación en condiciones extremas como los sótanos o subterráneos.
+\subsection{Etapa 4: pruebas de campo y análisis de datos}
 
-Las pruebas se realizaron en dos sedes de la Universidad Distrital, donde las distancias son de varios kilómetros, y es óptimo para colocar el conjunto de sensores que midieron algunas de las variables contaminantes del aire en la ciudad de Bogotá.
+Como el objetivo fue implementar la red IoT propuesta, se realizaron pruebas que permitieron la recolección de datos de los nodos, los cuales fueron recibidos en las respectivas pasarelas y luego concentrados en la nube para su posterior tratamiento y muestra de dicha información. Se midieron las distancias máximas que permitió la comunicación entre nodo y pasarela, en línea de vista, y para diferentes tipos de obstáculos, e inclusive para comunicación en condiciones extremas como los sótanos o subterráneos.
 
-\section{Cuarta Fase: Documentación y divulgación del proyecto}
+Las pruebas se realizaron en dos sedes de la Universidad Distrital, donde las distancias son de varios kilómetros y es óptimo para colocar el conjunto de sensores que midieron algunas de las variables contaminantes del aire en la ciudad de Bogotá.
 
-Finalmente se recopilaron y analizaron los resultados obtenidos con el propósito de formular recomendaciones y conclusiones, las cuales están presentes en este documento junto con el resto de las experiencias obtenidas. Todo lo anterior se reporta en el informe final. La divulgación del proyecto se realizó en la medida que se fueron obteniendo resultados en las diferentes etapas. Este proyecto fue presentado en un congreso internacional y adicionalmente fue publicado en una revista indexada. Finalmente esperamos que sirva como punto de partida para la implementación de redes IoT en modelos de \emph{"smart cities"}, \emph{"smart agriculture"}, \emph{"M2M"} y redes de rango amplio para dar inteligencia a los objetos.
+\section[Cuarta fase: documentación y divulgación del proyecto]{Cuarta fase: documentación\\ y divulgación del proyecto}
+
+Finalmente, se recopilaron y analizaron los resultados obtenidos, con el propósito de formular recomendaciones y conclusiones, las cuales están presentes en este documento, junto con el resto de las experiencias obtenidas. Todo lo anterior se reporta en el informe final. La divulgación del proyecto se realizó en la medida que se fueron obteniendo resultados en las diferentes etapas. Este proyecto fue presentado en un congreso internacional y adicionalmente fue publicado en una revista indexada. Por último, esperamos que sirva como punto de partida para la implementación de redes IoT en modelos de \emph{smart cities}, \emph{smart agriculture}, \emph{M2M} y redes de rango amplio para dar inteligencia a los objetos.
 
 \newpage\thispagestyle{empty}

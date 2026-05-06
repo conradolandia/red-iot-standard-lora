@@ -49,7 +49,7 @@ De los componentes relevantes del \gls{uc} se presentan a continuación:
 
     El \gls{uc} está en capacidad de llevar a cabo funciones de comunicación tipo serial o paralela, temporizaciones, comparaciones, transmisión y recepción digital y analógica en diversos protocolos y velocidades, además del procesamiento de datos. Una de las limitaciones a estas funciones está en el número de pines de acceso físico a su estructura. Para dar solución a esta situación, se trata de mantener al máximo el número de funciones y se multiplexa la comunicación entrada-salida en los pines disponibles, seleccionando a través de \emph{software} la gran variedad de operaciones que permita el dispositivo.
 
-    Para el diseño de un nodo sensor se requieren muchas de las funciones presentes en el \gls{uc} y una cierta cantidad de pines de comunicación con funciones particulares cada uno de ellos. Como ejemplos de funciones y pines requeridos se tienen las interfaces $I^2C$, $I^2S$, canales $SPI$, conversores ADC y DAC, pines de interrupciones E/S, señales de tiempo y de reloj, bits-banderas, entre otros.
+    Para el diseño de un nodo sensor se requieren muchas de las funciones presentes en el \gls{uc} y una cierta cantidad de pines de comunicación con funciones particulares cada uno de ellos. Como ejemplos de funciones y pines requeridos se tienen las interfaces \IC, $I^2S$, canales $SPI$, conversores ADC y DAC, pines de interrupciones E/S, señales de tiempo y de reloj, bits-banderas, entre otros.
 
     \item Soporte de comunicación
 
@@ -189,7 +189,7 @@ El bus \gls{i2c} se desarrolló en 1982 por Phillips (actualmente, 2017, NXP). S
 Requiere solamente dos líneas, para reloj y datos. Ambas se encuentran en un estado lógico alto débil (debido a resistencias \emph{pull up} en cada línea), y por lo mismo quienes usen el bus han de tener salidas tipo colector/drenador abierto. Quien inicia una transmisión (tomando el control de las dos líneas) es siempre un dispositivo maestro, y puede iniciarla con uno de los demás dispositivos en el bus, que se comportarán como esclavos dependiendo del direccionamiento.
 
 \begin{figure}
-    \caption[Esquema $I^2C$]{Esquema $I^2C$. Realmente la polarización (líneas VCC y GND) puede ser distinta para cada dispositivo, pero las líneas del bus, SDA y SCL, son comunes a todos eléctricamente.}
+    \caption[Esquema \IC]{Esquema \IC. Realmente la polarización (líneas VCC y GND) puede ser distinta para cada dispositivo, pero las líneas del bus, SDA y SCL, son comunes a todos eléctricamente.}
     \centering
     \includegraphics[width=\textwidth]{I2C}
     \fuente{\url{http://www.prometec.net/bus-i2c/}}

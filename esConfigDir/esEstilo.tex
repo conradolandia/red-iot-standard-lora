@@ -141,12 +141,14 @@
 \usepackage{fancyvrb}
 \usepackage{fancyhdr}
 
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
 \fancypagestyle{esstyle}{%
 \fancyhead{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
-\fancyhf[HLE]{\lhseries\scriptsize \loauthors}
-\fancyhf[HRO]{\fontsparagraph \scriptsize \texttitulocorto}
+\fancyhf[HLE]{\fontsparagraph\scriptsize\texttitulocorto}
+\fancyhf[HRO]{\lhseries\scriptsize\chaptername~\thechapter.~\leftmark}
 \fancyfoot[LE]{{\fontsize{10.5}{1}\usefont{T1}{Roboto-TLF}{thin}{n}\selectfont{E}}\hspace{-0.5mm}{\footnotesize\usefont{T1}{Inter-Sup}{thin}{n}\selectfont{\reflectbox{S}}}{\usefont{T1}{Roboto-TLF}{thin}{n}\selectfont{\thinspace|\thinspace}}{\lhseries\scriptsize\thepage}}
 \fancyfoot[RO]{{\lhseries\scriptsize\thepage}{\usefont{T1}{Roboto-TLF}{thin}{n}\selectfont{\thinspace|\thinspace}}{\fontsize{10.5}{1}\usefont{T1}{Roboto-TLF}{thin}{n}\selectfont{E}}\hspace{-0.5mm}{\footnotesize\usefont{T1}{Inter-Sup}{thin}{n}\selectfont{\reflectbox{S}}}}
 \fancyfoot[C]{}

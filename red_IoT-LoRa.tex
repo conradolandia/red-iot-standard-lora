@@ -1,56 +1,4 @@
 %% Plantilla LaTeX Espacios Editorial UD
-%% Autores: Editores UDFJC
-%% Versión:  v1.0 06MAY2025
-%% Notas y corrección (IMPERATIVO LEER la plantilla antes de utilizarla): 
-%%
-%%    -El libro tiene dos portadillas y se diseñaron dos comandos para realizarlas
-%%             \portadillauno{Titulo}{Subtitulo}, \portadillados{Titulo}{Subtitulo}
-%%    -Para libros que contengan Partes, se debe actualizar el nombre de los autores en
-%%            las cornisas con \def\loauthors asi:
-%%                     \def\loauthors{Nombre o nombres de la enecima-parte, separados por coma}
-%%    -Si el libro posee anexos, estos deben ir despues de imprimir la bibliografía y deben
-%%            ser secciones de un capitulo llamdo "Anexos" como se ejemplifica al final de esta
-%%            pauta.
-
-%%    -La referencia a un anexo se genera con \reftoanex{Letra del anexo}\label{app:ej}
-%%            y \nameref{app:ej}
-%%    -Para el orcid de los autores se utiliza \usepackage{academicons}
-%%    -Se incluye el capitulo de Referencias y Sobre los autores en el TOC
-%%    -Se incluye como citar en ambos resúmenes
-%%    -Para partir titulos largos de capitulos tanto en el texto como en el TOC, utilizar \brake o \\[?pt]
-%%
-%%              capitulos numerados:
-%%              \chapter[titulo en el TOC]{titulo en el texto}
-%%
-%%             Ejemplo: \chapter[Simulación por medio del KMC del comportamiento colectivo{\\[4pt]} de la reacción
-%%             $\mathsf{CO+H_2O \rightarrow CO_2+H_2}$ catalizada por $\mathsf{Pt/MoO_3}$]{Simulación por
-%%             medio del KMC del\\[4pt]
-%%             comportamiento colectivo de la reacción $\mathsf{CO+H_2O \rightarrow CO_2+H_2}$ catalizada
-%%             por $\mathsf{Pt/MoO_3}$}
-%%
-%%             capitulos NO numerados:
-%%             \chapter*{titulo en el texto}
-%%
-%%             Ejemplo:\chapter*{\lhseries Sobre los autores}
-%%             \addcontentsline{toc}{chapter}{Sobre los autores}
-%%    -Se corrige el signo de interrogación inicial en how to cite, porque en inglés es solo un signo.
-%%    -Se retira el colofón de la ultima página del libro. Para retirarlo solo hay que comentar la línea.
-%%    -El colofon se genera con el comando \esColofon{mes}{año}. Para que no aparezca simplemente comentar la línea
-%%
-%%    -Para corregir solo palabras cortadas en la ultima oración de la página o nombres propios cortados,
-%%            se utiliza \text{}
-%%            i.e: ma-nipulación --> \text{manipulación}
-%%    -El TOC ahora solo tien 1 nivel de profundidad: \setcounter{tocdepth}{1}
-%%    -Se corrigio el conteo de las notas de pie de página: \counterwithout{footnote}{chapter}
-%%    -Se modifican los resumenes para que solo queden en una hoja.
-%%
-%% Compilar el archivo principal con LuaLaTeX, i.e: lualatex main.tex
-%% Compilar la bibliografía con el backend "Biber", i.e: biber main
-%% Nota: Se recomienda compilar dos veces cada comando
-%%       Si usted esta utilizando eps, o ticks para gráficas u otros comandos externos, aveces no funciona con lualatex main.tex;
-%%       intente lualatex --shell-escape main.tex
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \documentclass[draft,12pt,twoside,spanish]{book}
 
 \usepackage{verbatim}
@@ -126,7 +74,6 @@ style=apa,
   bmargin=2.5cm,
   left=2.5cm,
   right=2.0cm
-%  bindingoffset=1.1cm
 ]{geometry}
 
 
@@ -160,15 +107,11 @@ style=apa,
 
 \usepackage{shapepar}
 \usepackage{tikz}
-%\usepackage{arydshln}
-%\usepackage{colortbl}
-
+\usepackage{tikzscale}
 \usepackage{xcolor}
 \definecolor{orcidlogocol}{HTML}{A6CE39}
 
 \usepackage{tabularray}
-%\usepackage{orcidlink}
-%\usepackage[toc,page]{appendix}
 \usepackage{nameref}
 \usepackage{fontawesome}
 \usepackage{academicons}
@@ -180,9 +123,6 @@ style=apa,
 %%%%%%%%%%
 
 %%% Editar %%%
-%% ponga aquí los paquetes que requiera
-%%
-%%
 %%%%%%%%%%%%%%
 
 \usepackage[acronym,toc]{glossaries}
@@ -191,13 +131,10 @@ style=apa,
 \usepackage{booktabs}
 \usepackage[table]{xcolor}
 \usepackage{tikz} % hacer gráficos 
-\usepackage[all]{nowidow}
-
 \usepackage{setspace}
 
 \def\fuente#1{\small\textbf{Fuente:}~#1}
 \date{\today}
-
 
 \newglossarystyle{long-tabla}{%
   \setglossarystyle{long}
@@ -221,13 +158,6 @@ style=apa,
 
 \setglossarystyle{long-lista}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%
-%%% Begin document
-%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %%% Sin sangria al inicio de párrafos
 \setlength\parindent{0pt}
 \raggedbottom
@@ -250,14 +180,22 @@ style=apa,
   \clearpage\ifodd\value{page}\else\hbox{}\thispagestyle{empty}\newpage\fi%
 }
 
+\usepackage[all]{nowidow}
+
+\newcommand{\CO}{CO\textsubscript{2}}
+\newcommand{\IC}{I\textsuperscript{2}C}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Begin document
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
 \renewcommand*\contentsname{\lhseries Contenido}
 \renewcommand{\cfttoctitlefont}{\hfill\Huge}
 \renewcommand{\cftdot}{}
-\renewcommand*{\tablename}{\bf Tabla} %"Cuadro" por "Tabla"
-\renewcommand*{\figurename}{\bf Figura} %"Cuadro" por "Tabla"
 \renewcommand*{\bibname}{\fontschap Referencias}
 
 \cleardoublepage

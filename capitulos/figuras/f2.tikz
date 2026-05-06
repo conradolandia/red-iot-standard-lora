@@ -1,0 +1,65 @@
+\begin{tikzpicture}[
+    box/.style={
+        draw,
+        rectangle,
+        minimum height=1cm,
+        minimum width=2.8cm,
+        align=center,
+        line width=0.75pt
+    },
+    strong/.style={
+        draw,
+        rectangle,
+        minimum height=1cm,
+        minimum width=2.8cm,
+        align=center,
+        line width=1.5pt   % << más grueso aquí
+    },
+    title/.style={font=\bfseries\Large},
+    subtitle/.style={font=\bfseries\color{blue!70!black}\large},
+    scale=0.8, transform shape
+]
+
+% Título
+\node[title] at (1,8) {Estructura de la capa física LoRa};
+
+% --- Capa Física de Radio ---
+\node[subtitle, anchor=west] at (-6.5,6.9) {Capa física de radio};
+
+\node[box] (preamble) at (-4.5,6) {Preamble};
+\node[box] (phdr) at (-1.5,6) {PHDR};
+\node[box] (phdrcrc) at (1.5,6) {PHDR\_CRC};
+\node[strong] (payload) at (4.5,6) {PHYPayload};
+\node[box] (crc) at (7.5,6) {CRC*};
+
+% --- PHYPayload ---
+\node[subtitle, anchor=west] at (-6.5,4.5) {PHYPayload};
+
+\node[box] at (-1.5,3.7) {MHDR};
+\node[strong] at (1.5,3.7) {MACPayload};
+\node[box] at (4.5,3.7) {MIC};
+
+\node[box] at (-1.5,2.5) {MHDR};
+\node[strong] at (1.5,2.5) {Join-Request};
+\node[box] at (4.5,2.5) {MIC};
+
+\node[box] at (-1.5,1.3) {MHDR};
+\node[strong] at (1.5,1.3) {Join-Response};
+\node[box] at (4.5,1.3) {MIC};
+
+% --- MACPayload ---
+\node[subtitle, anchor=west] at (-6.5,0) {MACPayload};
+
+\node[strong] at (-1.5,-0.8) {FHDR};
+\node[box] at (1.5,-0.8) {FPort};
+\node[box] at (4.5,-0.8) {FRMPayload};
+
+% --- FHDR ---
+\node[subtitle, anchor=west] at (-6.5,-2.2) {FHDR};
+
+\node[box] at (-3,-3) {DevAddr};
+\node[box] at (0,-3) {FCtrl};
+\node[box] at (3,-3) {FCnt};
+\node[box] at (6,-3) {FOpts};
+
+\end{tikzpicture}
