@@ -3,11 +3,11 @@
 LoRaWAN es una \gls{wan} descrita en un modelo de tres capas: la de aplicación, la de control de acceso al medio (\gls{mac}) y la física o de transmisión, según se muestra en la figura \ref{f:m_protocolos}.
 
 \begin{figure}[hb]
-\centering
-\caption{Capas de la red LoRaWAN}
-\includegraphics[width =\textwidth]{capitulos/figuras/protocolos}
-\propia
-\label{f:m_protocolos}
+  \centering
+  \caption{Capas de la red LoRaWAN}
+  \label{f:m_protocolos}
+  \includegraphics[width =\textwidth]{capitulos/figuras/protocolos}
+  \propia
 \end{figure}
 
 \section{Capa física}
@@ -29,7 +29,7 @@ La capa \gls{mac} se compone de las subcapas LoRaWAN esclavo, \gls{hal} y \gls{s
 
 Los diferentes tipos de nodos se pueden implementar como clase A, con las capas física, MAC y de aplicación que constituyen el estándar. La definición de la clase se realiza en la capa \gls{mac}.
 
-Una vez que el nodo transmite un mensaje, se abren dos ventanas de recepción de corta duración. La primera ventana, RX1, se activa tomando como referencia el final de la transmisión. 
+Una vez que el nodo transmite un mensaje, se abren dos ventanas de recepción de corta duración. La primera ventana, RX1, se activa tomando como referencia el final de la transmisión.
 
 Esta \emph{primera ventana} usa la frecuencia y la tasa de datos relacionadas con las características de la transmisión. La ventana RX1 se abre tras un retardo, $t_{R1}$, de aproximadamente \SI{20}{\us}, como se ilustra en la figura~\ref{f:retardo}. Este retardo varía de acuerdo con las bandas regionales especificadas en los parámetros regionales de \gls{lwan}. Por defecto, la tasa de datos en RX1 es igual a la de la transmisión.
 
@@ -38,55 +38,56 @@ La \emph{segunda ventana}, RX2, tiene parámetros de frecuencia y tasa de datos 
 La duración de la ventana de recepción debe ser al menos suficiente para que el transceptor del nodo pueda detectar el preámbulo del mensaje entrante.
 
 \begin{figure}[H]
-    \centering
-    \caption{Tiempos de comunicación nodo-pasarela-nodo}\label{f:retardo}
-    \begin{tikzpicture}
-        \setlength{\arrayrulewidth}{0.2mm}
-        \node[draw] at (1.7, 1)   (a) {\Large{Transmisión}};
-        \node[draw] at (7, 1)   (b) {\Large{RX1}};
-        \node[draw] at (10, 1)   (b) {\Large{RX2}};
-        \draw [black, line width=0.05cm] (0cm, 0cm) -- (3.3cm, 0cm); 
-        \foreach \x in {0, 3.3} 
-        \draw (\x cm, 5pt) -- (\x cm, - 5pt); 
-        \draw (1.7cm, 0cm) node[below=5pt] {$t_{Tx}$}; 
-        
-        \draw[black, line width=0.05cm] (3.4cm, 0cm) -- (6.3cm, 0cm);
-        \foreach \x in {3.4, 6.3} 
-        \draw (\x cm, 5pt) -- (\x cm, - 5pt); 
-        \draw (4.8cm, 0cm) node[below=5pt] {$t_{R1}$};
-        
-        \draw [black, line width=0.05cm] (6.4cm, 0cm) -- (9.2cm, 0cm);
-        \foreach \x in {6.4, 9.2} 
-        \draw (\x cm, 5pt) -- (\x cm, - 5pt);
-        \draw (7.5cm, 0cm) node[below=5pt] {$t_{R2}$};
-    \end{tikzpicture} 
+  \centering
+  \caption{Tiempos de comunicación nodo-pasarela-nodo}\label{f:retardo}
+  \begin{tikzpicture}
+    \setlength{\arrayrulewidth}{0.2mm}
+    \node[draw] at (1.7, 1)   (a) {\Large{Transmisión}};
+    \node[draw] at (7, 1)   (b) {\Large{RX1}};
+    \node[draw] at (10, 1)   (b) {\Large{RX2}};
+    \draw [black, line width=0.05cm] (0cm, 0cm) -- (3.3cm, 0cm);
+    \foreach \x in {0, 3.3}
+    \draw (\x cm, 5pt) -- (\x cm, - 5pt);
+    \draw (1.7cm, 0cm) node[below=5pt] {$t_{Tx}$};
+
+    \draw[black, line width=0.05cm] (3.4cm, 0cm) -- (6.3cm, 0cm);
+    \foreach \x in {3.4, 6.3}
+    \draw (\x cm, 5pt) -- (\x cm, - 5pt);
+    \draw (4.8cm, 0cm) node[below=5pt] {$t_{R1}$};
+
+    \draw [black, line width=0.05cm] (6.4cm, 0cm) -- (9.2cm, 0cm);
+    \foreach \x in {6.4, 9.2}
+    \draw (\x cm, 5pt) -- (\x cm, - 5pt);
+    \draw (7.5cm, 0cm) node[below=5pt] {$t_{R2}$};
+  \end{tikzpicture}
+  \propia
 \end{figure}
 
 \subsection{LoRaWAN clase B}
 
-Los nodos y la pasarela tienen comunicación bidireccional con ranuras de recepción programadas. Los nodos de clase B, además, tienen las funcionalidades de la clase A. Para alcanzar la sincronización de la red, los nodos reciben un tiempo de sincronización tipo \emph{beacon} desde la pasarela, lo que permite al servidor saber cuándo un nodo está escuchando. Los nodos que hablen en la ventana de tiempo programada entran a la pasarela de acuerdo a procesos aleatorios con prioridad en servicios a los nodos en mención. 
+Los nodos y la pasarela tienen comunicación bidireccional con ranuras de recepción programadas. Los nodos de clase B, además, tienen las funcionalidades de la clase A. Para alcanzar la sincronización de la red, los nodos reciben un tiempo de sincronización tipo \emph{beacon} desde la pasarela, lo que permite al servidor saber cuándo un nodo está escuchando. Los nodos que hablen en la ventana de tiempo programada entran a la pasarela de acuerdo a procesos aleatorios con prioridad en servicios a los nodos en mención.
 
 \subsection{LoRaWAN clase C}
 
-Los nodos y la pasarela tienen comunicación bidireccional con ranuras de recepción máximas. Proporciona ventanas de recepción casi continuamente: solo se cierra cuando el nodo está transmitiendo. Este modo se utiliza cuando hay requerimiento de grandes cantidades de datos entre el nodo y la pasarela. 
+Los nodos y la pasarela tienen comunicación bidireccional con ranuras de recepción máximas. Proporciona ventanas de recepción casi continuamente: solo se cierra cuando el nodo está transmitiendo. Este modo se utiliza cuando hay requerimiento de grandes cantidades de datos entre el nodo y la pasarela.
 
 \section{Tramas de transmisión y recepción}
 
 Las tramas de la capa física se distinguen entre las de transmisión (\emph{uplink}) y las de recepción (\emph{downlink}), desde el punto de vista del nodo.
 
-El nodo transmite la trama a la pasarela (figura~\ref{f:retardo1}), y de ahí al servidor de red. La trama de la capa física de LoRa está compuesta por el preámbulo, el \gls{phdr}, el \gls{pc}, la carga útil (\emph{payload}) y el \gls{crc}. 
+El nodo transmite la trama a la pasarela (figura~\ref{f:retardo1}), y de ahí al servidor de red. La trama de la capa física de LoRa está compuesta por el preámbulo, el \gls{phdr}, el \gls{pc}, la carga útil (\emph{payload}) y el \gls{crc}.
 
 \begin{figure}[H]
-\caption{Estructura de tramas de \emph{uplink} y \emph{downlink}}
-\centering
-    \resizebox*{.8\textwidth}{2cm}{
-    \begin{tabular}{|c|c|c|c|c|}  \hline
-        \multicolumn{5}{|c|}{{\textbf{Estructura de transmisión} }}\\ \hline
-         Preamble & PHDR & PHDR-CRC & PHYPayload & CRC \\ \hline \hline
-         \multicolumn{5}{|c|}{{\textbf{Estructura de recepción} }}\\ \hline
-         Preamble & PHDR & PHDR-CRC & PHYPayload& -- \\ \hline
-    \end{tabular}}
-\label{f:retardo1}
+  \caption{Estructura de tramas de \emph{uplink} y \emph{downlink}}
+  \label{f:retardo1}
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}  \hline
+    \multicolumn{5}{|c|}{{\textbf{Estructura de transmisión} }}\\ \hline
+    Preamble & PHDR & PHDR-CRC & PHYPayload & CRC \\ \hline \hline
+    \multicolumn{5}{|c|}{{\textbf{Estructura de recepción} }}\\ \hline
+    Preamble & PHDR & PHDR-CRC & PHYPayload& -- \\ \hline
+  \end{tabular}
+  \propia
 \end{figure}
 
 La trama de recepción la envía la pasarela a un solo nodo y es retransmitida por una única pasarela. Los mensajes de la capa física también se denominan \emph{modo explícito de paquetes de radio}. Los mensajes de recepción tienen la misma estructura del mensaje de transmisión, a excepción del \gls{crc}, el cual está ausente, como se muestra en la parte baja de la figura \ref{f:retardo}.
@@ -94,12 +95,13 @@ La trama de recepción la envía la pasarela a un solo nodo y es retransmitida p
 La estructura de las tramas LoRa de la capa física contiene la información de las capas superiores (figura \ref{f:m_lora}), tal como lo es la capa \gls{mac}. El asterisco hace referencia a que el \gls{crc} solo está presente en la trama de transmisión.
 
 \begin{figure}[H]
-    \caption{Formato del mensaje LoRa}\label{f:m_lora}
-    \centering
-    \includegraphics[width =.9\textwidth]{capitulos/figuras/f2.tikz}
+  \caption{Formato del mensaje LoRa}\label{f:m_lora}
+  \centering
+  \includegraphics[width =.9\textwidth]{capitulos/figuras/f2.tikz}
+  \propia
 \end{figure}
 
-En la \gls{pp}, se encuentra el contenido de los diferentes tipos de tramas \gls{mac}, las cuales tienen en común el encabezado \gls{mhdr} y el \gls{mic}. Los tipos de tramas \gls{mac} corresponden a los de la \gls{mp}, solicitud de acceso (\emph{join-request}) y respuesta a la solicitud (\emph{join-response}). 
+En la \gls{pp}, se encuentra el contenido de los diferentes tipos de tramas \gls{mac}, las cuales tienen en común el encabezado \gls{mhdr} y el \gls{mic}. Los tipos de tramas \gls{mac} corresponden a los de la \gls{mp}, solicitud de acceso (\emph{join-request}) y respuesta a la solicitud (\emph{join-response}).
 
 La trama \gls{mp} contiene la información de los nodos. Los campos de esta trama corresponden a la \gls{fhdr}, al \gls{fp} y a la \gls{fpa}. La \gls{fhdr} contiene los campos de \gls{da}, \gls{fc}, \gls{fcn} y las \gls{fo}.
 
@@ -108,10 +110,11 @@ La trama \gls{mp} contiene la información de los nodos. Los campos de esta tram
 \textbf{Banda de frecuencias y canalización}. La banda EU-868 del estándar \mbox{LoRa} tiene un rango de \SI{863}{\MHz} a \SI{870}{\MHz} y también está definida en el espectro de radio para la banda \gls{ism} normatizada por \gls{etsi}, en el estándar EN300.220. Los canales de la red pueden ser atribuidos libremente por el operador. La pasarela posee ocho canales en paralelo, del IF0 al IF7, como medio de comunicación con el nodo. El ancho de banda es fijo, 125~kHz, con tasa de bit variable de acuerdo al \gls{sf}.
 
 \begin{figure}[H]
-    \caption{Canalización de la banda ISM868}
-    \centering
-    \includegraphics[width =\textwidth]{capitulos/figuras/canales}
-    \label{f:m_canales}
+  \centering
+  \caption{Canalización de la banda ISM868}
+  \label{f:m_canales}
+  \includegraphics[width =\textwidth]{capitulos/figuras/canales}
+  \propia
 \end{figure}
 
 Además, tiene dos canales adicionales: uno LoRa, con ancho de banda fijo de \SI{250}{\kHz}, con una tasa de bit de 11~kbps, como el canal \emph{back-haul} de la red LoRaWAN IF1, y otro canal de \gls{gfsk}, el cual tiene una tasa de datos y un ancho de banda ajustables para una velocidad máxima de 50 kbit/s \cite{LoRa-2015}.
@@ -120,28 +123,30 @@ Además, tiene dos canales adicionales: uno LoRa, con ancho de banda fijo de \SI
 
 \section{Seguridad en LoRaWAN}
 
-La seguridad en LoRaWAN es uno de los activos más importantes en aplicaciones IoT, industriales, \gls{m2m}, ciudades inteligentes, etc. La seguridad cubre múltiples propiedades y en especial las criptográficas, las cuales merecen un estudio más profundo.  
+La seguridad en LoRaWAN es uno de los activos más importantes en aplicaciones IoT, industriales, \gls{m2m}, ciudades inteligentes, etc. La seguridad cubre múltiples propiedades y en especial las criptográficas, las cuales merecen un estudio más profundo.
 
-La autenticación es bidireccional entre la red y el nodo para el flujo de los datos, una vez activado el nodo. Esto asegura que los nodos se unan y se autentiquen a la respectiva red. 
+La autenticación es bidireccional entre la red y el nodo para el flujo de los datos, una vez activado el nodo. Esto asegura que los nodos se unan y se autentiquen a la respectiva red.
 Los mensajes de aplicación de la capa \gls{mac} de LoRaWAN tienen autenticación de origen, integridad protegida, reproducción protegida y encriptación. Lo anterior, unido a la autenticación mutua, garantiza que el tráfico en la red no sea alterado y que provenga de un nodo legítimo de la red. Esto hace que la información no sea comprensible para los intrusos y tampoco capturada o alterada por los piratas. La tecnología LoRa es una de las pocas redes IoT que implementa encriptación de extremo a extremo. En las redes celulares, el tráfico es encriptado en la interfaz de aire, pero es transportado como texto plano en el núcleo de la red del operador, lo cual puede ser vulnerado de forma selectiva. Para este problema se creó una etapa adicional para la seguridad. LoRaWAN no provee esta capa adicional, ya que se aumentarían el consumo de potencia, la complejidad y los costos.
 
-Potentes algoritmos de seguridad están implementados en la red LoRa, como lo es el \gls{aes}, el cual ha sido adoptado para la seguridad del tráfico entre los nodos y la red en conjunto con los diferentes modos de operación, como \gls{cmac} para proteger la integridad de la información, y el \gls{crt}, para la encriptación. Los nodos son personalizados con una clave \gls{aes} de 128~bit (AppKey) y un único identificador global (EUI-64-based DevEUI), como se observa en la figura~\ref{f:seg1}. 
+Potentes algoritmos de seguridad están implementados en la red LoRa, como lo es el \gls{aes}, el cual ha sido adoptado para la seguridad del tráfico entre los nodos y la red en conjunto con los diferentes modos de operación, como \gls{cmac} para proteger la integridad de la información, y el \gls{crt}, para la encriptación. Los nodos son personalizados con una clave \gls{aes} de 128~bit (AppKey) y un único identificador global (EUI-64-based DevEUI), como se observa en la figura~\ref{f:seg1}.
 
 \begin{figure}[H]
-    \caption{Seguridad en la trama LoRaWAN}
-    \centering
-    \includegraphics[width =.85\textwidth]{capitulos/figuras/seguridad1}
-    \label{f:seg1}
+  \centering
+  \caption{Seguridad en la trama LoRaWAN}
+  \label{f:seg1}
+  \includegraphics[width =.85\textwidth]{capitulos/figuras/seguridad1}
+  \propia
 \end{figure}
 
-La activación al aire (\emph{over-the-air}) provee el reconocimiento de ambos, el nodo y la red. Por medio de la llave \emph{AppKey}, el nodo se puede unir a la red (figura \ref{f:seg2}). 
+La activación al aire (\emph{over-the-air}) provee el reconocimiento de ambos, el nodo y la red. Por medio de la llave \emph{AppKey}, el nodo se puede unir a la red (figura \ref{f:seg2}).
 Hay dos llaves de sesión: \emph{NwkSKey}, utilizada para la integridad y autenticación del tráfico de la capa \gls{mac} de \gls{lwan}, y \emph{AppSKey}, utilizada para la encriptación de extremo a extremo de la carga útil de la aplicación.
 
 \begin{figure}[H]
-    \caption{Seguridad en LoRaWAN}
-    \centering
-    \includegraphics[width =.85\textwidth]{capitulos/figuras/seguridad2}
-    \label{f:seg2}
+  \centering
+  \caption{Seguridad en LoRaWAN}
+  \label{f:seg2}
+  \includegraphics[width =.85\textwidth]{capitulos/figuras/seguridad2}
+  \propia
 \end{figure}
 
 La llave NwkSKey es distribuida por la red LoRaWAN en su orden para probar y verificar la autenticidad y la integridad de los paquetes. La llave AppSKey la provee el servidor de la aplicación para encriptar y desencriptar la carga útil de la aplicación. Las llaves AppSKey y AppKey están ocultas al operador de la red, razón por la cual no se puede desencriptar la información del usuario.
@@ -172,12 +177,10 @@ Agregado a lo anterior, el mundo moderno de las \gls{wsn} emigra hacia una nueva
 
 En su estructura fundamental, una \gls{wsn} está constituida por:
 \begin{itemize}
-\item Los nodos sensores dispuestos para la detección de las diferentes magnitudes y para la comunicación.
-\item Los nodos actuadores, los cuales ejecutan funciones de control comandadas de acuerdo al resultado de una medición previa.
-\item La pasarela o \emph{gateway} encargada de la conexión a internet.
-\item Los clientes. 
+  \item Los nodos sensores dispuestos para la detección de las diferentes magnitudes y para la comunicación.
+  \item Los nodos actuadores, los cuales ejecutan funciones de control comandadas de acuerdo al resultado de una medición previa.
+  \item La pasarela o \emph{gateway} encargada de la conexión a internet.
+  \item Los clientes.
 \end{itemize}
 
-Los nodos transmiten y reciben el estado de cada uno de ellos entre sí para reconocerse como existentes en la red. Los nodos configuran una red (estrella, o malla, o cualquier otra) con cubrimiento de distancias cortas con un máximo de 1000~metros y utilizando la técnica multi-salto. 
-
-\newpage\thispagestyle{empty}
+Los nodos transmiten y reciben el estado de cada uno de ellos entre sí para reconocerse como existentes en la red. Los nodos configuran una red (estrella, malla, o cualquier otra) con cubrimiento de distancias cortas con un máximo de 1000~metros y utilizando la técnica multisalto.

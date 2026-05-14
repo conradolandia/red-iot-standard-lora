@@ -52,8 +52,13 @@ style=apa,
   \ifnumgreater{\value{liststop}}{2}{}{}%
   \addspace\bibstring{and}\space}
 
+% Reemplaza las comillas angulares por comillas dobles normales
+\usepackage{csquotes}
+\DeclareQuoteStyle{spanish}{``}{''}{`}{'}
+
 %para cambiar & en las citaciones dentro del texto
 \DeclareDelimFormat[parencite]{finalnamedelim}{\addspace{y}\space}
+%mejorar la partición de urls dentro del texto
 \setcounter{biburlbreakpenalty}{20}
 
 \usepackage[letterspace=5]{microtype}
@@ -184,6 +189,8 @@ style=apa,
 
 \newcommand{\CO}{CO\textsubscript{2}}
 \newcommand{\IC}{I\textsuperscript{2}C}
+\newcommand{\IS}{I\textsuperscript{2}S}
+\newcommand{\NOX}{NO$_{x}$}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
@@ -233,7 +240,7 @@ style=apa,
 
 \cleardoublepage
 
-\nocite{*}
+%\nocite{*}
 \printbibliography
 
 \include{glosario}

@@ -174,7 +174,7 @@
 
 % CONFIGURACIÓN DE LEYENDAS (CAPTIONS)
 \captionsetup[figure]{name=Figura, labelfont=bf, labelsep=period, font=footnotesize, justification=centering, width = 0.8\textwidth, skip=14pt}
-%\captionsetup[table]{name=Tabla, labelfont=bf, labelsep=period, font=footnotesize, justification=centering, width = 0.8\textwidth}
+\captionsetup[table]{name=Tabla, labelfont=bf, labelsep=period, font=footnotesize, justification=centering, width = 0.8\textwidth}
 
 % Ajustes de espacio entre la figura completa y los párrafos
 \setlength{\intextsep}{20pt plus 5pt minus 5pt} % Para figuras [h]
@@ -189,9 +189,8 @@
 \renewcommand{\@makefntext}[1]{\footnotesize\noindent\hangindent=1.5em\hangafter=1\hspace{2pt}\makebox[1.2em][l]{\@makefnmark}#1}
 \makeatother
 
-\newcommand{\pieimagen}[2]{\par\vspace{0.5em}
-\begin{minipage}{0.8\textwidth}\centering\color{MSBlack}\fontsize{8pt}{10pt}\selectfont\textbf{#1:}~{#2}
-\end{minipage}\par}
+\newcommand{\pieimagen}[2]{\par\vspace{0.5em}\begin{minipage}{0.8\textwidth}\centering\color{MSBlack}\fontsize{8pt}{10pt}\selectfont\textbf{#1:}~{#2}\end{minipage}}
+\newcommand{\pieimagensimple}[1]{\par\vspace{0.5em}\begin{minipage}{0.8\textwidth}\centering\color{MSBlack}\fontsize{8pt}{10pt}\selectfont #1\end{minipage}}
 \newcommand{\nota}[1]{\pieimagen{Nota}{#1}}
 \newcommand{\fuente}[1]{\pieimagen{Fuente}{#1}}
 \newcommand{\propia}{\fuente{elaboración propia.}}

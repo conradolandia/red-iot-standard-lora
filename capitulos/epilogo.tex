@@ -2,33 +2,32 @@
 \chapter*{Conclusiones}
 \addcontentsline{toc}{chapter}{Conclusiones}
 
-Los nodos implementados en el proyecto tuvieron complicaciones en la adaptación, dado que los sensores entregan los datos de acuerdo a las condiciones del fabricante y para cada uno de los sensores se realizó el procesamiento de datos para adaptarlos a los protocolos LoRaWAN.
+Los nodos implementados en el proyecto presentaron dificultades en la adaptación, dado que cada sensor entrega los datos según las condiciones del fabricante, por lo que se realizó el procesamiento de datos correspondiente para adecuarlos a los protocolos LoRaWAN.
 
-El geolocalizador es uno de los sensores de mayor atención, en referencia a los utilizados en el nodo, dado que la sensibilidad permite determinar el lugar de la toma de datos. Si no hay geolocalización, el dato de interés se pierde, puesto que el nodo solo lo envía una o dos veces de acuerdo a la clase de comunicación a la cual esté configurado.
+El geolocalizador es uno de los sensores de mayor atención, en referencia a los utilizados en el nodo, dado que su sensibilidad permite determinar el lugar de la toma de datos. Si no hay geolocalización, el dato de interés se pierde, puesto que el nodo solo lo envía una o dos veces, de acuerdo con la clase de comunicación en la cual esté configurado.
 
-El desempeño de este tipo de redes, en la medición de parámetros provenientes de procesos, cuyo volumen de datos en el tiempo es bajo, queda demostrado con los levantamientos realizados durante las pruebas.
+El desempeño de este tipo de redes en la medición de parámetros provenientes de procesos, cuyo volumen de datos en el tiempo es bajo, queda demostrado con los levantamientos realizados durante las pruebas.
 
-El nivel de pérdida de información es nulo, en parte por la pausa natural de los datos y obviamente por las técnicas que aplica el sistema.
-No se evidencian limitaciones con el tipo de variable y así mismo con el tipo de sensor que se emplee, cuando se siguen datos de parámetros ambientales asociados al medio ambiente.
+El nivel de pérdida de información es nulo, en parte por la pausa natural de los datos y, obviamente, por las técnicas aplicadas por el sistema. No se evidencian limitaciones respecto al tipo de variable ni al tipo de sensor empleado, en el contexto de monitoreo de parámetros ambientales.
 
-La localización en los interiores no cubrió las expectativas, puesto que LoRaWAN en clase A solo logró comunicaciones entre dos a tres pisos del edificio Sabio Caldas.
+La localización en interiores no cubrió las expectativas, puesto que LoRaWAN en clase A solo logró comunicaciones entre dos y tres pisos del edificio Sabio Caldas.
 
 \enlargethispage{\baselineskip}
 
-\textls[-10]{Los rangos de cobertura del sistema IoT LoRaWAN, de acuerdo a los rangos del estándar, dado que es una tecnología reciente, no llegan a cubrir la huella mencionada en las especificaciones. Las pruebas se hicieron con el sistema Multitech y los realizados al interior del grupo de investigación GITUD.}
+Los rangos de cobertura del sistema IoT LoRaWAN no alcanzan los valores indicados en las especificaciones del estándar, lo que puede atribuirse a que es una tecnología reciente. Las pruebas se realizaron con el sistema Multitech y con los equipos desarrollados en el GITUD.
 
-La interoperabilidad entre fabricantes, Multitech e ISMT, se comprobó haciendo barridos entre la pasarela Multitech y el nodo de ISMT Mote II, el cual mostró una cobertura similar a los barridos hechos solo con el sistema Multitech. 
+La interoperabilidad entre los fabricantes (Multitech e ISMT) se comprobó mediante barridos entre la pasarela Multitech y el nodo ISMT, Mote II, el cual mostró una cobertura similar a la obtenida con el sistema Multitech.
 
-El sistema LoRaWAN implementado en el grupo de investigación cumplió con las expectativas en las comunicaciones y el buen funcionamiento de los nodos, tanto que se tuvo una cobertura un poco mayor, como se mostró en los mapas de cobertura, que los del fabricante Multitech.
+El sistema LoRaWAN implementado en el grupo de investigación cumplió con las expectativas en cuanto a las comunicaciones y el funcionamiento de los nodos, logrando incluso una cobertura ligeramente superior a la del sistema Multitech, como se mostró en los mapas de cobertura.
 
-Es recomendable para futuros proyectos seleccionar sensores que sean compatibles con los protocolos LoRaWAN para minimizar el procesamiento de datos en el nodo. Otra recomendación es la selección de geolocalizador que sea más sensible cuando se requiera hacer pruebas en interiores. 
+Para futuros proyectos, se recomienda seleccionar sensores compatibles con los protocolos LoRaWAN, con el fin de minimizar el procesamiento de datos en el nodo. Asimismo, se recomienda emplear un geolocalizador de mayor sensibilidad para pruebas en interiores.
 
-Con la tecnología LoRaWAN se pueden implementar sistemas abiertos IoT, dado que es compatible con el \emph{software} y \emph{hardware} libre, y con la llegada de LoRaWAN clase C, se pueden hacer sistemas inteligentes más robustos. 
+Con la tecnología LoRaWAN se pueden implementar sistemas IoT abiertos, dado que es compatible con \emph{software} y \emph{hardware} libres. Con la llegada de LoRaWAN clase C, es posible desarrollar sistemas inteligentes más robustos.
 
-La ubicación de las pasarelas requiere de permisos institucionales, ya que al tener incluidas las antenas se requiere de lugares altos, a los cuales se les pueda colocar energía y conectividad. Para el caso de este proyecto se tuvo en cuenta que la institución posee varias sedes en Bogotá y se logró hacer mediciones en dos puntos de la ciudad. 
+La ubicación de las pasarelas requiere de permisos institucionales, ya que, al tener antenas, deben instalarse en lugares elevados, con acceso a energía y conectividad. Para el caso de este proyecto, se consideró que la institución cuenta con varias sedes en Bogotá, lo que permitió realizar mediciones en dos puntos de la ciudad.
 
-LoRaWAN tipo A permite la configuración flexible de la red, al ser un sistema abierto permite adaptarse a diferentes tipos de aplicaciones y requisitos de la red, tanto libres como propietarios.
+LoRaWAN clase A permite la configuración flexible de la red y, al ser un sistema abierto, puede adaptarse a diferentes tipos de aplicaciones y requisitos de la red, tanto libres como propietarios.
 
-Los nodos LoRaWAN tipo A solo pueden transmitir un número limitado de paquetes de datos al gateway durante un período determinado de tiempo. Esto puede ser una limitación para aplicaciones que requieren una alta tasa de transmisión de datos.
+Los nodos LoRaWAN clase A solo pueden transmitir un número limitado de paquetes al gateway durante un periodo determinado. Esto puede representar una limitación para aplicaciones que requieren una alta tasa de transmisión de datos.
 
-Si se requiere comunicaciones bidireccionales de los nodos y las pasarelas, LoRaWAN ofrece dos tipos de nodos tipo B y C, que también tienen mayores tasas de datos que los nodos tipo A. Esto le permite al sistema mayor flexibilidad a un costo de menor duración de la batería. 
+Si se requieren comunicaciones bidireccionales entre nodos y pasarelas, LoRaWAN ofrece las clases B y C, que permiten mayores tasas de datos que la clase A, aunque con una menor duración de la batería.
