@@ -1,0 +1,309 @@
+\usepackage{verbatim}
+\usepackage{listings} % Para codigo fuente y trozos de codigo
+\lstloadlanguages{C,bash}
+\lstset{language=C, 
+        basicstyle=\scriptsize\ttfamily,
+        breaklines=true,
+        keywordstyle=\color{blue}\ttfamily,
+        stringstyle=\color{red}\ttfamily,
+        commentstyle=\color{gray}\ttfamily,
+        morecomment=[l][\color{magenta}]{\#},
+        numbers=left, numberstyle=\tiny
+}
+\usepackage{minted}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\graphicspath{{capitulos/figuras/}}
+\usepackage[]{caption} %labelsep=period
+\usepackage{float}
+
+\usepackage[
+backend=biber,
+style=apa,
+]{biblatex}
+%%% Editar %%%
+\addbibresource{references.bib}
+\let\cite\parencite
+%%%%%%%%%%%%%%
+
+\usepackage{fontspec}
+\input{esConfigDir/esConfigFonts}
+\usepackage{authblk}
+\DefineBibliographyStrings{spanish}{andothers={\itshape{et~al}\adddot}}
+
+%In a current version of biblatex-apa, the comma before the "and" is either by the Oxford comma (\finalnamdelim)
+%or produced by the internal macro \apablx@ifrevnameappcomma.
+%If you want to get rid of the comma, you need to disable both of these features.
+%https://tex.stackexchange.com/questions/630515/biblatex-remove-commas-after-author-first-names-in-references#:~:text=1%20Answer&text=In%20a%20current%20version%20of,disable%20both%20of%20these%20features.
+
+\makeatletter
+\renewcommand*{\apablx@ifrevnameappcomma}[2]{#2}
+\makeatother
+\DefineBibliographyExtras{spanish}{%
+  \let\finalandcomma=\empty
+}
+% Fechas estilo APA en español: ordinal 1.º--9.º vía \mkbibmascord; día ≥ 10 sin ordinal.
+% (No añadir punto antes de \sptext{o}: babel ya lo incluye en el ordinal.)
+\DefineBibliographyExtras{spanish}{%
+  \protected\def\bibapadayprint#1{%
+    \ifnumgreater{\thefield{#1}}{9}
+      {\stripzeros{\thefield{#1}}}
+      {\mkbibmascord{\thefield{#1}}}%
+  }%
+  \protected\def\mkbibdateapalong#1#2#3#4{%
+    \ifboolexpr{ (test {\ifentrytype{article}}
+                  or (test {\ifentrytype{inbook}} and not test {\ifnameundef{editor}}))
+                 and not test {\iffieldequalstr{entrysubtype}{nonacademic}} }
+      {\clearfield{labelmonth}%
+       \clearfield{labelday}}
+      {}%
+    \iffieldundef{#1}
+      {}%
+      {\iffieldbibstring{#1}{\bibncpstring{\thefield{#1}}}{\thefield{#1}}%
+       \ifboolexpr{test {\iffieldundef{#4}} and test {\iffieldundef{#3}}}
+         {}
+         {\addcomma\space}}%
+    \iffieldundef{#2}
+      {}%
+      {\iffieldundef{#1}
+        {}%
+        {\addcomma\addspace}%
+       \iffieldbibstring{#2}{\bibcplstring{\thefield{#2}}}{\thefield{#2}}}%
+    \iffieldundef{#4}
+      {}%
+      {\bibapadayprint{#4}%
+       \iffieldundef{#3}
+         {}
+         {\addspace de\space}}%
+    \iffieldundef{#3}
+      {}%
+      {\mkbibmonth{\thefield{#3}}}}%
+  \protected\def\mkbibdateapalongextra#1#2#3#4{%
+    \ifboolexpr{ (test {\ifentrytype{article}}
+                  or (test {\ifentrytype{inbook}} and not test {\ifnameundef{editor}}))
+                 and not test {\iffieldequalstr{entrysubtype}{nonacademic}} }
+      {\clearfield{labelmonth}%
+       \clearfield{labelday}}
+      {}%
+    \iffieldundef{#1}
+      {}%
+      {\iffieldbibstring{#1}{\bibncpstring{\thefield{#1}}}{\thefield{#1}}\printfield{extradate}%
+       \ifboolexpr{test {\iffieldundef{#4}} and test {\iffieldundef{#3}}}
+         {}
+         {\addcomma\space}}%
+    \iffieldundef{#2}
+      {}%
+      {\iffieldundef{#1}
+        {}%
+        {\addcomma\addspace}%
+       \iffieldbibstring{#2}{\bibcplstring{\thefield{#2}}}{\thefield{#2}}}%
+    \iffieldundef{#4}
+      {}%
+      {\bibapadayprint{#4}%
+       \iffieldundef{#3}
+         {}
+         {\addspace de\space}}%
+    \iffieldundef{#3}
+      {}%
+      {\mkbibmonth{\thefield{#3}}}}%
+  \protected\def\mkbibdateapalongmdy#1#2#3#4{%
+    \ifboolexpr{ (test {\ifentrytype{article}}
+                  or (test {\ifentrytype{inbook}} and not test {\ifnameundef{editor}}))
+                 and not test {\iffieldequalstr{entrysubtype}{nonacademic}} }
+      {\clearfield{labelmonth}%
+       \clearfield{labelday}}
+      {}%
+    \iffieldundef{#2}
+      {}%
+      {\iffieldundef{#1}
+        {}%
+        {\addcomma\addspace}%
+       \iffieldbibstring{#2}{\bibcplstring{\thefield{#2}}}{\thefield{#2}}}%
+    \iffieldundef{#4}
+      {}%
+      {el\addspace\bibapadayprint{#4}}%
+    \iffieldundef{#3}
+      {\addspace{en}\addspace}%
+      {\iffieldundef{#4}
+        {en\addspace}%
+        {\addspace{de}\addspace}%
+       \mkbibmonth{\thefield{#3}}{\addspace{de}\addspace}}%
+    \iffieldundef{#1}
+      {}%
+      {\iffieldundef{#2}
+        {}%
+        {\addspace}%
+       \iffieldbibstring{#1}{\bibstring{\thefield{#1}}}{\thefield{#1}}}}%
+}
+%Para cambiar el & por "y" en el capitulo de Referencias
+\DeclareDelimFormat[bib,textcite]{finalnamedelim}{%
+  \ifnumgreater{\value{liststop}}{2}{}{}%
+  \addspace\bibstring{and}\space}
+
+% Reemplaza las comillas angulares por comillas dobles normales
+\usepackage{csquotes}
+\DeclareQuoteStyle{spanish}{``}{''}{`}{'}
+
+%para cambiar & en las citaciones dentro del texto
+\DeclareDelimFormat[parencite]{finalnamedelim}{\addspace{y}\space}
+
+\usepackage[letterspace=5]{microtype}
+\usepackage{graphicx}
+
+%%% Editar %%%
+\def\texttitulocorto{Evaluación de una red IoT bajo el estándar LoRa}
+%Lista de autores
+\def\loauthors{J.\,N.~Poveda, L.\,M.~Santamaría, E.\,E.~Gaona García, S.\,Tabares, A.\,F.~Bustos}
+%%%%%%%%%%%%%%
+\input{esConfigDir/esEstilo}
+
+\usepackage[
+  paperheight=24.0cm,
+  paperwidth=17.0cm,
+  textwidth=12.5cm,
+  tmargin=2.5cm,
+  bmargin=2.5cm,
+  left=2.5cm,
+  right=2.0cm
+]{geometry}
+
+
+%%% Editar %%%
+%Algunos paquetes para el usuario
+\decimalpoint
+\usepackage{lipsum}  
+\usepackage[pangram]{blindtext}
+%%%%%%%%%%%%%%
+
+
+%%% Editar %%%
+%% Comentar esta línea para la presentación si hipertexto
+\usepackage[unicode,bookmarksopen,bookmarksdepth=2,breaklinks=true]{hyperref}%Para hipervinulos de figuras, tablas, ecuaciones y citas
+\hypersetup{
+        colorlinks=true,
+        linkcolor=black,
+        filecolor=black,
+        urlcolor=black,
+        citecolor=black
+    }
+% Tras hyperref: más puntos de ruptura en \url (p. ej. Dudler, R. en bibliografía).
+% nobiblatex: evita que xurl deje las penalidades de biblatex demasiado bajas.
+\usepackage[nobiblatex]{xurl}
+\usepackage{etoolbox}
+\gappto{\UrlBreaks}{\UrlOrds}
+% URLs en bibliografía: permitir cortes en más posiciones.
+\setcounter{biburlbreakpenalty}{100}
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+\setcounter{biburllcpenalty}{9000}
+% Campo url (biblatex-apa): no partir la secuencia tipográfica "https:"; el enlace sigue siendo la URL completa.
+\ExplSyntaxOn
+\str_new:N \l_bib_https_url_str
+\cs_new_protected:Npn \bib_url_https_nobreak_print:n #1
+  {
+    \str_set:Nn \l_bib_https_url_str {#1}
+    \str_if_eq:eeTF
+      { \str_range:Nnn \l_bib_https_url_str { 1 } { 6 } }
+      { https: }
+      {
+        \mbox{https:}
+        \exp_args:Ne \nolinkurl
+          {
+            \str_range:Nnn \l_bib_https_url_str { 7 } { \str_count:N \l_bib_https_url_str }
+          }
+      }
+      { \nolinkurl {#1} }
+  }
+\DeclareFieldFormat{url}{ \href{#1}{ \bib_url_https_nobreak_print:n {#1} } \nopunct }
+\ExplSyntaxOff
+%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{subcaption}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\usepackage{shapepar}
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{xcolor}
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+
+\usepackage{tabularray}
+\usepackage{nameref}
+\usepackage{fontawesome}
+\usepackage{academicons}
+
+%% Para editar: comentar esta línea.
+%% Para produccion del libro: activar esta linea.
+%% Nota: Esta instrucción es para colocar lineas guia de corte (crop marks)
+%\usepackage[cam,width=190truemm,height=260truemm,lualatex,center]{crop}
+%%%%%%%%%%
+
+%%% Editar %%%
+%%%%%%%%%%%%%%
+
+\usepackage[acronym,toc]{glossaries}
+\usepackage{amsmath,amssymb,amsfonts,latexsym,cancel}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{tikz} % hacer gráficos 
+\usepackage{setspace}
+\usepackage{xspace}
+
+\def\fuente#1{\small\textbf{Fuente:}~#1}
+\date{\today}
+
+\newglossarystyle{long-tabla}{%
+  \setglossarystyle{long}
+
+  \renewcommand{\glossentry}[2]{%
+    \small
+    \glsentryitem{##1}\glstarget{##1}{\textmed{\glossentryname{##1}}} &
+    \textls[-10]{\Glossentrydesc{##1}}\glspostdescription\space ##2\tabularnewline
+  }%
+}
+
+\newglossarystyle{long-lista}{%
+  \setglossarystyle{list}
+  \renewcommand*{\glsgroupskip}{}%
+  \renewcommand*{\glossentry}[2]{%
+    \small
+    \item[\glstarget{##1}{\textmed{\glossentryname{##1}}}] 
+    \textls[-10]{\Glossentrydesc{##1}}\glspostdescription\space ##2
+  }%
+}
+
+\setglossarystyle{long-lista}
+
+%%% Sin sangria al inicio de párrafos
+\setlength\parindent{0pt}
+\raggedbottom
+%%%
+
+\pagestyle{empty}
+\counterwithout{footnote}{chapter}
+
+\makeglossaries
+
+\def\texttitulo{Evaluación de una red IoT bajo el estándar LoRa}
+\def\textsubtitulo{}
+\def\loauthors{José~Noé~Poveda~Zafra, Luis~Enrique~Martín~Santamaría, Elvis~Eduardo~Gaona~García, Sebastián~Yesid~Tabares~Amaya, Alex~Francisco~Bustos~Pinzón}
+\def\texttitulocorto{\texttitulo}
+
+\usepackage{emptypage}
+
+% Esto asegura que la página izquierda de un capítulo nuevo esté vacía (sin cornisas)
+\renewcommand{\cleardoublepage}{%
+  \clearpage\ifodd\value{page}\else\hbox{}\thispagestyle{empty}\newpage\fi%
+}
+
+\usepackage[all]{nowidow}
+
+\newcommand{\CO}{CO\textsubscript{2}}
+\newcommand{\IC}{I\textsuperscript{2}C}
+\newcommand{\IS}{I\textsuperscript{2}S}
+\newcommand{\NOX}{NO$_{x}$}

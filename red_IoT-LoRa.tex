@@ -1,196 +1,7 @@
 %% Plantilla LaTeX Espacios Editorial UD
-\documentclass[draft,12pt,twoside,spanish]{book}
+\documentclass[12pt,twoside,spanish]{book}
 
-\usepackage{verbatim}
-\usepackage{listings} % Para codigo fuente y trozos de codigo
-\lstloadlanguages{C,bash}
-\lstset{language=C, 
-        basicstyle=\scriptsize\ttfamily,
-        breaklines=true,
-        keywordstyle=\color{blue}\ttfamily,
-        stringstyle=\color{red}\ttfamily,
-        commentstyle=\color{gray}\ttfamily,
-        morecomment=[l][\color{magenta}]{\#},
-        numbers=left, numberstyle=\tiny
-}
-\usepackage{minted}
-\usepackage[spanish,es-tabla]{babel}
-\usepackage{siunitx}
-\usepackage{url}
-\usepackage{graphicx}
-\graphicspath{{capitulos/figuras/}}
-\usepackage[]{caption} %labelsep=period
-\usepackage{float}
-
-\usepackage[
-backend=biber,
-style=apa,
-]{biblatex}
-%%% Editar %%%
-\addbibresource{references.bib}
-\let\cite\parencite
-%%%%%%%%%%%%%%
-
-\usepackage{fontspec}
-\input{esConfigDir/esConfigFonts}
-\usepackage{authblk}
-\DefineBibliographyStrings{spanish}{andothers={\itshape{et~al}\adddot}}
-
-%In a current version of biblatex-apa, the comma before the "and" is either by the Oxford comma (\finalnamdelim)
-%or produced by the internal macro \apablx@ifrevnameappcomma.
-%If you want to get rid of the comma, you need to disable both of these features.
-%https://tex.stackexchange.com/questions/630515/biblatex-remove-commas-after-author-first-names-in-references#:~:text=1%20Answer&text=In%20a%20current%20version%20of,disable%20both%20of%20these%20features.
-
-\makeatletter
-\renewcommand*{\apablx@ifrevnameappcomma}[2]{#2}
-\makeatother
-\DefineBibliographyExtras{spanish}{%
-  \let\finalandcomma=\empty
-}
-%Para cambiar el & por "y" en el capitulo de Referencias
-\DeclareDelimFormat[bib,textcite]{finalnamedelim}{%
-  \ifnumgreater{\value{liststop}}{2}{}{}%
-  \addspace\bibstring{and}\space}
-
-% Reemplaza las comillas angulares por comillas dobles normales
-\usepackage{csquotes}
-\DeclareQuoteStyle{spanish}{``}{''}{`}{'}
-
-%para cambiar & en las citaciones dentro del texto
-\DeclareDelimFormat[parencite]{finalnamedelim}{\addspace{y}\space}
-%mejorar la partición de urls dentro del texto
-\setcounter{biburlbreakpenalty}{20}
-
-\usepackage[letterspace=5]{microtype}
-\usepackage{graphicx}
-
-%%% Editar %%%
-\def\texttitulocorto{Evaluación de una red IoT bajo el estándar LoRa}
-%Lista de autores
-\def\loauthors{J.\,N.~Poveda, L.\,M.~Santamaría, E.\,E.~Gaona García, S.\,Tabares, A.\,F.~Bustos}
-%%%%%%%%%%%%%%
-\input{esConfigDir/esEstilo}
-
-\usepackage[
-  paperheight=24.0cm,
-  paperwidth=17.0cm,
-  textwidth=12.5cm,
-  tmargin=2.5cm,
-  bmargin=2.5cm,
-  left=2.5cm,
-  right=2.0cm
-]{geometry}
-
-
-%%% Editar %%%
-%Algunos paquetes para el usuario
-\decimalpoint
-\usepackage{lipsum}  
-\usepackage[pangram]{blindtext}
-%%%%%%%%%%%%%%
-
-
-%%% Editar %%%
-%% Comentar esta línea para la presentación si hipertexto
-\usepackage[unicode,bookmarksopen,bookmarksdepth=2,breaklinks=true]{hyperref}%Para hipervinulos de figuras, tablas, ecuaciones y citas
-\hypersetup{
-        colorlinks=true,
-        linkcolor=black,
-        filecolor=black,
-        urlcolor=black,
-        citecolor=black
-    }
-\usepackage{etoolbox}
-\gappto{\UrlBreaks}{\UrlOrds}
-%%%%%%%%%%%%%%
-
-\usepackage{amsmath}
-\usepackage{longtable}
-\usepackage{subcaption}
-\usepackage{array}
-\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
-
-\usepackage{shapepar}
-\usepackage{tikz}
-\usepackage{tikzscale}
-\usepackage{xcolor}
-\definecolor{orcidlogocol}{HTML}{A6CE39}
-
-\usepackage{tabularray}
-\usepackage{nameref}
-\usepackage{fontawesome}
-\usepackage{academicons}
-
-%% Para editar: comentar esta línea.
-%% Para produccion del libro: activar esta linea.
-%% Nota: Esta instrucción es para colocar lineas guia de corte (crop marks)
-%\usepackage[cam,width=190truemm,height=260truemm,lualatex,center]{crop}
-%%%%%%%%%%
-
-%%% Editar %%%
-%%%%%%%%%%%%%%
-
-\usepackage[acronym,toc]{glossaries}
-\usepackage{amsmath,amssymb,amsfonts,latexsym,cancel}
-\usepackage{multirow}
-\usepackage{booktabs}
-\usepackage[table]{xcolor}
-\usepackage{tikz} % hacer gráficos 
-\usepackage{setspace}
-
-\def\fuente#1{\small\textbf{Fuente:}~#1}
-\date{\today}
-
-\newglossarystyle{long-tabla}{%
-  \setglossarystyle{long}
-
-  \renewcommand{\glossentry}[2]{%
-    \small
-    \glsentryitem{##1}\glstarget{##1}{\textmed{\glossentryname{##1}}} &
-    \textls[-10]{\Glossentrydesc{##1}}\glspostdescription\space ##2\tabularnewline
-  }%
-}
-
-\newglossarystyle{long-lista}{%
-  \setglossarystyle{list}
-  \renewcommand*{\glsgroupskip}{}%
-  \renewcommand*{\glossentry}[2]{%
-    \small
-    \item[\glstarget{##1}{\textmed{\glossentryname{##1}}}] 
-    \textls[-10]{\Glossentrydesc{##1}}\glspostdescription\space ##2
-  }%
-}
-
-\setglossarystyle{long-lista}
-
-%%% Sin sangria al inicio de párrafos
-\setlength\parindent{0pt}
-\raggedbottom
-%%%
-
-\pagestyle{empty}
-\counterwithout{footnote}{chapter}
-
-\makeglossaries
-
-\def\texttitulo{Evaluación de una red IoT bajo el estándar LoRa}
-\def\textsubtitulo{}
-\def\loauthors{José~Noé~Poveda~Zafra, Luis~Enrique~Martín~Santamaría, Elvis~Eduardo~Gaona~García, Sebastián~Yesid~Tabares~Amaya, Alex~Francisco~Bustos~Pinzón}
-\def\texttitulocorto{\texttitulo}
-
-\usepackage{emptypage}
-
-% Esto asegura que la página izquierda de un capítulo nuevo esté vacía (sin cornisas)
-\renewcommand{\cleardoublepage}{%
-  \clearpage\ifodd\value{page}\else\hbox{}\thispagestyle{empty}\newpage\fi%
-}
-
-\usepackage[all]{nowidow}
-
-\newcommand{\CO}{CO\textsubscript{2}}
-\newcommand{\IC}{I\textsuperscript{2}C}
-\newcommand{\IS}{I\textsuperscript{2}S}
-\newcommand{\NOX}{NO$_{x}$}
+\input{preambulo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%
@@ -213,6 +24,10 @@ style=apa,
 
 \input{resumen}
 
+\clearpage
+
+\input{legal}
+
 \cleardoublepage
 
 \input{agradecimientos}
@@ -225,6 +40,10 @@ style=apa,
 \setcounter{tocdepth}{1}
 \tableofcontents
 \addtocontents{toc}{\protect\thispagestyle{empty}}
+\cleardoublepage
+
+\include{glosario}
+
 \cleardoublepage
 
 \pagestyle{esstyle}
@@ -240,32 +59,32 @@ style=apa,
 
 \cleardoublepage
 
-%\nocite{*}
-\printbibliography
-
-\include{glosario}
-
-\printacronyms[title={Siglas},toctitle={Siglas}]
-
-\newpage\thispagestyle{empty}
-
-%% Editar Bio de autores %%
 \pagestyle{plain}
 
-\chapter*{\lhseries Sobre los autores}
+\chapter*{Referencias}
+\addcontentsline{toc}{chapter}{Referencias}
+\nocite{*}
+\printbibliography[heading=none,notkeyword=recomendada]
+\section{Bibliografía recomendada}
+\printbibliography[heading=none,keyword=recomendada]
+
+%% Editar Bio de autores %%
+\chapter*{Sobre los autores}
 \addcontentsline{toc}{chapter}{Sobre los autores}
 
-\autorinfo{José Noé~Poveda}{\lipsum[1]}{jose.poveda@udistrital.edu.co}{https://orcid.org/0000-0001-8378-4215}
+\autorinfo{José Noé~Poveda Zafra}{Profesor asociado en la Facultad de Ingeniería de la Universidad Distrital Francisco José de Caldas, Bogotá, Colombia. Magíster en Teleinformática de la misma universidad. Investigador del Grupo de Investigación de Telecomunicaciones de la Universidad Distrital (GITUD). Sus áreas de investigación son IoT y las comunicaciones de radiofrecuencia.}{jpoveda@udistrital.edu.co}{}
 
-\autorinfo{Luis~Martín~Santamaría}{\lipsum[1]}{luis.santamaria@udistrital.edu.co}{https://orcid.org/0000-0001-8378-4215}
+\autorinfo{Luis Enrique Martín Santamaría}{Profesor de planta de la asignatura Instrumentación Industrial de la Facultad de Ingeniería de la Universidad Distrital Francisco José de Caldas. Ingeniero electrónico de la misma universidad, con especialización y estudios de posgrado en áreas de bioingeniería, instrumentación científica y automática e informática. Tiene experiencia docente y de campo en estas áreas desde 1980, en asignaturas afines a la instrumentación electrónica, en la Universidad Central de Venezuela, en Caracas, y en las universidades de San Buenaventura y Santo Tomás, en Bogotá.}{lmartin@udistrital.edu.co}{}
 
-\autorinfo{Elvis~Eduardo Gaona García}{\lipsum[1]}{elvis.gaona@udistrital.edu.co}{https://orcid.org/0000-0001-8378-4215}
+\autorinfo{Elvis~Eduardo Gaona García}{Profesor de planta en la Facultad de Ingeniería de la Universidad Distrital Francisco José de Caldas desde 2002. Recibió, en esta misma universidad, los títulos de ingeniero electrónico en 2001, de especialista en Telecomunicaciones Móviles en 2003 y de magíster en Ciencias de la Información y las Comunicaciones en 2007. Se doctoró en Ingeniería en 2017. Actualmente, se desempeña como director del Grupo de Investigación de Telecomunicaciones de la Universidad Distrital (GITUD). Ha sido autor y coautor de más de cien artículos en revistas y conferencias arbitradas, siete libros de investigación y dos capítulos de libro, y editor de cuatro libros con la editorial Springer. Sus áreas de investigación incluyen las aplicaciones de inteligencia artificial, las microrredes eléctricas, los sistemas de telecomunicaciones y el análisis de imágenes.}{egaona@udistrital.edu.co}{}
 
-\autorinfo{Alex Francisco~Bustos}{\lipsum[1]}{alex.bustos@udistrital.edu.co}{https://orcid.org/0000-0001-8378-4215}
+\autorinfo{Sebastián Yesid Tabares Amaya}{Ingeniero electrónico de la Universidad Distrital Francisco José de Caldas. Miembro del grupo GNU/Linux de la Universidad Distrital (GLUD) e investigador del Grupo de Investigación de Telecomunicaciones (GITUD). Su trabajo incluye el despliegue de la red LoRaWAN IoT en Bogotá, Colombia, y la preparación de la red y la infraestructura cloud necesaria para el desarrollo del proyecto. Sus áreas de investigación incluyen computación moderna, IoT y telecomunicaciones adaptativas.}{sytabaresa@udistrital.edu.co}{}
+
+\autorinfo{Alex Francisco Bustos Pinzón}{Ingeniero electrónico de la Universidad Distrital Francisco José de Caldas. Miembro del grupo GNU/Linux de la Universidad Distrital (GLUD) e investigador del Grupo de Investigación de Telecomunicaciones (GITUD). Su trabajo incluye el despliegue de la red LoRaWAN IoT en Bogotá, Colombia, y la preparación de la red y la infraestructura cloud necesaria para el desarrollo del proyecto. Sus áreas de investigación incluyen computación moderna, IoT y telecomunicaciones adaptativas.}{afbustosp@udistrital.edu.co}{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 
-\escolofon{octubre}{2025}
+\escolofon{junio}{2026}{Carvajal Soluciones de Comunicación SAS}
 
 \end{document}

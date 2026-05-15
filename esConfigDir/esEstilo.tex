@@ -364,9 +364,10 @@ en #3.
 \endgroup
 }
 
-\newcommand{\autorinfo}[4]{
+\newcommand{\autorinfo}[4]{%
 {\large\medseries\noindent #1}\par
 \noindent#2\par
-\faEnvelope~\url{#3}\par
-\textcolor{orcidlogocol}{\aiOrcid}~\url{#4}\par\vspace{1em}
+\IfStrEq{#3}{}{}{\faEnvelope~\url{#3}\par}%
+\IfStrEq{#4}{}{}{\textcolor{orcidlogocol}{\aiOrcid}~\url{#4}\par}%
+\vspace{1em}%
 }
